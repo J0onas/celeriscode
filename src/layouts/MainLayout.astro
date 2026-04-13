@@ -1,0 +1,98 @@
+---
+import Header from '../components/sections/Header.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = "Celeris Code | Agencia de Desarrollo Web y Producto Digital",
+  description = "Diseñamos y desarrollamos landing pages, sitios multipage, ecommerce y SaaS con enfoque en UX, rendimiento y conversión.",
+  image = "/assets/projects/posmart.svg",
+} = Astro.props;
+
+const canonical = Astro.url.href;
+const ogImage = new URL(image, Astro.url).href;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonical} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="theme-color" content="#020617" />
+
+    <script is:inline>
+      (() => {
+        const storedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = storedTheme === 'light' || storedTheme === 'dark'
+          ? storedTheme
+          : (prefersDark ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  </head>
+  <body class="selection:bg-primary-vibrant/30 selection:text-primary-vibrant">
+    <Header />
+
+    <main class="min-h-screen pt-28 md:pt-24">
+      <slot />
+    </main>
+
+    <footer class="mt-24 border-t border-white/10 bg-primary-deep/55 py-14">
+      <div class="container mx-auto grid gap-8 px-6 md:grid-cols-3">
+        <div>
+          <h3 class="text-xl font-bold text-white">Celeris Code</h3>
+          <p class="mt-3 max-w-sm text-sm text-slate-300">
+            Diseño y desarrollo digital para negocios que quieren crecer con experiencias modernas, rápidas y claras.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-semibold uppercase tracking-wide text-slate-300">Navegación</h4>
+          <div class="mt-4 flex flex-col gap-2 text-sm text-slate-300">
+            <a href="/servicios" class="hover:text-primary-vibrant">Servicios</a>
+            <a href="/portafolio" class="hover:text-primary-vibrant">Portafolio</a>
+            <a href="/blog" class="hover:text-primary-vibrant">Blog</a>
+            <a href="/contacto" class="hover:text-primary-vibrant">Contacto</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-semibold uppercase tracking-wide text-slate-300">Contacto</h4>
+          <p class="mt-4 text-sm text-slate-300">contacto@celeriscode.com</p>
+          <p class="text-sm text-slate-400">Madrid, España | Remoto global</p>
+        </div>
+      </div>
+
+      <div class="container mx-auto mt-10 border-t border-white/5 px-6 pt-6 text-sm text-slate-400">
+        &copy; {new Date().getFullYear()} Celeris Code. Todos los derechos reservados.
+      </div>
+    </footer>
+  </body>
+</html>

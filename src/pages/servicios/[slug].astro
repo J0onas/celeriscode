@@ -1,0 +1,88 @@
+---
+import { getCollection, render } from 'astro:content';
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+  return services.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const iconByService: Record<string, string> = {
+  rocket: 'M5 12l5.5 5.5M4 20l5-1 9-9a4 4 0 10-5.66-5.66l-9 9-1 5z',
+  layers: 'M12 3l9 4.5-9 4.5-9-4.5L12 3zm-9 9l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5',
+  cart: 'M3 4h2l1 10h11l2-7H6M9 20a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z',
+  spark: 'M12 3l2.5 5.5L20 11l-5.5 2.5L12 19l-2.5-5.5L4 11l5.5-2.5L12 3z',
+};
+---
+
+<MainLayout title={`${entry.data.title} | Celeris Code`} description={entry.data.description}>
+  <article class="container mx-auto px-6 py-20">
+    <header class="mx-auto max-w-4xl">
+      <span class="pill">Servicio especializado</span>
+      <div class="mt-6 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-primary-vibrant/35 bg-primary-vibrant/10 text-primary-vibrant">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d={iconByService[entry.data.icon ?? 'spark'] ?? iconByService.spark} />
+        </svg>
+      </div>
+      <h1 class="mt-6 text-4xl font-extrabold text-white md:text-6xl">{entry.data.title}</h1>
+      <p class="mt-4 text-lg leading-relaxed text-slate-300">{entry.data.description}</p>
+      {entry.data.highlight && <p class="mt-4 text-base font-semibold text-primary-vibrant">{entry.data.highlight}</p>}
+
+      <div class="mt-6 flex flex-wrap gap-2">
+        {entry.data.duration && <span class="pill">{entry.data.duration}</span>}
+        {entry.data.pricingHint && <span class="pill">{entry.data.pricingHint}</span>}
+      </div>
+    </header>
+
+    <div class="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-2">
+      <section class="bento-card">
+        <h2 class="text-2xl font-bold text-white">Qué incluye</h2>
+        <ul class="mt-5 space-y-3 text-sm text-slate-300">
+          {entry.data.deliverables.map((item: string) => (
+            <li class="flex items-start gap-2">
+              <span class="mt-1 h-2 w-2 rounded-full bg-primary-vibrant"></span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="bento-card">
+        <h2 class="text-2xl font-bold text-white">Ideal para</h2>
+        <ul class="mt-5 space-y-3 text-sm text-slate-300">
+          {entry.data.idealFor.map((item: string) => (
+            <li class="flex items-start gap-2">
+              <span class="mt-1 h-2 w-2 rounded-full bg-accent"></span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+
+    <section class="content-rich mx-auto mt-12 max-w-5xl bento-card">
+      <Content />
+    </section>
+
+    <div class="mx-auto mt-12 max-w-5xl rounded-3xl border border-primary-vibrant/30 bg-primary-vibrant/8 p-8 text-center">
+      <h2 class="text-2xl font-bold text-white md:text-3xl">¿Interesado en este servicio?</h2>
+      <p class="mx-auto mt-3 max-w-xl text-slate-300">
+        Te mostramos una propuesta clara con alcance recomendado según tu objetivo de negocio.
+      </p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="/contacto" class="rounded-xl bg-gradient-to-r from-primary-vibrant to-accent px-7 py-3.5 font-bold text-white">
+          Impulsa tu Proyecto
+        </a>
+        <a href="/portafolio" class="rounded-xl border border-white/20 px-7 py-3.5 font-bold text-slate-100">
+          Ver casos similares
+        </a>
+      </div>
+    </div>
+  </article>
+</MainLayout>

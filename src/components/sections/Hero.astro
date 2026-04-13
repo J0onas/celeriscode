@@ -1,0 +1,88 @@
+---
+const services = ['Landing Page', 'Multipage', 'Ecommerce', 'SaaS'];
+---
+
+<section id="hero" class="relative overflow-hidden pb-20 pt-32">
+  <div class="pointer-events-none absolute inset-0 -z-20">
+    <div class="aurora-blue absolute -left-[10%] top-[-10%] h-72 w-72 opacity-60"></div>
+    <div class="aurora-purple absolute right-[-8%] top-[12%] h-72 w-72 opacity-50"></div>
+    <div class="aurora-teal absolute bottom-[-12%] left-1/2 h-80 w-80 -translate-x-1/2 opacity-40"></div>
+  </div>
+
+  <div class="container mx-auto px-6">
+    <div class="mx-auto max-w-4xl text-center">
+      <span class="pill">Diseño UI/UX + Desarrollo web orientado a conversión</span>
+      <h1 class="mt-6 text-4xl font-black leading-[0.95] text-white md:text-7xl">
+        Construimos productos digitales
+        <span class="gradient-text block">modernos, rápidos y rentables</span>
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-300 md:text-xl">
+        Ayudamos a marcas y negocios a escalar con experiencias web minimalistas:
+        landing pages de alto impacto, sitios multipage, ecommerce y plataformas SaaS.
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <a
+          href="/contacto"
+          class="rounded-xl bg-gradient-to-r from-primary-vibrant to-accent px-8 py-4 font-bold text-white shadow-lg shadow-sky-600/20 transition-transform hover:scale-[1.02]"
+        >
+          Impulsa tu Proyecto
+        </a>
+        <a
+          href="/portafolio"
+          class="rounded-xl border border-white/15 bg-white/5 px-8 py-4 font-bold text-slate-100 transition-colors hover:border-primary-vibrant/50 hover:text-primary-vibrant"
+        >
+          Ver proyectos
+        </a>
+      </div>
+
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-2">
+        {services.map((service) => (
+          <span class="pill">{service}</span>
+        ))}
+      </div>
+    </div>
+
+    <div class="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-5 md:grid-cols-12">
+      <article class="bento-card-premium md:col-span-7">
+        <p class="text-technical">Proyecto destacado</p>
+        <h2 class="mt-3 text-2xl font-extrabold text-white">POSmart SaaS</h2>
+        <p class="mt-3 max-w-xl text-slate-300">
+          Plataforma para gestión comercial con foco en operación diaria: facturación,
+          inventario y reportes en tiempo real.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="pill">Retail</span>
+          <span class="pill">SaaS</span>
+          <span class="pill">Productividad</span>
+        </div>
+        <a
+          href="https://posmart-app.vercel.app/login"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-6 inline-flex rounded-lg border border-primary-vibrant/35 bg-primary-vibrant/10 px-4 py-2 text-sm font-semibold text-primary-vibrant transition-colors hover:bg-primary-vibrant/20"
+        >
+          Abrir proyecto
+        </a>
+      </article>
+
+      <article class="bento-card-premium md:col-span-5">
+        <p class="text-technical">Resultados de enfoque</p>
+        <div class="mt-4 space-y-5">
+          <div class="border-l-2 border-primary-vibrant pl-4">
+            <p class="text-3xl font-black text-white">4</p>
+            <p class="text-sm text-slate-300">Líneas de servicio especializadas</p>
+          </div>
+          <div class="border-l-2 border-accent pl-4">
+            <p class="text-3xl font-black text-white">5</p>
+            <p class="text-sm text-slate-300">Casos reales en portafolio actual</p>
+          </div>
+          <div class="border-l-2 border-success pl-4">
+            <p class="text-3xl font-black text-white">100%</p>
+            <p class="text-sm text-slate-300">Experiencia optimizada para móvil</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
