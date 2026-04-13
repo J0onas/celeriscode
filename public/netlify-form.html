@@ -1,0 +1,22 @@
+<!-- 
+  Netlify Form Detection Helper
+  This hidden form ensures Netlify detects the "contacto" form during static build.
+  The actual visible form is in /contacto/ (Astro-generated).
+-->
+<form name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contacto/exito/" style="display:none" aria-hidden="true">
+  <input type="hidden" name="form-name" value="contacto" />
+  <input type="hidden" name="bot-field" />
+  <input type="text" name="name" />
+  <input type="email" name="email" />
+  <input type="text" name="company" />
+  <select name="service">
+    <option>landing-page</option>
+  </select>
+  <select name="budget">
+    <option>1500-3000</option>
+  </select>
+  <textarea name="message"></textarea>
+  <select name="source">
+    <option>google</option>
+  </select>
+</form>

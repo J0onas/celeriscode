@@ -2,6 +2,22 @@
 import MainLayout from '../layouts/MainLayout.astro';
 ---
 
+<!-- 
+  Netlify static form detection
+  This hidden form is rendered at build time so Netlify detects it
+-->
+<form name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contacto/exito/" class="hidden" aria-hidden="true" data-netlify-form>
+  <input type="hidden" name="form-name" value="contacto" />
+  <input name="bot-field" />
+  <input name="name" />
+  <input name="email" />
+  <input name="company" />
+  <select name="service"><option>landing-page</option></select>
+  <select name="budget"><option>1500-3000</option></select>
+  <textarea name="message"></textarea>
+  <select name="source"><option>google</option></select>
+</form>
+
 <MainLayout title="Contacto | Celeris Code" description="Conversemos sobre tu próximo proyecto digital: landing page, multipage, ecommerce o SaaS. Respuesta en menos de 24 horas.">
   <!-- Hero Section -->
   <section class="relative overflow-hidden py-20 md:py-28">
@@ -148,11 +164,18 @@ import MainLayout from '../layouts/MainLayout.astro';
               </p>
             </div>
 
-            <form class="space-y-6" name="contacto" method="POST" netlify data-netlify="true" netlify-honeypot="bot-field">
-              <!-- Honeypot field (hidden, catches bots) -->
-              <p style="display:none">
+            <form
+              id="contact-form"
+              class="space-y-6"
+              name="contacto"
+              method="POST"
+              netlify-honeypot="bot-field"
+            >
+              <input type="hidden" name="form-name" value="contacto" />
+              <p class="hidden">
                 <label>No llenes esto: <input name="bot-field" /></label>
               </p>
+
               <!-- Name & Email Row -->
               <div class="grid gap-5 md:grid-cols-2">
                 <div>
@@ -469,3 +492,35 @@ import MainLayout from '../layouts/MainLayout.astro';
     </div>
   </section>
 </MainLayout>
+
+<script is:inline>
+  const form = document.getElementById('contact-form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      
+      // Show loading state
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="animate-pulse">Enviando...</span>';
+      
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(() => {
+        // Success - redirect
+        window.location.href = '/contacto/exito/';
+      })
+      .catch(error => {
+        alert('Hubo un error al enviar el formulario. Por favor intenta de nuevo.');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      });
+    });
+  }
+</script>
