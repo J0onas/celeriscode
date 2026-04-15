@@ -19,7 +19,7 @@
         "databaseId": {
           "__rl": true,
           "mode": "list",
-          "value": "TU_DATABASE_ID_AQUI"
+          "value": "2b50a0f23ebc8086a56eeffdd41313ce"
         },
         "titleKey": "Nombre",
         "propertiesUi": {
@@ -105,7 +105,7 @@
         "databaseId": {
           "__rl": true,
           "mode": "list",
-          "value": "TU_DATABASE_ID_AQUI"
+          "value": "2b50a0f23ebc8086a56eeffdd41313ce"
         },
         "returnAll": true,
         "options": {

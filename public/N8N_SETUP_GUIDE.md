@@ -26,7 +26,7 @@ Para que funcione con el formulario, agrega estas columnas a tu base:
 ### Obtener el Database ID:
 
 1. Abre tu base de Notion
-2. La URL se ve así: `https://notion.so/your-workspace/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`
+2. La URL se ve así: `https://notion.so/your-workspace/2b50a0f2-3ebc-806f-a65a-000b0bdc2aff`
 3. Copia los 32 caracteres después del último `/` → ese es tu **Database ID**
 
 ---
