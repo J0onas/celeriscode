@@ -2,7 +2,7 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const services = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/services" }),
+  loader: glob({ pattern: '**/*.md', base: './src/content/services' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -12,13 +12,17 @@ const services = defineCollection({
     highlight: z.string().optional(),
     deliverables: z.array(z.string()).default([]),
     idealFor: z.array(z.string()).default([]),
+    scopeBase: z.array(z.string()).default([]),
+    notIncluded: z.array(z.string()).default([]),
+    notIdealFor: z.array(z.string()).default([]),
+    ctaOffer: z.string().optional(),
     pricingHint: z.string().optional(),
     duration: z.string().optional(),
   }),
 });
 
 const cases = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/cases" }),
+  loader: glob({ pattern: '**/*.md', base: './src/content/cases' }),
   schema: z.object({
     title: z.string(),
     client: z.string(),
@@ -32,11 +36,21 @@ const cases = defineCollection({
     isFeatured: z.boolean().default(false),
     results: z.array(z.string()).default([]),
     stack: z.array(z.string()).default([]),
+    challenge: z.string().optional(),
+    solution: z.string().optional(),
+    impactMetrics: z
+      .array(
+        z.object({
+          label: z.string(),
+          value: z.string(),
+        })
+      )
+      .default([]),
   }),
 });
 
 const blog = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/blog" }),
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
     title: z.string(),
     excerpt: z.string(),
@@ -51,7 +65,7 @@ const blog = defineCollection({
 });
 
 export const collections = {
-  'services': services,
-  'cases': cases,
-  'blog': blog,
+  services: services,
+  cases: cases,
+  blog: blog,
 };

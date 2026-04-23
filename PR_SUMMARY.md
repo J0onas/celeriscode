@@ -7,6 +7,7 @@ Este PR transforma significativamente la experiencia del usuario en las páginas
 ## 🎨 Cambios de Diseño
 
 ### Página "Nosotros" (`src/pages/nosotros.astro`)
+
 - ✅ Hero section con efecto aurora, título con gradiente e imagen de equipo
 - ✅ Sección Misión y Visión con iconos SVG y fondo degradado
 - ✅ 3 Valores con iconos animados, descripciones extendidas y etiquetas pills
@@ -16,6 +17,7 @@ Este PR transforma significativamente la experiencia del usuario en las páginas
 - ✅ CTA final con decoraciones aurora y doble botón
 
 ### Página "Contacto" (`src/pages/contacto.astro`)
+
 - ✅ Hero con título gradiente y promesa de respuesta en 24h
 - ✅ Badge de "Respuesta rápida" con icono de reloj
 - ✅ Cards de contacto con iconos: Email, WhatsApp, Ubicación
@@ -27,6 +29,7 @@ Este PR transforma significativamente la experiencia del usuario en las páginas
 - ✅ Sin mapa (agencia 100% remota)
 
 ### Blog Index (`src/pages/blog/index.astro`)
+
 - ✅ Hero con imagen destacada y efecto aurora
 - ✅ Categorías con iconos SVG y conteo de artículos
 - ✅ Artículos destacados con badges, overlay gradiente y autor
@@ -34,6 +37,7 @@ Este PR transforma significativamente la experiencia del usuario en las páginas
 - ✅ Sección CTA con icono y doble botón
 
 ### Plantilla de Artículos (`src/pages/blog/[slug].astro`)
+
 - ✅ Breadcrumb de navegación
 - ✅ Meta info con avatar gradiente, fecha y tiempo de lectura
 - ✅ Imagen destacada con overlay
@@ -43,25 +47,27 @@ Este PR transforma significativamente la experiencia del usuario en las páginas
 ## ✏️ Contenido del Blog
 
 ### Artículos Existentes Mejorados
+
 1. **Landing que convierte** → De 150 a 500+ palabras (datos HubSpot, tabla de transformaciones, checklist)
 2. **Diseño minimalista** → De 80 a 450+ palabras (4 pilares, datos de conversión, antes/después)
 3. **Ecommerce WhatsApp** → De 100 a 600+ palabras (flujo óptimo, mensaje pre-llenado, datos Baymard)
 
 ### Nuevos Artículos
+
 4. **Por qué tu sitio no convierte** → 7 errores con datos, tablas de impacto, plan de acción
 5. **Velocidad web 2026** → Core Web Vitals, 5 técnicas de optimización, herramientas
 6. **Tendencias de diseño 2026** → Bento grids, glassmorphism, dark mode, microinteracciones
 
 ## 🛠️ Cambios Técnicos
 
-| Archivo | Tipo | Descripción |
-|---------|------|-------------|
-| `src/pages/nosotros.astro` | Modificado | Rediseño completo (+460 líneas) |
-| `src/pages/contacto.astro` | Modificado | Rediseño completo (+467 líneas) |
-| `src/pages/blog/index.astro` | Modificado | Rediseño completo (+239 líneas) |
-| `src/pages/blog/[slug].astro` | Modificado | Rediseño completo (+230 líneas) |
-| `src/content/blog/*.md` | Modificado/Creado | 6 artículos (3 mejorados + 3 nuevos) |
-| `QWEN.md` | Creado | Documentación del proyecto |
+| Archivo                       | Tipo              | Descripción                          |
+| ----------------------------- | ----------------- | ------------------------------------ |
+| `src/pages/nosotros.astro`    | Modificado        | Rediseño completo (+460 líneas)      |
+| `src/pages/contacto.astro`    | Modificado        | Rediseño completo (+467 líneas)      |
+| `src/pages/blog/index.astro`  | Modificado        | Rediseño completo (+239 líneas)      |
+| `src/pages/blog/[slug].astro` | Modificado        | Rediseño completo (+230 líneas)      |
+| `src/content/blog/*.md`       | Modificado/Creado | 6 artículos (3 mejorados + 3 nuevos) |
+| `QWEN.md`                     | Creado            | Documentación del proyecto           |
 
 ## 📊 Métricas del PR
 

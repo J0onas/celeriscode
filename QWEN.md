@@ -5,6 +5,7 @@
 **Celeris Code** is a modern digital agency website built with [Astro](https://astro.build/). It serves as a marketing and portfolio site showcasing the agency's services, case studies, blog content, and contact information. The agency specializes in landing pages, multipage websites, ecommerce platforms, and SaaS products with a strong focus on UI/UX and conversion optimization.
 
 ### Key Characteristics
+
 - **Framework:** Astro 6.x (static site generation)
 - **UI Integration:** React 19 (for interactive components)
 - **Styling:** Tailwind CSS v4 with custom dark/light theme support
@@ -43,42 +44,48 @@
 
 All commands are run from the project root in a terminal. **Requires Node.js >= 22.12.0.**
 
-| Command                | Action                                            |
-| :--------------------- | :------------------------------------------------ |
-| `npm install`          | Install dependencies                              |
-| `npm run dev`          | Start local dev server at `localhost:4321`        |
-| `npm run build`        | Build production site to `./dist/`                |
-| `npm run preview`      | Preview production build locally                  |
-| `npm run astro ...`    | Run Astro CLI commands (e.g., `astro add`, `astro check`) |
+| Command             | Action                                                    |
+| :------------------ | :-------------------------------------------------------- |
+| `npm install`       | Install dependencies                                      |
+| `npm run dev`       | Start local dev server at `localhost:4321`                |
+| `npm run build`     | Build production site to `./dist/`                        |
+| `npm run preview`   | Preview production build locally                          |
+| `npm run astro ...` | Run Astro CLI commands (e.g., `astro add`, `astro check`) |
 
 ## Content Collections
 
 The site uses three content collections defined in `src/content.config.ts`:
 
 ### Services (`src/content/services/`)
+
 Markdown files describing each service offering.
 **Schema fields:** `title`, `description`, `icon`, `order`, `ctaText`, `highlight`, `deliverables`, `idealFor`, `pricingHint`, `duration`
 
 ### Cases (`src/content/cases/`)
+
 Portfolio case studies with project details.
 **Schema fields:** `title`, `client`, `industry`, `projectType` (landing-page | multipage | ecommerce | saas), `date`, `image`, `url`, `tags`, `summary`, `isFeatured`, `results`, `stack`
 
 ### Blog (`src/content/blog/`)
+
 Blog articles about design, UX, and digital growth.
 **Schema fields:** `title`, `excerpt`, `description`, `date`, `author`, `tags`, `cover`, `isFeatured`, `readingTime`
 
 ## Design System
 
 ### Color Palette (defined in `src/styles/global.css`)
+
 - **Primary Deep:** `#0b1220` (dark background)
 - **Primary Vibrant:** `#38bdf8` (sky blue accent)
 - **Accent:** `#8b5cf6` (purple accent)
 - **Success:** `#14b8a6` (teal)
 
 ### Theme Support
+
 The site supports **dark mode (default)** and **light mode** via the `data-theme` attribute on `:root`. Theme toggling is handled through CSS custom properties and extensive override rules.
 
 ### Component Classes
+
 - `.bento-card` — Glassmorphic card with backdrop blur, border, and hover effects
 - `.bento-card-premium` — Elevated card variant with larger padding
 - `.section-title` / `.section-subtitle` — Heading styles
@@ -90,6 +97,7 @@ The site supports **dark mode (default)** and **light mode** via the `data-theme
 - `.float-slow` — Floating animation (7s ease-in-out)
 
 ### Typography
+
 - **Sans-serif:** Geist Sans, Inter, system UI
 - **Mono:** Geist Mono, JetBrains Mono
 
@@ -104,14 +112,14 @@ The site supports **dark mode (default)** and **light mode** via the `data-theme
 
 ## Key Files
 
-| File | Purpose |
-| :--- | :------ |
-| `astro.config.mjs` | Astro configuration with React integration and Tailwind Vite plugin |
-| `src/content.config.ts` | Content collection definitions with Zod schemas |
-| `src/layouts/MainLayout.astro` | Primary layout wrapper for all pages |
-| `src/pages/index.astro` | Homepage — aggregates services, portfolio, process, blog, and CTA |
-| `src/styles/global.css` | Tailwind imports, theme variables, component classes, and dark/light overrides |
-| `tsconfig.json` | TypeScript config extending Astro's strict preset |
+| File                           | Purpose                                                                        |
+| :----------------------------- | :----------------------------------------------------------------------------- |
+| `astro.config.mjs`             | Astro configuration with React integration and Tailwind Vite plugin            |
+| `src/content.config.ts`        | Content collection definitions with Zod schemas                                |
+| `src/layouts/MainLayout.astro` | Primary layout wrapper for all pages                                           |
+| `src/pages/index.astro`        | Homepage — aggregates services, portfolio, process, blog, and CTA              |
+| `src/styles/global.css`        | Tailwind imports, theme variables, component classes, and dark/light overrides |
+| `tsconfig.json`                | TypeScript config extending Astro's strict preset                              |
 
 ## Notable Patterns
 

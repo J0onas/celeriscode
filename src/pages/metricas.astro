@@ -1,0 +1,409 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const metricsSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Métricas semanales',
+  description: 'Dashboard semanal de eventos clave de conversión.',
+  url: '/metricas',
+};
+
+const METRICS_ACCESS_STORAGE_KEY = 'cc_metrics_access';
+const METRICS_ACCESS_HASH = '580859d924231953064ffcafe219e12a19c9d26ca3a5f8f2e98b2a82ea691c06';
+const METRICS_SESSION_HOURS = 24;
+---
+
+<MainLayout
+  title="Métricas | Celeris Code"
+  description="Dashboard semanal con vistas, clics CTA, formularios y eventos de WhatsApp."
+  schema={metricsSchema}
+>
+  <section class="py-20" data-metrics-auth>
+    <div class="container mx-auto px-6">
+      <div class="mx-auto max-w-lg bento-card-premium">
+        <h1 class="text-2xl font-bold text-white">Acceso privado</h1>
+        <p class="mt-3 text-sm text-slate-300">
+          Esta vista de métricas está restringida. Ingresa tu clave privada para continuar.
+        </p>
+        <form class="mt-6 space-y-4" data-metrics-auth-form>
+          <label for="metrics-key" class="block text-sm font-medium text-slate-200">
+            Clave de acceso
+          </label>
+          <input
+            id="metrics-key"
+            type="password"
+            autocomplete="current-password"
+            required
+            class="w-full rounded-xl border border-white/15 bg-slate-950/70 px-4 py-3 text-slate-100 placeholder-slate-500 outline-none transition-all focus:border-primary-vibrant focus:ring-2 focus:ring-primary-vibrant/20"
+            placeholder="Ingresa tu clave"
+          />
+          <p data-metrics-auth-error class="hidden text-sm text-red-300"></p>
+          <button
+            type="submit"
+            class="w-full rounded-xl bg-gradient-to-r from-primary-vibrant to-accent px-6 py-3 font-bold text-white transition-transform hover:scale-[1.01]"
+          >
+            Acceder a métricas
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div data-metrics-content class="hidden">
+    <section class="py-20">
+      <div class="container mx-auto px-6">
+        <div class="mx-auto mb-8 flex max-w-6xl items-center justify-end">
+          <button
+            type="button"
+            data-metrics-logout
+            class="rounded-lg border border-white/20 bg-white/5 px-4 py-2 text-xs font-semibold text-slate-200 transition-colors hover:border-primary-vibrant/50 hover:text-primary-vibrant"
+          >
+            Cerrar sesión de métricas
+          </button>
+        </div>
+
+        <div class="mx-auto max-w-4xl text-center">
+          <span class="pill">Dashboard semanal</span>
+          <h1 class="section-title mt-6">Métricas de conversión y comportamiento</h1>
+          <p class="section-subtitle mt-4">
+            Vista semanal con eventos locales del sitio: navegación, CTA, formularios y WhatsApp.
+          </p>
+        </div>
+
+        <div class="mx-auto mt-10 grid max-w-6xl gap-5 md:grid-cols-4">
+          <article class="bento-card">
+            <p class="text-technical">Eventos totales</p>
+            <p class="mt-2 text-3xl font-black text-white" data-total-events>0</p>
+          </article>
+          <article class="bento-card">
+            <p class="text-technical">Page views</p>
+            <p class="mt-2 text-3xl font-black text-white" data-page-views>0</p>
+          </article>
+          <article class="bento-card">
+            <p class="text-technical">Clicks CTA</p>
+            <p class="mt-2 text-3xl font-black text-white" data-cta-clicks>0</p>
+          </article>
+          <article class="bento-card">
+            <p class="text-technical">Envíos formulario</p>
+            <p class="mt-2 text-3xl font-black text-white" data-form-success>0</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-8">
+      <div class="container mx-auto px-6">
+        <div class="grid gap-6 lg:grid-cols-2">
+          <article class="bento-card-premium">
+            <h2 class="text-2xl font-bold text-white">Embudo semanal</h2>
+            <p class="mt-2 text-sm text-slate-300">Flujo estimado de vistas a contacto efectivo.</p>
+            <div class="mt-6 space-y-4">
+              <div>
+                <div class="mb-1 flex items-center justify-between text-xs text-slate-300">
+                  <span>Vistas de página</span>
+                  <span data-funnel-views>0</span>
+                </div>
+                <div class="h-2 rounded-full bg-white/10">
+                  <div
+                    class="h-2 rounded-full bg-primary-vibrant"
+                    data-funnel-bar-views
+                    style="width: 0%;"
+                  >
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="mb-1 flex items-center justify-between text-xs text-slate-300">
+                  <span>Clicks en CTA</span>
+                  <span data-funnel-ctas>0</span>
+                </div>
+                <div class="h-2 rounded-full bg-white/10">
+                  <div class="h-2 rounded-full bg-accent" data-funnel-bar-ctas style="width: 0%;">
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="mb-1 flex items-center justify-between text-xs text-slate-300">
+                  <span>Intentos de formulario</span>
+                  <span data-funnel-attempts>0</span>
+                </div>
+                <div class="h-2 rounded-full bg-white/10">
+                  <div
+                    class="h-2 rounded-full bg-success"
+                    data-funnel-bar-attempts
+                    style="width: 0%;"
+                  >
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="mb-1 flex items-center justify-between text-xs text-slate-300">
+                  <span>Formularios enviados</span>
+                  <span data-funnel-success>0</span>
+                </div>
+                <div class="h-2 rounded-full bg-white/10">
+                  <div
+                    class="h-2 rounded-full bg-primary-vibrant"
+                    data-funnel-bar-success
+                    style="width: 0%;"
+                  >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="mt-5 text-xs text-slate-300">
+              Tasa de conversión CTA → envío: <strong class="text-white" data-conversion-rate
+                >0%</strong
+              >
+            </p>
+          </article>
+
+          <article class="bento-card-premium">
+            <h2 class="text-2xl font-bold text-white">Top eventos (7 días)</h2>
+            <p class="mt-2 text-sm text-slate-300">
+              Eventos más frecuentes registrados por la capa analítica.
+            </p>
+            <div class="mt-5 overflow-x-auto">
+              <table class="w-full text-left text-sm">
+                <thead>
+                  <tr class="border-b border-white/10 text-slate-300">
+                    <th class="pb-2">Evento</th>
+                    <th class="pb-2 text-right">Cantidad</th>
+                  </tr>
+                </thead>
+                <tbody data-top-events>
+                  <tr><td colspan="2" class="py-4 text-slate-300">Sin datos suficientes.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+</MainLayout>
+
+<script
+  is:inline
+  define:vars={{
+    METRICS_ACCESS_STORAGE_KEY,
+    METRICS_ACCESS_HASH,
+    METRICS_SESSION_HOURS,
+  }}
+>
+  (() => {
+    const STORAGE_KEY = 'cc_analytics_events';
+    const DAYS = 7;
+    const ACCESS_KEY = METRICS_ACCESS_STORAGE_KEY;
+    const ACCESS_HASH = METRICS_ACCESS_HASH;
+    const SESSION_HOURS = Number(METRICS_SESSION_HOURS);
+    const SESSION_MS = SESSION_HOURS * 60 * 60 * 1000;
+    const ERROR_MESSAGE = 'Clave incorrecta. Verifica e intenta nuevamente.';
+
+    const authSection = document.querySelector('[data-metrics-auth]');
+    const authForm = document.querySelector('[data-metrics-auth-form]');
+    const authError = document.querySelector('[data-metrics-auth-error]');
+    const metricsContent = document.querySelector('[data-metrics-content]');
+    const logoutButton = document.querySelector('[data-metrics-logout]');
+
+    const readEvents = () => {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed : [];
+      } catch {
+        return [];
+      }
+    };
+
+    const setAuthError = (message = '') => {
+      if (!(authError instanceof HTMLElement)) return;
+      authError.textContent = message;
+      authError.classList.toggle('hidden', !message);
+    };
+
+    const setContentVisibility = (authorized) => {
+      if (authSection instanceof HTMLElement) {
+        authSection.classList.toggle('hidden', authorized);
+      }
+      if (metricsContent instanceof HTMLElement) {
+        metricsContent.classList.toggle('hidden', !authorized);
+      }
+    };
+
+    const readAccessState = () => {
+      try {
+        const raw = localStorage.getItem(ACCESS_KEY);
+        const parsed = raw ? JSON.parse(raw) : null;
+        if (!parsed || typeof parsed.expiresAt !== 'number') return null;
+        return parsed;
+      } catch {
+        return null;
+      }
+    };
+
+    const hasValidAccess = () => {
+      const state = readAccessState();
+      return Boolean(state && state.expiresAt > Date.now());
+    };
+
+    const setAccess = () => {
+      localStorage.setItem(
+        ACCESS_KEY,
+        JSON.stringify({
+          expiresAt: Date.now() + SESSION_MS,
+        })
+      );
+    };
+
+    const clearAccess = () => {
+      localStorage.removeItem(ACCESS_KEY);
+    };
+
+    const hashText = async (value) => {
+      const bytes = new TextEncoder().encode(value);
+      const digest = await crypto.subtle.digest('SHA-256', bytes);
+      return Array.from(new Uint8Array(digest))
+        .map((b) => b.toString(16).padStart(2, '0'))
+        .join('');
+    };
+
+    const setupDashboard = () => {
+      const events = readEvents();
+      const now = Date.now();
+      const windowStart = now - DAYS * 24 * 60 * 60 * 1000;
+      const weeklyEvents = events.filter((item) => {
+        const ts = Date.parse(item?.timestamp ?? '');
+        return Number.isFinite(ts) && ts >= windowStart;
+      });
+
+      const byName = new Map();
+      weeklyEvents.forEach((event) => {
+        const name = typeof event?.name === 'string' ? event.name : 'unknown';
+        byName.set(name, (byName.get(name) ?? 0) + 1);
+      });
+
+      const get = (name) => byName.get(name) ?? 0;
+      const pageViews = get('page_view');
+      const ctaClicks = Array.from(byName.entries())
+        .filter(([name]) => name.includes('click'))
+        .reduce((sum, [, value]) => sum + value, 0);
+      const formAttempts = get('form_submit_attempt');
+      const formSuccess = get('form_submit_success');
+      const conversionRate = ctaClicks > 0 ? (formSuccess / ctaClicks) * 100 : 0;
+
+      const setText = (selector, value) => {
+        const node = document.querySelector(selector);
+        if (node instanceof HTMLElement) node.textContent = value;
+      };
+
+      setText('[data-total-events]', String(weeklyEvents.length));
+      setText('[data-page-views]', String(pageViews));
+      setText('[data-cta-clicks]', String(ctaClicks));
+      setText('[data-form-success]', String(formSuccess));
+      setText('[data-funnel-views]', String(pageViews));
+      setText('[data-funnel-ctas]', String(ctaClicks));
+      setText('[data-funnel-attempts]', String(formAttempts));
+      setText('[data-funnel-success]', String(formSuccess));
+      setText('[data-conversion-rate]', `${conversionRate.toFixed(1)}%`);
+
+      const maxFunnel = Math.max(pageViews, ctaClicks, formAttempts, formSuccess, 1);
+      const width = (value) => `${Math.max(4, (value / maxFunnel) * 100).toFixed(1)}%`;
+      const setWidth = (selector, value) => {
+        const node = document.querySelector(selector);
+        if (node instanceof HTMLElement) node.style.width = width(value);
+      };
+      setWidth('[data-funnel-bar-views]', pageViews);
+      setWidth('[data-funnel-bar-ctas]', ctaClicks);
+      setWidth('[data-funnel-bar-attempts]', formAttempts);
+      setWidth('[data-funnel-bar-success]', formSuccess);
+
+      const rows = Array.from(byName.entries())
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 8);
+      const tableBody = document.querySelector('[data-top-events]');
+      if (!(tableBody instanceof HTMLElement)) return;
+      tableBody.replaceChildren();
+
+      const appendEmptyRow = () => {
+        const tr = document.createElement('tr');
+        const td = document.createElement('td');
+        td.colSpan = 2;
+        td.className = 'py-4 text-slate-300';
+        td.textContent = 'Sin datos suficientes.';
+        tr.appendChild(td);
+        tableBody.appendChild(tr);
+      };
+
+      if (!rows.length) {
+        appendEmptyRow();
+        return;
+      }
+
+      rows.forEach(([name, count]) => {
+        const tr = document.createElement('tr');
+        tr.className = 'border-b border-white/5';
+        const tdName = document.createElement('td');
+        tdName.className = 'py-2 text-slate-300';
+        tdName.textContent = name;
+        const tdCount = document.createElement('td');
+        tdCount.className = 'py-2 text-right text-white';
+        tdCount.textContent = String(count);
+        tr.append(tdName, tdCount);
+        tableBody.appendChild(tr);
+      });
+    };
+
+    const initAccessGate = () => {
+      const authorized = hasValidAccess();
+      setContentVisibility(authorized);
+      setAuthError('');
+      if (authorized) {
+        setupDashboard();
+      }
+    };
+
+    if (authForm instanceof HTMLFormElement) {
+      authForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        setAuthError('');
+
+        const keyInput = authForm.querySelector('#metrics-key');
+        if (!(keyInput instanceof HTMLInputElement)) return;
+
+        const providedKey = keyInput.value.trim();
+        if (!providedKey) {
+          setAuthError(ERROR_MESSAGE);
+          return;
+        }
+
+        const providedHash = await hashText(providedKey);
+        if (providedHash !== ACCESS_HASH) {
+          setAuthError(ERROR_MESSAGE);
+          keyInput.value = '';
+          return;
+        }
+
+        setAccess();
+        keyInput.value = '';
+        initAccessGate();
+      });
+    }
+
+    if (logoutButton instanceof HTMLButtonElement) {
+      logoutButton.addEventListener('click', () => {
+        clearAccess();
+        setContentVisibility(false);
+        setAuthError('');
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAccessGate, { once: true });
+    } else {
+      initAccessGate();
+    }
+    document.addEventListener('astro:page-load', initAccessGate);
+  })();
+</script>

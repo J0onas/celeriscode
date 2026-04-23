@@ -1,460 +1,172 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import SectionTitle from '../components/ui/SectionTitle.astro';
+import Card from '../components/ui/Card.astro';
+import Badge from '../components/ui/Badge.astro';
+import FinalCTA from '../components/sections/FinalCTA.astro';
+
+import { VALUE_PILLARS, PROCESS_STEPS, SITE_NAME } from '../lib/constants';
+import { getServiceIcon } from '../lib/service-assets';
+
+const aboutSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: `Nosotros | ${SITE_NAME}`,
+  description:
+    'Visión, metodología y valores de Celeris Code para crear activos digitales de alto impacto.',
+  url: '/nosotros',
+};
 ---
 
-<MainLayout title="Nosotros | Celeris Code" description="Conoce la visión, el equipo y la metodología de Celeris Code para crear experiencias web modernas, rápidas y orientadas a resultados.">
+<MainLayout title="Nosotros | Celeris Code" schema={aboutSchema}>
   <!-- Hero Section -->
-  <section class="relative overflow-hidden py-20 md:py-28">
-    <!-- Background decorative elements -->
-    <div class="absolute left-0 top-0 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full aurora-blue opacity-40 blur-3xl"></div>
-    <div class="absolute right-0 top-20 h-80 w-80 translate-x-1/3 rounded-full aurora-purple opacity-30 blur-3xl"></div>
+  <section class="relative overflow-hidden py-24 md:py-32">
+    <div class="pointer-events-none absolute inset-0 -z-20">
+      <div class="aurora-blue absolute -left-[10%] top-[-10%] h-96 w-96 opacity-40"></div>
+      <div class="aurora-purple absolute right-[-10%] top-[10%] h-80 w-80 opacity-30"></div>
+    </div>
 
-    <div class="container relative mx-auto px-6">
-      <div class="mx-auto max-w-4xl text-center">
-        <span class="pill">Sobre Nosotros</span>
-        <h1 class="section-title mt-6">
-          Creamos experiencias digitales que <span class="gradient-text">impulsan negocios</span>
-        </h1>
-        <p class="section-subtitle mt-5">
-          Somos un equipo de diseñadores, desarrolladores y estrategas digitales comprometidos con transformar ideas en productos web de alto impacto.
-        </p>
-      </div>
+    <div class="container mx-auto px-6 text-center">
+      <SectionTitle
+        badge="Sobre Nosotros"
+        title="Creamos experiencias que <span class='gradient-text'>impulsan negocios</span>"
+        subtitle="Somos un equipo de diseñadores, desarrolladores y estrategas digitales comprometidos con transformar ideas en productos web de alto impacto."
+        className="mb-12"
+      />
 
-      <!-- Hero Image -->
-      <div class="mx-auto mt-12 max-w-5xl overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+      <div
+        class="mx-auto max-w-5xl mt-16 rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative group"
+      >
         <img
-          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
-          alt="Equipo de Celeris Code colaborando en un proyecto digital"
-          class="w-full object-cover opacity-90 transition-opacity hover:opacity-100"
+          src="/assets/blog/minimalismo-conversion.jpg"
+          alt="Equipo colaborando"
+          class="w-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
           loading="eager"
         />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"
+        >
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Mission & Vision -->
-  <section class="py-20">
+  <section class="py-24 bg-slate-900/20">
     <div class="container mx-auto px-6">
-      <div class="mx-auto max-w-5xl">
-        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-vibrant/10 via-accent/10 to-success/10 p-8 md:p-12">
-          <!-- Decorative corner -->
-          <div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-primary-vibrant/20 blur-2xl"></div>
-          <div class="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-accent/20 blur-2xl"></div>
+      <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <Card isPremium padding="lg">
+          <Badge variant="accent" className="mb-6">Misión</Badge>
+          <h2 class="text-3xl font-bold text-white mb-6">Transformar la presencia digital</h2>
+          <p class="text-slate-300 leading-relaxed text-lg">
+            Nuestra misión es ayudar a marcas ambiciosas a construir <strong class="text-white"
+              >activos digitales de alto rendimiento</strong
+            > que no solo se vean bien, sino que generen resultados medibles y confianza duradera.
+          </p>
+        </Card>
 
-          <div class="relative grid gap-8 md:grid-cols-2">
-            <!-- Mission -->
-            <div>
-              <div class="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary-vibrant/15 text-primary-vibrant">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                </svg>
-              </div>
-              <h2 class="text-2xl font-bold text-white md:text-3xl">Nuestra Misión</h2>
-              <p class="mt-4 leading-relaxed text-slate-300">
-                Ayudar a negocios y marcas a transformar su presencia digital con <strong class="text-white">productos web de alto rendimiento</strong>, diseño minimalista y un enfoque obsesivo en resultados medibles.
-              </p>
-              <p class="mt-3 text-sm text-slate-400">
-                Cada proyecto es una oportunidad para superar expectativas y crear experiencias que los usuarios recuerden.
-              </p>
-            </div>
-
-            <!-- Vision -->
-            <div>
-              <div class="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/15 text-accent">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
-              </div>
-              <h2 class="text-2xl font-bold text-white md:text-3xl">Nuestra Visión</h2>
-              <p class="mt-4 leading-relaxed text-slate-300">
-                Ser el <strong class="text-white">socio tecnológico de referencia</strong> para empresas que valoran la velocidad de ejecución, la claridad estratégica y las experiencias digitales de calidad mundial.
-              </p>
-              <p class="mt-3 text-sm text-slate-400">
-                Aspiramos a que cada interacción con nuestro trabajo genere confianza y resultados tangibles.
-              </p>
-            </div>
-          </div>
-        </div>
+        <Card isPremium padding="lg">
+          <Badge variant="accent" className="mb-6">Visión</Badge>
+          <h2 class="text-3xl font-bold text-white mb-6">El socio tecnológico del futuro</h2>
+          <p class="text-slate-300 leading-relaxed text-lg">
+            Aspiramos a ser el referente en ejecución técnica y estrategia UX, donde la velocidad y
+            la calidad convergen para crear el <strong class="text-white"
+              >estándar de la industria</strong
+            > en productos digitales.
+          </p>
+        </Card>
       </div>
     </div>
   </section>
 
-  <!-- Values Section -->
-  <section class="py-20">
+  <!-- Values -->
+  <section class="py-24">
     <div class="container mx-auto px-6">
-      <div class="mx-auto max-w-4xl text-center">
-        <span class="pill">Nuestros Valores</span>
-        <h2 class="section-title mt-6">Los principios que guían cada decisión</h2>
-        <p class="section-subtitle mt-4">
-          No solo construimos sitios; construimos relaciones basadas en confianza, calidad y compromiso mutuo.
-        </p>
-      </div>
+      <SectionTitle
+        badge="Nuestros Valores"
+        title="Principios que <span class='gradient-text'>guían cada decisión</span>"
+        className="mb-16"
+      />
 
-      <div class="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-3">
-        <!-- Value 1: Excelencia Técnica -->
-        <article class="bento-card group">
-          <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary-vibrant/10 text-primary-vibrant transition-colors group-hover:bg-primary-vibrant/20">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-white">Excelencia Técnica</h3>
-          <p class="mt-3 text-sm leading-relaxed text-slate-300">
-            Decisiones de arquitectura y frontend pensadas para <strong class="text-white">escalar sin comprometer rendimiento</strong>. Código limpio, frameworks modernos y mejores prácticas.
-          </p>
-          <div class="mt-5 flex flex-wrap gap-2">
-            <span class="pill text-xs">Astro</span>
-            <span class="pill text-xs">React</span>
-            <span class="pill text-xs">Tailwind</span>
-          </div>
-        </article>
-
-        <!-- Value 2: Transparencia -->
-        <article class="bento-card group">
-          <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-success/10 text-success transition-colors group-hover:bg-success/20">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-white">Transparencia Total</h3>
-          <p class="mt-3 text-sm leading-relaxed text-slate-300">
-            Comunicación clara de alcance, prioridades y siguientes pasos. <strong class="text-white">Sin sorpresas ni letra pequeña</strong>, solo honestidad profesional.
-          </p>
-          <div class="mt-5 flex flex-wrap gap-2">
-            <span class="pill text-xs">Comunicación</span>
-            <span class="pill text-xs">Honestidad</span>
-          </div>
-        </article>
-
-        <!-- Value 3: Orientación a Resultados -->
-        <article class="bento-card group">
-          <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent transition-colors group-hover:bg-accent/20">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-white">Resultados Medibles</h3>
-          <p class="mt-3 text-sm leading-relaxed text-slate-300">
-            Cada interfaz está pensada para <strong class="text-white">facilitar decisiones y acciones del usuario</strong>. Diseño centrado en conversión, no solo en estética.
-          </p>
-          <div class="mt-5 flex flex-wrap gap-2">
-            <span class="pill text-xs">Conversión</span>
-            <span class="pill text-xs">UX</span>
-            <span class="pill text-xs">Métricas</span>
-          </div>
-        </article>
+      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {
+          VALUE_PILLARS.map((pillar, index) => (
+            <Card data-reveal style={`--reveal-delay: ${index * 100}ms`}>
+              <div class="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary-vibrant/10 text-primary-vibrant">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d={getServiceIcon(pillar.icon)}
+                  />
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-4">{pillar.title}</h3>
+              <p class="text-slate-300 text-sm leading-relaxed mb-6">{pillar.description}</p>
+              <div class="flex flex-wrap gap-2">
+                {pillar.tags.map((tag) => (
+                  <Badge variant="outline">{tag}</Badge>
+                ))}
+              </div>
+            </Card>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <!-- Stats Section with Image -->
-  <section class="py-20">
+  <!-- Process -->
+  <section class="py-24 bg-slate-900/30">
     <div class="container mx-auto px-6">
-      <div class="grid items-center gap-12 md:grid-cols-2">
-        <!-- Stats -->
+      <div class="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
         <div>
-          <span class="pill">Nuestros Números</span>
-          <h2 class="section-title mt-6">Experiencia que respalda</h2>
-          <p class="section-subtitle mt-4">
-            Cada proyecto nos ha enseñado algo nuevo y nos ha acercado más a la excelencia digital.
-          </p>
+          <SectionTitle
+            align="left"
+            badge="Metodología"
+            title="Cómo convertimos ideas en <span class='gradient-text'>realidad rentable</span>"
+            subtitle="Un proceso iterativo diseñado para minimizar riesgos y maximizar el impacto en cada fase."
+          />
 
-          <div class="mt-10 grid grid-cols-2 gap-6">
-            <div class="rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-xl transition-all hover:border-primary-vibrant/30 hover:bg-primary-vibrant/5">
-              <div class="text-4xl font-black text-primary-vibrant">5+</div>
-              <p class="mt-2 text-sm text-slate-300">Proyectos en Producción</p>
-            </div>
-            <div class="rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-xl transition-all hover:border-accent/30 hover:bg-accent/5">
-              <div class="text-4xl font-black text-accent">4</div>
-              <p class="mt-2 text-sm text-slate-300">Verticales de Servicio</p>
-            </div>
-            <div class="rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-xl transition-all hover:border-success/30 hover:bg-success/5">
-              <div class="text-4xl font-black text-success">100%</div>
-              <p class="mt-2 text-sm text-slate-300">Enfoque en UX/UI</p>
-            </div>
-            <div class="rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-xl transition-all hover:border-primary-vibrant/30 hover:bg-primary-vibrant/5">
-              <div class="text-4xl font-black text-white">∞</div>
-              <p class="mt-2 text-sm text-slate-300">Compromiso con Calidad</p>
-            </div>
+          <div class="mt-12 space-y-8">
+            {
+              PROCESS_STEPS.map((step) => (
+                <div class="flex gap-6 group">
+                  <div class="flex-shrink-0 w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-primary-vibrant font-black group-hover:border-primary-vibrant/50 transition-colors">
+                    {step.id}
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-white mb-2">{step.title}</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">{step.description}</p>
+                  </div>
+                </div>
+              ))
+            }
           </div>
         </div>
 
-        <!-- Image -->
         <div class="relative">
-          <div class="absolute -bottom-6 -right-6 h-64 w-64 rounded-full aurora-purple opacity-50 blur-3xl"></div>
-          <div class="relative overflow-hidden rounded-3xl border border-white/10 shadow-xl">
+          <div
+            class="absolute inset-0 bg-gradient-to-tr from-primary-vibrant/20 to-accent/20 blur-3xl rounded-full"
+          >
+          </div>
+          <Card padding="none" isPremium className="relative z-10">
             <img
-              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
-              alt="Desarrollo web profesional en Celeris Code"
-              class="w-full object-cover transition-transform duration-500 hover:scale-105"
-              loading="lazy"
+              src="/assets/projects/posmart.png"
+              alt="Caso real Celeris Code"
+              class="w-full h-auto"
             />
-            <!-- Overlay gradient -->
-            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary-deep/60 via-transparent to-transparent"></div>
-            <!-- Badge -->
-            <div class="absolute bottom-6 left-6 rounded-2xl bg-white/10 px-4 py-3 text-sm font-medium text-white backdrop-blur-xl">
-              <span class="font-mono text-xs text-primary-vibrant">Celeris Code</span>
-              <p class="mt-1 font-semibold">Excelencia Digital</p>
-            </div>
-          </div>
+          </Card>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Process Section -->
-  <section class="py-20">
-    <div class="container mx-auto px-6">
-      <div class="mx-auto max-w-4xl text-center">
-        <span class="pill">Metodología</span>
-        <h2 class="section-title mt-6">Cómo convertimos ideas en realidad</h2>
-        <p class="section-subtitle mt-4">
-          Un proceso probado que combina agilidad, calidad y comunicación constante para entregar resultados excepcionales.
-        </p>
-      </div>
-
-      <div class="mx-auto mt-16 max-w-5xl">
-        <!-- Step 1 -->
-        <div class="group relative mb-12 md:mb-16">
-          <div class="grid gap-8 md:grid-cols-[80px_1fr]">
-            <!-- Step Number -->
-            <div class="flex flex-col items-center">
-              <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-vibrant/10 text-2xl font-black text-primary-vibrant transition-all group-hover:bg-primary-vibrant/20">
-                01
-              </div>
-              <!-- Connector line -->
-              <div class="mt-2 h-full w-0.5 bg-gradient-to-b from-primary-vibrant/40 to-transparent md:h-full"></div>
-            </div>
-
-            <!-- Content -->
-            <div class="bento-card">
-              <div class="flex flex-col gap-4 md:flex-row md:items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold text-white">Diagnóstico Estratégico</h3>
-                  <p class="mt-3 text-sm leading-relaxed text-slate-300">
-                    Analizamos objetivos, público objetivo y propuesta de valor. Definimos <strong class="text-white">métricas clave</strong> y priorizamos funcionalidades con mayor impacto en conversión.
-                  </p>
-                  <div class="mt-4 flex flex-wrap gap-2">
-                    <span class="pill text-xs">Research</span>
-                    <span class="pill text-xs">KPIs</span>
-                    <span class="pill text-xs">Estrategia</span>
-                  </div>
-                </div>
-                <img
-                  src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=200&q=80"
-                  alt="Diagnóstico estratégico"
-                  class="mt-4 h-24 w-full rounded-xl object-cover md:mt-0 md:h-32 md:w-32"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="group relative mb-12 md:mb-16">
-          <div class="grid gap-8 md:grid-cols-[80px_1fr]">
-            <div class="flex flex-col items-center">
-              <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/10 text-2xl font-black text-accent transition-all group-hover:bg-accent/20">
-                02
-              </div>
-              <div class="mt-2 h-full w-0.5 bg-gradient-to-b from-accent/40 to-transparent md:h-full"></div>
-            </div>
-
-            <div class="bento-card">
-              <div class="flex flex-col gap-4 md:flex-row md:items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold text-white">Arquitectura & UX</h3>
-                  <p class="mt-3 text-sm leading-relaxed text-slate-300">
-                    Diseñamos la <strong class="text-white">estructura de información</strong> y flujos de usuario para minimizar fricción y maximizar engagement. Wireframes, prototipos y validación.
-                  </p>
-                  <div class="mt-4 flex flex-wrap gap-2">
-                    <span class="pill text-xs">Wireframes</span>
-                    <span class="pill text-xs">Prototipos</span>
-                    <span class="pill text-xs">User Flow</span>
-                  </div>
-                </div>
-                <img
-                  src="https://images.unsplash.com/photo-1581291518633-83b4eef1d2fa?auto=format&fit=crop&w=200&q=80"
-                  alt="Diseño de arquitectura UX"
-                  class="mt-4 h-24 w-full rounded-xl object-cover md:mt-0 md:h-32 md:w-32"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="group relative mb-12 md:mb-16">
-          <div class="grid gap-8 md:grid-cols-[80px_1fr]">
-            <div class="flex flex-col items-center">
-              <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-success/10 text-2xl font-black text-success transition-all group-hover:bg-success/20">
-                03
-              </div>
-              <div class="mt-2 h-full w-0.5 bg-gradient-to-b from-success/40 to-transparent md:h-full"></div>
-            </div>
-
-            <div class="bento-card">
-              <div class="flex flex-col gap-4 md:flex-row md:items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold text-white">Diseño & Desarrollo</h3>
-                  <p class="mt-3 text-sm leading-relaxed text-slate-300">
-                    Construimos la experiencia con <strong class="text-white">tecnologías modernas</strong>, componentes reutilizables y animaciones sutiles. Código optimizado y rendimiento prioritario.
-                  </p>
-                  <div class="mt-4 flex flex-wrap gap-2">
-                    <span class="pill text-xs">UI Design</span>
-                    <span class="pill text-xs">Frontend</span>
-                    <span class="pill text-xs">Performance</span>
-                  </div>
-                </div>
-                <img
-                  src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=200&q=80"
-                  alt="Diseño y desarrollo web"
-                  class="mt-4 h-24 w-full rounded-xl object-cover md:mt-0 md:h-32 md:w-32"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 4 -->
-        <div class="group relative">
-          <div class="grid gap-8 md:grid-cols-[80px_1fr]">
-            <div class="flex flex-col items-center">
-              <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-vibrant/10 text-2xl font-black text-primary-vibrant transition-all group-hover:bg-primary-vibrant/20">
-                04
-              </div>
-            </div>
-
-            <div class="bento-card">
-              <div class="flex flex-col gap-4 md:flex-row md:items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold text-white">Lanzamiento & Optimización</h3>
-                  <p class="mt-3 text-sm leading-relaxed text-slate-300">
-                    Desplegamos y <strong class="text-white">monitoreamos el comportamiento real</strong>. Iteramos basándonos en datos para mejorar conversión y experiencia continuamente.
-                  </p>
-                  <div class="mt-4 flex flex-wrap gap-2">
-                    <span class="pill text-xs">Deploy</span>
-                    <span class="pill text-xs">Analytics</span>
-                    <span class="pill text-xs">CRO</span>
-                  </div>
-                </div>
-                <img
-                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=200&q=80"
-                  alt="Lanzamiento y optimización"
-                  class="mt-4 h-24 w-full rounded-xl object-cover md:mt-0 md:h-32 md:w-32"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why Choose Us Section -->
-  <section class="py-20">
-    <div class="container mx-auto px-6">
-      <div class="mx-auto max-w-5xl">
-        <div class="bento-card-premium p-8 md:p-12">
-          <div class="grid gap-10 md:grid-cols-2 md:gap-12">
-            <div>
-              <span class="pill">¿Por qué elegirnos?</span>
-              <h2 class="section-title mt-6">Más que desarrollo, somos tu socio estratégico</h2>
-              <p class="section-subtitle mt-4">
-                Combinamos experiencia técnica con visión de negocio para que cada decisión tenga un impacto real en tus resultados.
-              </p>
-
-              <ul class="mt-8 space-y-4">
-                <li class="flex items-start gap-3">
-                  <div class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary-vibrant/20 text-primary-vibrant">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span class="text-sm text-slate-300">Tecnologías modernas y stack optimizado para rendimiento</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <div class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent/20 text-accent">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span class="text-sm text-slate-300">Diseño centrado en el usuario y orientado a conversión</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <div class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-success/20 text-success">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span class="text-sm text-slate-300">Comunicación transparente y entregas puntuales</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <div class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary-vibrant/20 text-primary-vibrant">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span class="text-sm text-slate-300">Soporte continuo y mejoras basadas en datos reales</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="relative">
-              <img
-                src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=600&q=80"
-                alt="Equipo trabajando en proyectos digitales"
-                class="h-full w-full rounded-2xl object-cover"
-                loading="lazy"
-              />
-              <!-- Floating badge -->
-              <div class="absolute -bottom-4 -left-4 rounded-2xl bg-primary-deep/90 px-5 py-3 text-sm backdrop-blur-xl">
-                <p class="font-bold text-white">Compromiso Total</p>
-                <p class="mt-1 text-xs text-slate-400">Tu éxito es nuestro éxito</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-20">
-    <div class="container mx-auto px-6">
-      <div class="bento-card-premium mx-auto max-w-5xl overflow-hidden p-8 text-center md:p-12">
-        <!-- Background decorations -->
-        <div class="absolute -right-20 -top-20 h-64 w-64 rounded-full aurora-teal opacity-40 blur-3xl"></div>
-        <div class="absolute -bottom-20 -left-20 h-64 w-64 rounded-full aurora-blue opacity-30 blur-3xl"></div>
-
-        <div class="relative">
-          <h2 class="text-3xl font-extrabold text-white md:text-5xl">
-            ¿Listo para transformar tu <span class="gradient-text">presencia digital</span>?
-          </h2>
-          <p class="mx-auto mt-5 max-w-2xl text-lg text-slate-300">
-            Conversemos sobre tu proyecto y descubramos juntos cómo llevar tu negocio al siguiente nivel digital.
-          </p>
-          <div class="mt-8 flex flex-col items-center justify-center gap-4 md:flex-row">
-            <a
-              href="/contacto"
-              class="rounded-xl bg-gradient-to-r from-primary-vibrant to-accent px-8 py-4 font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-primary-vibrant/25"
-            >
-              Impulsa tu Proyecto
-            </a>
-            <a
-              href="/servicios"
-              class="rounded-xl border border-white/20 px-8 py-4 font-semibold text-slate-200 transition-all hover:border-primary-vibrant/50 hover:text-primary-vibrant"
-            >
-              Explorar Servicios
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <FinalCTA />
 </MainLayout>

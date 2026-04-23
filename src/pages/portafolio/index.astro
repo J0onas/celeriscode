@@ -1,123 +1,154 @@
 ---
-import MainLayout from '../../layouts/MainLayout.astro';
 import { getCollection } from 'astro:content';
+import MainLayout from '../../layouts/MainLayout.astro';
+import SectionTitle from '../../components/ui/SectionTitle.astro';
+import Button from '../../components/ui/Button.astro';
+import Card from '../../components/ui/Card.astro';
+import Badge from '../../components/ui/Badge.astro';
+import FinalCTA from '../../components/sections/FinalCTA.astro';
+
+import { PROJECT_TYPE_LABEL, SITE_NAME } from '../../lib/site-config';
+import { getOrderedPortfolioCases } from '../../lib/content-helpers';
 
 const cases = await getCollection('cases');
+const portfolioCases = getOrderedPortfolioCases(cases);
 
-const portfolioOrder = [
-  'posmart-saas',
-  'inperu-landing',
-  'turquesa-travel-multipage',
-  'el-bambino-menu-digital',
-  'zoi-beauty-ecommerce',
-];
-
-const portfolioCases = portfolioOrder
-  .map((slug) => cases.find((item) => item.id === slug))
-  .filter((item): item is (typeof cases)[number] => Boolean(item));
-
-const projectTypeLabel: Record<string, string> = {
-  'saas': 'SaaS',
-  'landing-page': 'Landing Page',
-  'multipage': 'Multipage',
-  'ecommerce': 'Ecommerce',
+const portfolioSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: `Portafolio | ${SITE_NAME}`,
+  itemListElement: portfolioCases.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': 'CreativeWork',
+      name: item.data.title,
+      description: item.data.summary,
+      image: item.data.image,
+      url: item.data.url,
+    },
+  })),
 };
 
-const projectTypeCount = portfolioCases.reduce((acc, item) => {
-  acc[item.data.projectType] = (acc[item.data.projectType] ?? 0) + 1;
-  return acc;
-}, {} as Record<string, number>);
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('es-ES', {
+    month: 'short',
+    year: 'numeric',
+  }).format(date);
 ---
 
-<MainLayout title="Portafolio | Celeris Code" description="Portafolio real de Celeris Code con proyectos publicados en SaaS, landing page, multipage y ecommerce.">
-  <section class="container mx-auto px-6 py-20">
-    <div class="max-w-4xl">
-      <span class="pill">Portafolio real</span>
-      <h1 class="section-title mt-6">Proyectos reales desarrollados por Celeris Code</h1>
-      <p class="section-subtitle mt-5">
-        Basado en tu línea de servicios y casos publicados: POSmart, InPerú, Turquesa Travel,
-        El Bambino y ZoiBeauty.
-      </p>
+<MainLayout
+  title="Portafolio | Celeris Code"
+  description="Explora nuestros casos de éxito en desarrollo de software, ecommerce y plataformas digitales de alto impacto."
+  schema={portfolioSchema}
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden pt-24 pb-12">
+    <div class="pointer-events-none absolute inset-0 -z-20">
+      <div class="aurora-blue absolute -left-[10%] top-[-10%] h-80 w-80 opacity-55"></div>
+      <div class="aurora-purple absolute right-[-10%] top-[6%] h-80 w-80 opacity-50"></div>
     </div>
 
-    <div class="mt-10 grid gap-4 md:grid-cols-4">
-      <article class="bento-card">
-        <p class="text-technical">CASOS PUBLICADOS</p>
-        <p class="mt-2 text-3xl font-black text-white">{portfolioCases.length}</p>
-        <p class="mt-1 text-sm text-slate-300">Sitios y productos con link activo.</p>
-      </article>
-      <article class="bento-card">
-        <p class="text-technical">LANDING PAGE</p>
-        <p class="mt-2 text-3xl font-black text-white">{projectTypeCount['landing-page'] ?? 0}</p>
-        <p class="mt-1 text-sm text-slate-300">Institucional y menú digital.</p>
-      </article>
-      <article class="bento-card">
-        <p class="text-technical">MULTIPAGE</p>
-        <p class="mt-2 text-3xl font-black text-white">{projectTypeCount['multipage'] ?? 0}</p>
-        <p class="mt-1 text-sm text-slate-300">Arquitectura de contenido por secciones.</p>
-      </article>
-      <article class="bento-card">
-        <p class="text-technical">SAAS + ECOMMERCE</p>
-        <p class="mt-2 text-3xl font-black text-white">{(projectTypeCount['saas'] ?? 0) + (projectTypeCount['ecommerce'] ?? 0)}</p>
-        <p class="mt-1 text-sm text-slate-300">Producto digital y venta online.</p>
-      </article>
-    </div>
+    <div class="container mx-auto px-6 text-center">
+      <SectionTitle
+        badge="Evidencia Real"
+        title="Resultados que <span class='gradient-text'>hablan por nosotros</span>"
+        subtitle="Cada proyecto es un activo digital diseñado para cumplir objetivos comerciales específicos."
+        className="mb-10"
+      />
 
-    <div class="mt-8 bento-card">
-      <p class="text-technical mb-4">Navegación rápida</p>
-      <div class="flex flex-wrap gap-2">
-        {portfolioCases.map((item, index) => (
-          <a href={item.data.url} target="_blank" rel="noopener noreferrer" class="pill hover:text-primary-vibrant">
-            {index + 1}. {item.data.client}
-          </a>
-        ))}
+      <div class="flex justify-center gap-4">
+        <Button href="#proyectos" variant="primary">Ver casos activos</Button>
+        <Button href="/contacto" variant="secondary">Iniciar mi proyecto</Button>
       </div>
     </div>
+  </section>
 
-    <div class="mt-10 grid gap-6 lg:grid-cols-2">
-      {portfolioCases.map((item, index) => (
-        <article class="bento-card overflow-hidden">
-          <img src={item.data.image} alt={`Portada ${item.data.title}`} class="aspect-video w-full rounded-2xl border border-white/10 object-cover" loading="lazy" />
+  <!-- Projects Grid -->
+  <section id="proyectos" class="py-20 bg-slate-900/20">
+    <div class="container mx-auto px-6">
+      <div class="grid gap-12 lg:grid-cols-2">
+        {
+          portfolioCases.map((item, index) => (
+            <Card padding="none" isPremium data-reveal style={`--reveal-delay: ${index * 100}ms`}>
+              <div class="flex flex-col h-full">
+                <div class="aspect-video w-full overflow-hidden border-b border-white/10 relative group">
+                  <img
+                    src={item.data.image}
+                    alt={item.data.title}
+                    class="h-full w-full object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-60" />
+                  <div class="absolute bottom-6 left-8">
+                    <Badge variant="accent">{PROJECT_TYPE_LABEL[item.data.projectType]}</Badge>
+                  </div>
+                </div>
 
-          <div class="mt-5 flex flex-wrap gap-2">
-            <span class="pill">Proyecto #{index + 1}</span>
-            <span class="pill">{projectTypeLabel[item.data.projectType] ?? item.data.projectType}</span>
-            <span class="pill">{item.data.industry}</span>
-          </div>
+                <div class="p-8 md:p-10 flex flex-col justify-between flex-1">
+                  <div>
+                    <div class="flex items-center justify-between gap-4 mb-4">
+                      <span class="text-[10px] font-mono uppercase tracking-widest text-slate-300">
+                        {item.data.industry}
+                      </span>
+                      <span class="text-[10px] font-mono text-slate-600">
+                        {formatDate(item.data.date)}
+                      </span>
+                    </div>
 
-          <h2 class="mt-4 text-2xl font-bold text-white">{item.data.title}</h2>
-          <p class="mt-2 text-sm leading-relaxed text-slate-300">{item.data.summary}</p>
+                    <h2 class="text-3xl font-bold text-white mb-4">{item.data.title}</h2>
+                    <p class="text-slate-300 leading-relaxed mb-8 text-lg">{item.data.summary}</p>
 
-          <div class="mt-5 grid gap-4 sm:grid-cols-2">
-            <div>
-              <p class="text-technical">Resultados clave</p>
-              <ul class="mt-2 space-y-2 text-sm text-slate-300">
-                {item.data.results.slice(0, 3).map((result) => (
-                  <li class="flex items-start gap-2">
-                    <span class="mt-1 h-2 w-2 rounded-full bg-primary-vibrant"></span>
-                    <span>{result}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p class="text-technical">Stack / enfoque</p>
-              <div class="mt-2 flex flex-wrap gap-2">
-                {item.data.stack.map((tech) => (
-                  <span class="pill">{tech}</span>
-                ))}
+                    <div class="grid sm:grid-cols-2 gap-8 mb-10">
+                      <div>
+                        <p class="font-mono text-[10px] uppercase tracking-widest text-primary-vibrant mb-4">
+                          Reto superado
+                        </p>
+                        <p class="text-sm text-slate-300 leading-relaxed italic border-l-2 border-primary-vibrant/30 pl-4">
+                          "{item.data.challenge}"
+                        </p>
+                      </div>
+                      <div>
+                        <p class="font-mono text-[10px] uppercase tracking-widest text-accent mb-4">
+                          Resultados clave
+                        </p>
+                        <ul class="space-y-2">
+                          {item.data.results.slice(0, 3).map((res: string) => (
+                            <li class="flex items-start gap-2 text-xs text-slate-300">
+                              <span class="mt-1 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                              <span>{res}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="flex flex-col sm:flex-row items-center gap-4 pt-8 border-t border-white/5">
+                    <Button
+                      href={item.data.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      variant="primary"
+                      className="w-full sm:w-auto"
+                    >
+                      Visitar sitio en vivo
+                    </Button>
+                    <Button href="/contacto" variant="ghost" className="w-full sm:w-auto">
+                      Quiero algo similar &rarr;
+                    </Button>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-
-          <div class="mt-6 flex flex-wrap items-center gap-3">
-            <a href={item.data.url} target="_blank" rel="noopener noreferrer" class="rounded-lg bg-gradient-to-r from-primary-vibrant to-accent px-5 py-2.5 text-sm font-bold text-white">
-              Ver sitio en vivo
-            </a>
-            <span class="text-xs text-slate-400">{item.data.client}</span>
-          </div>
-        </article>
-      ))}
+            </Card>
+          ))
+        }
+      </div>
     </div>
   </section>
+
+  <FinalCTA
+    title="Tu próximo éxito comienza con un <span class='gradient-text'>paso estratégico</span>"
+    subtitle="Estamos listos para diseñar y construir la solución que elevará tu marca al siguiente nivel."
+  />
 </MainLayout>

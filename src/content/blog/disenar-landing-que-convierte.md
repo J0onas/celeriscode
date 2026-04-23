@@ -1,13 +1,13 @@
 ---
-title: "Cómo diseñar una landing page que convierta en 2026"
-excerpt: "Guía práctica y actualizada para estructurar una landing moderna con mensaje claro, prueba social y CTA sin fricción."
-description: "Buenas prácticas aplicadas para landing pages de alto rendimiento: jerarquía visual, claridad de oferta, confianza y velocidad de carga."
+title: 'Cómo diseñar una landing page que convierta en 2026'
+excerpt: 'Guía práctica y actualizada para estructurar una landing moderna con mensaje claro, prueba social y CTA sin fricción.'
+description: 'Buenas prácticas aplicadas para landing pages de alto rendimiento: jerarquía visual, claridad de oferta, confianza y velocidad de carga.'
 date: 2026-04-02
-author: "Equipo Celeris Code"
-tags: ["Landing Page", "Conversión", "UI/UX"]
-cover: "https://images.unsplash.com/photo-1467232004584-a2411b0e060e?auto=format&fit=crop&w=1200&q=80"
+author: 'Equipo Celeris Code'
+tags: ['Landing Page', 'Conversión', 'UI/UX']
+cover: '/assets/blog/landing-conversion.jpg'
 isFeatured: true
-readingTime: "6 min"
+readingTime: '6 min'
 ---
 
 Una landing page no falla por estética: falla por **falta de claridad**.
@@ -21,20 +21,22 @@ Según estudios recientes de HubSpot y Unbounce, el 76% de los visitantes abando
 Tu visitante necesita entender en **menos de 3 segundos** qué haces y por qué debería importarle. Evita jerga técnica y ve directo al beneficio.
 
 **Ejemplo efectivo:**
+
 > "Creamos sitios web que generan clientes mientras duermes."
 
 **Ejemplo débil:**
+
 > "Soluciones digitales integrales de vanguardia tecnológica."
 
 ### 2. Resultado concreto para el cliente
 
 No vendas características, vende **transformaciones**. El usuario no quiere una web bonita; quiere más leads, más ventas o más autoridad.
 
-| Característica | Transformación |
-|---|---|
-| Diseño responsive | "Tus clientes te ven perfecto en cualquier dispositivo" |
-| Carga en 1 segundo | "Nadie se va por impaciencia" |
-| Formulario simple | "Contactarte es tan fácil como enviar un WhatsApp" |
+| Característica     | Transformación                                          |
+| ------------------ | ------------------------------------------------------- |
+| Diseño responsive  | "Tus clientes te ven perfecto en cualquier dispositivo" |
+| Carga en 1 segundo | "Nadie se va por impaciencia"                           |
+| Formulario simple  | "Contactarte es tan fácil como enviar un WhatsApp"      |
 
 ### 3. Prueba social que genera confianza
 
@@ -98,4 +100,4 @@ Si respondiste "no" a alguna, es momento de optimizar.
 
 ---
 
-*¿Necesitas una landing que realmente convierta? [Contáctanos](/contacto) y diseñemos juntos tu próxima página de alto rendimiento.*
+_¿Necesitas una landing que realmente convierta? [Contáctanos](/contacto) y diseñemos juntos tu próxima página de alto rendimiento._

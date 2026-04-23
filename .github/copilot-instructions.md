@@ -1,6 +1,7 @@
 # Copilot Instructions for Celeris Code
 
 ## Build, check, and preview commands
+
 - `npm install` - Install dependencies (required before any Astro command).
 - `npm run dev` - Start the Astro dev server.
 - `npm run build` - Build production output into `dist/`.
@@ -11,6 +12,7 @@
 - Single-test execution is not available yet because no test runner is configured in this repository.
 
 ## High-level architecture
+
 - This is an Astro multipage site with shared framing in `src/layouts/MainLayout.astro`. The layout imports `src/styles/global.css`, renders `Header`, and centralizes SEO defaults via `title`, `description`, and optional `image`.
 - Routes mix static Astro pages (`index`, `contacto`, `nosotros`, `servicios/index`, `portafolio/index`, `blog/index`) with dynamic content routes: `src/pages/servicios/[slug].astro` and `src/pages/blog/[slug].astro`.
 - Content-driven pages come from Astro Content Collections in `src/content.config.ts` (`services`, `cases`, `blog`) backed by markdown in `src/content/services/*.md`, `src/content/cases/*.md`, and `src/content/blog/*.md`.
@@ -24,6 +26,7 @@
 - React integration is enabled in Astro config and dependencies, but the current implementation is mostly `.astro` components.
 
 ## Key project conventions
+
 - Keep Spanish copy by default (`<html lang="es">`), matching existing page content and labels.
 - Keep brand voice consistent with existing docs/content: "Engineering Digital Dominance" and a conversion-focused narrative around high-performance digital assets.
 - Keep the core offer taxonomy aligned with project content and brand docs: Landing Page, Multipage, Ecommerce, and SaaS.

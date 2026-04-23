@@ -7,9 +7,14 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "astro check",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "test": "npm run check"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",
@@ -22,5 +27,12 @@
     "react-dom": "^19.2.5",
     "tailwindcss": "^4.2.2",
     "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "eslint": "^9.21.0",
+    "eslint-plugin-astro": "^1.3.1",
+    "prettier": "^3.5.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript-eslint": "^8.24.1"
   }
 }

@@ -1,13 +1,13 @@
 ---
-title: "Diseño minimalista que sí vende: menos ruido, más resultados"
-excerpt: "El minimalismo no es quitar por quitar: es priorizar información, contraste y ritmo visual para mejorar decisiones y conversiones."
-description: "Principios de diseño minimalista aplicados a sitios comerciales modernos: balance, contraste, alineación y jerarquía visual orientada a resultados."
+title: 'Diseño minimalista que sí vende: menos ruido, más resultados'
+excerpt: 'El minimalismo no es quitar por quitar: es priorizar información, contraste y ritmo visual para mejorar decisiones y conversiones.'
+description: 'Principios de diseño minimalista aplicados a sitios comerciales modernos: balance, contraste, alineación y jerarquía visual orientada a resultados.'
 date: 2026-03-18
-author: "Equipo Celeris Code"
-tags: ["Minimalismo", "Diseño Web", "Branding"]
-cover: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80"
+author: 'Equipo Celeris Code'
+tags: ['Minimalismo', 'Diseño Web', 'Branding']
+cover: '/assets/blog/minimalismo-conversion.jpg'
 isFeatured: false
-readingTime: "5 min"
+readingTime: '5 min'
 ---
 
 Un diseño minimalista eficaz no es vacío: es **intencional**.
@@ -55,6 +55,7 @@ Los mejores sitios usan **3 colores o menos**:
 ## Aplicación práctica: antes y después
 
 ### ❌ Sitio sobrecargado
+
 - 5 tipos de tipografía diferentes
 - 7 colores compitiendo atención
 - 3 CTAs diferentes en el hero
@@ -62,6 +63,7 @@ Los mejores sitios usan **3 colores o menos**:
 - Formularios de 8 campos
 
 ### ✅ Sitio minimalista efectivo
+
 - 1-2 tipografías máximo
 - 2-3 colores con propósito
 - 1 CTA claro y visible
@@ -88,6 +90,7 @@ Nuestro enfoque minimalista se basa en:
 ## Tu próximo paso
 
 Antes de añadir algo a tu web, pregúntate:
+
 - ¿Esto ayuda al usuario a tomar una decisión?
 - ¿Esto facilita o dificulta la acción principal?
 - ¿Puedo lograr el mismo resultado con menos?
@@ -96,4 +99,4 @@ El minimalismo no es restricción; es **claridad estratégica**.
 
 ---
 
-*¿Tu web necesita una limpieza estratégica? [Hablemos](/contacto) sobre cómo simplificar para vender más.*
+_¿Tu web necesita una limpieza estratégica? [Hablemos](/contacto) sobre cómo simplificar para vender más._

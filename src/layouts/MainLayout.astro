@@ -1,21 +1,57 @@
 ---
 import Header from '../components/sections/Header.astro';
+import { ClientRouter } from 'astro:transitions';
+import { getWhatsAppUrl, SITE_NAME, SITE_SLOGAN } from '../lib/site-config';
+import { SITE_DEFAULTS } from '../lib/constants';
 import '../styles/global.css';
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
+  schema?: Record<string, unknown> | Array<Record<string, unknown>>;
+  article?: boolean;
 }
 
 const {
-  title = "Celeris Code | Agencia de Desarrollo Web y Producto Digital",
-  description = "Diseñamos y desarrollamos landing pages, sitios multipage, ecommerce y SaaS con enfoque en UX, rendimiento y conversión.",
-  image = "/assets/projects/posmart.svg",
+  title = SITE_DEFAULTS.title,
+  description = SITE_DEFAULTS.description,
+  image = SITE_DEFAULTS.image,
+  schema,
+  article = false,
 } = Astro.props;
 
 const canonical = Astro.url.href;
 const ogImage = new URL(image, Astro.url).href;
+const whatsappUrl = getWhatsAppUrl();
+const baseUrl = Astro.url.origin;
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE_NAME,
+  slogan: SITE_SLOGAN,
+  url: baseUrl,
+  logo: new URL('/assets/brand/logo-dark.svg', Astro.url).href,
+  sameAs: [whatsappUrl],
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE_NAME,
+  url: baseUrl,
+  inLanguage: 'es-PE',
+};
+
+const schemaList: Array<Record<string, unknown>> = [organizationSchema, websiteSchema];
+if (schema) {
+  if (Array.isArray(schema)) {
+    schemaList.push(...schema);
+  } else {
+    schemaList.push(schema);
+  }
+}
 ---
 
 <!doctype html>
@@ -30,69 +66,162 @@ const ogImage = new URL(image, Astro.url).href;
     <title>{title}</title>
     <meta name="description" content={description} />
 
-    <meta property="og:type" content="website" />
+    <!-- SEO Meta Tags -->
+    <meta property="og:type" content={article ? 'article' : 'website'} />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content={SITE_NAME} />
+
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="theme-color" content="#020617" />
+
+    <meta name="robots" content="index, follow" />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaList)}></script>
+    <ClientRouter />
 
     <script is:inline>
       (() => {
+        const root = document.documentElement;
         const storedTheme = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = storedTheme === 'light' || storedTheme === 'dark'
-          ? storedTheme
-          : (prefersDark ? 'dark' : 'light');
-        document.documentElement.dataset.theme = theme;
+        const theme = storedTheme || (prefersDark ? 'dark' : 'light');
+        root.dataset.theme = theme;
+        root.style.colorScheme = theme;
+        
+        // Immediate apply to meta to avoid flash
+        const themeColor = theme === 'light' ? '#f8fafc' : '#020617';
+        const meta = document.createElement('meta');
+        meta.name = 'theme-color';
+        meta.content = themeColor;
+        document.head.appendChild(meta);
       })();
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body class="selection:bg-primary-vibrant/30 selection:text-primary-vibrant">
+  <body
+    class="selection:bg-primary-vibrant/30 selection:text-primary-vibrant min-h-screen"
+  >
     <Header />
 
-    <main class="min-h-screen pt-28 md:pt-24">
+    <main class="pt-20 md:pt-24">
       <slot />
     </main>
 
-    <footer class="mt-24 border-t border-white/10 bg-primary-deep/55 py-14">
-      <div class="container mx-auto grid gap-8 px-6 md:grid-cols-3">
+    <!-- Floating WhatsApp -->
+    <a
+      href={whatsappUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Escribir por WhatsApp"
+      data-track="whatsapp_floating_click"
+      data-track-location="global"
+      class="whatsapp-float fixed bottom-6 right-5 z-[60] inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition-transform hover:scale-[1.03] md:bottom-8 md:right-8"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-7 w-7"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+        ></path>
+      </svg>
+    </a>
+
+    <footer class="border-t border-white/10 bg-slate-950/55 py-14">
+      <div class="container mx-auto grid gap-12 px-6 md:grid-cols-3">
         <div>
-          <h3 class="text-xl font-bold text-white">Celeris Code</h3>
-          <p class="mt-3 max-w-sm text-sm text-slate-300">
-            Diseño y desarrollo digital para negocios que quieren crecer con experiencias modernas, rápidas y claras.
+          <h3 class="text-xl font-bold text-white">{SITE_NAME}</h3>
+          <p class="mt-4 max-w-sm text-sm text-slate-300 leading-relaxed">
+            {SITE_DEFAULTS.description}
           </p>
         </div>
 
         <div>
-          <h4 class="text-sm font-semibold uppercase tracking-wide text-slate-300">Navegación</h4>
-          <div class="mt-4 flex flex-col gap-2 text-sm text-slate-300">
-            <a href="/servicios" class="hover:text-primary-vibrant">Servicios</a>
-            <a href="/portafolio" class="hover:text-primary-vibrant">Portafolio</a>
-            <a href="/blog" class="hover:text-primary-vibrant">Blog</a>
-            <a href="/contacto" class="hover:text-primary-vibrant">Contacto</a>
+          <h4 class="text-sm font-semibold uppercase tracking-widest text-slate-300">Navegación</h4>
+          <div class="mt-6 flex flex-col gap-3 text-sm text-slate-300">
+            <a
+              href="/servicios"
+              class="hover:text-primary-vibrant transition-colors"
+              data-track="footer_nav_click"
+              data-track-location="servicios">Servicios</a
+            >
+            <a
+              href="/portafolio"
+              class="hover:text-primary-vibrant transition-colors"
+              data-track="footer_nav_click"
+              data-track-location="portafolio">Portafolio</a
+            >
+            <a
+              href="/blog"
+              class="hover:text-primary-vibrant transition-colors"
+              data-track="footer_nav_click"
+              data-track-location="blog">Blog</a
+            >
+            <a
+              href="/contacto"
+              class="hover:text-primary-vibrant transition-colors"
+              data-track="footer_nav_click"
+              data-track-location="contacto">Contacto</a
+            >
           </div>
         </div>
 
         <div>
-          <h4 class="text-sm font-semibold uppercase tracking-wide text-slate-300">Contacto</h4>
-          <p class="mt-4 text-sm text-slate-300">contacto@celeriscode.com</p>
-          <p class="text-sm text-slate-400">Madrid, España | Remoto global</p>
+          <h4 class="text-sm font-semibold uppercase tracking-widest text-slate-300">Contacto</h4>
+          <div class="mt-6 space-y-4 text-sm text-slate-300">
+            <p>contacto@celeriscode.com</p>
+            <p class="text-slate-300 italic">Madrid, España | Remoto global</p>
+          </div>
         </div>
       </div>
 
-      <div class="container mx-auto mt-10 border-t border-white/5 px-6 pt-6 text-sm text-slate-400">
-        &copy; {new Date().getFullYear()} Celeris Code. Todos los derechos reservados.
+      <div
+        class="container mx-auto mt-14 border-t border-white/5 px-6 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-300"
+      >
+        <p>&copy; {new Date().getFullYear()} {SITE_NAME}. Todos los derechos reservados.</p>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-white transition-colors">Privacidad</a>
+          <a href="#" class="hover:text-white transition-colors">Términos</a>
+        </div>
       </div>
     </footer>
+
+    <!-- Reveal Animation Script -->
+    <script is:inline>
+      (() => {
+        const revealSelector = '[data-reveal]';
+        const initReveal = () => {
+          const elements = document.querySelectorAll(revealSelector);
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('is-visible');
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.1 }
+          );
+          elements.forEach((el) => observer.observe(el));
+        };
+        document.addEventListener('astro:page-load', initReveal);
+        initReveal();
+      })();
+    </script>
   </body>
 </html>

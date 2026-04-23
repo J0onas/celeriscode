@@ -1,13 +1,13 @@
 ---
-title: "UX para ecommerce con checkout por WhatsApp: la guía definitiva"
-excerpt: "Cómo diseñar una experiencia ecommerce pensada para negocios que venden desde catálogo y cierran pedidos por chat de forma efectiva."
-description: "Patrones UX probados para ecommerce con cierre comercial en WhatsApp: catálogo claro, confianza visible y reducción drástica de abandono."
+title: 'UX para ecommerce con checkout por WhatsApp: la guía definitiva'
+excerpt: 'Cómo diseñar una experiencia ecommerce pensada para negocios que venden desde catálogo y cierran pedidos por chat de forma efectiva.'
+description: 'Patrones UX probados para ecommerce con cierre comercial en WhatsApp: catálogo claro, confianza visible y reducción drástica de abandono.'
 date: 2026-03-26
-author: "Equipo Celeris Code"
-tags: ["Ecommerce", "WhatsApp", "UX"]
-cover: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80"
+author: 'Equipo Celeris Code'
+tags: ['Ecommerce', 'WhatsApp', 'UX']
+cover: '/assets/blog/ecommerce-whatsapp.jpg'
 isFeatured: true
-readingTime: "7 min"
+readingTime: '7 min'
 ---
 
 Para muchas marcas, WhatsApp no es un canal secundario: es el canal donde **realmente se cierra la venta**.
@@ -17,6 +17,7 @@ En Latinoamérica, más del 60% de las pymes cierran ventas por WhatsApp antes q
 ## Por qué el checkout tradicional falla en ciertos negocios
 
 Los ecommerce convencionales asumen que el cliente:
+
 1. Sabe exactamente qué quiere
 2. Tiene confianza suficiente para pagar online
 3. No tiene dudas antes de comprar
@@ -38,6 +39,7 @@ Cada producto debe responder 3 preguntas en menos de 5 segundos:
 ### 2. Hacer visible el CTA desde el primer scroll
 
 Tu botón de WhatsApp debe ser:
+
 - **Visible sin scroll** en mobile (donde ocurre el 70%+ de las visitas)
 - **Consistente** en color y ubicación en todas las páginas
 - **Acompañado** de un microcopy que reduzca fricción
@@ -54,11 +56,13 @@ Tu botón de WhatsApp debe ser:
 Cada clic adicional antes de llegar a WhatsApp es una **oportunidad de abandono**.
 
 **Flujo óptimo:**
+
 ```
 Producto → CTA WhatsApp → Chat con mensaje pre-llenado
 ```
 
 **Flujo problemático:**
+
 ```
 Producto → Añadir al carrito → Crear cuenta → Llenar datos → Checkout → ... ¿WhatsApp donde?
 ```
@@ -80,17 +84,20 @@ Esto reduce fricción y le da al vendedor contexto inmediato para cerrar la vent
 ## Diseño del catálogo: mejores prácticas
 
 ### Fotos que venden
+
 - **Iluminación natural** o fondo blanco para consistencia
 - **Ángulo principal claro** + 1-2 ángulos adicionales máximo
 - **Peso optimizado** (menos de 200KB cada una para carga rápida)
 
 ### Información esencial
+
 - Nombre del producto
 - Precio (con descuento si aplica, mostrando el antes)
 - Variantes disponibles (talla, color, etc.)
 - Tiempo estimado de entrega o envío
 
 ### Confianza visible
+
 - Reviews o testimonios cortos
 - Políticas de devolución claras
 - Métodos de pago aceptados
@@ -111,16 +118,18 @@ Nuestros ecommerce con WhatsApp incluyen:
 ## ¿Es este modelo para tu negocio?
 
 **Ideal si:**
+
 - Vendes productos personalizables o con variantes
 - Tu público prefiere contacto humano antes de comprar
 - Manejas inventario dinámico o pedidos bajo demanda
 - Tu ticket promedio es medio-alto (requiere más confianza)
 
 **Menos ideal si:**
+
 - Vendes productos commodities de compra impulsiva
 - Tu audiencia es 100% B2B con procesos de compra automatizados
 - Ya tienes un funnel de ecommerce optimizado que convierte bien
 
 ---
 
-*¿Quieres un ecommerce que se adapte a cómo tus clientes realmente compran? [Conversemos](/contacto) sobre tu proyecto.*
+_¿Quieres un ecommerce que se adapte a cómo tus clientes realmente compran? [Conversemos](/contacto) sobre tu proyecto._
