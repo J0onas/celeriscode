@@ -2,7 +2,7 @@
 import Button from '../ui/Button.astro';
 import { BRAND_CTA } from '../../lib/constants';
 
-// Import logos - using standard imports for SVGs
+// Import logos
 import logoDark from '../../assets/brand/logo-dark.svg?url';
 import logoLight from '../../assets/brand/logo-light.svg?url';
 
@@ -17,7 +17,8 @@ const pathname = Astro.url.pathname;
 ---
 
 <header
- class="fixed top-0 z-50 w-full border-b border-border-subtle bg-bg-default/80 backdrop-blur-xl transition-all duration-300"
+ id="main-header"
+ class="fixed top-0 z-[100] w-full border-b border-border-subtle bg-bg-default/80 backdrop-blur-xl transition-all duration-300"
 >
  <div class="container mx-auto flex h-20 md:h-24 items-center justify-between px-6 py-2">
  <a href="/" class="group inline-flex items-center gap-3 transition-transform hover:scale-[1.02]" aria-label="Volver al inicio">
@@ -33,6 +34,7 @@ const pathname = Astro.url.pathname;
  />
  </a>
 
+ {/* Desktop Nav */}
  <nav class="hidden items-center gap-2 md:flex" aria-label="Navegación principal">
  {
  navLinks.map((link) => {
@@ -55,7 +57,7 @@ const pathname = Astro.url.pathname;
  }
  </nav>
 
- <div class="flex items-center gap-4">
+ <div class="flex items-center gap-2 md:gap-4">
  <button
  type="button"
  class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-subtle bg-bg-card text-text-primary transition-all hover:border-primary/50 hover:text-primary hover:rotate-12 cursor-pointer outline-none"
@@ -74,86 +76,104 @@ const pathname = Astro.url.pathname;
  href="/contacto"
  variant="primary"
  size="md"
- className="hidden md:inline-flex hover-lift shadow-lg shadow-primary/20 font-bold"
+ className="max-md:!hidden md:inline-flex border-beam shimmer-btn"
  >
  {BRAND_CTA.primary}
  </Button>
+
+ {/* Mobile Toggle */}
+ <button
+ id="menu-toggle"
+ type="button"
+ class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-subtle bg-bg-card text-text-primary md:hidden cursor-pointer outline-none"
+ aria-label="Menú"
+ >
+ <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+ </svg>
+ <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+ </svg>
+ </button>
  </div>
  </div>
 
- <!-- Mobile Nav -->
- <div class="border-t border-border-subtle px-6 py-3 md:hidden">
- <nav class="flex items-center gap-2 overflow-x-auto no-scrollbar" aria-label="Navegación móvil">
- {
- [...navLinks, { href: '/contacto', label: 'Contacto' }].map((link) => {
- const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
- return (
- <a
- href={link.href}
- class:list={[
- 'whitespace-nowrap rounded-full px-4 py-2 text-xs font-bold transition-all',
- isActive ? 'bg-primary text-white' : 'bg-bg-card border border-border-subtle text-text-secondary',
- ]}
+ {/* Mobile Menu Dropdown (Simplified) */}
+ <div
+   id="mobile-menu"
+   class="hidden md:hidden border-t border-border-subtle bg-bg-default/95 backdrop-blur-xl w-full shadow-2xl overflow-hidden"
  >
- {link.label}
- </a>
- );
- })
- }
- </nav>
+   <nav class="flex flex-col p-6 space-y-4">
+     {navLinks.map((link) => (
+       <a href={link.href} class="text-xl font-bold text-text-primary hover:text-primary py-2 border-b border-border-subtle/50 transition-colors">
+         {link.label}
+       </a>
+     ))}
+     <div class="pt-4">
+       <Button href="/contacto" variant="primary" size="lg" className="w-full font-black border-beam">
+         {BRAND_CTA.primary}
+       </Button>
+     </div>
+   </nav>
  </div>
 </header>
 
-<style>
- .no-scrollbar::-webkit-scrollbar { display: none; }
- .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-</style>
-
 <script is:inline>
  (() => {
- const root = document.documentElement;
- const getCurrentTheme = () => (root.dataset.theme === 'light' ? 'light' : 'dark');
- const themeState = window.__ccThemeState || (window.__ccThemeState = { buttons: [], logos: [], listenersBound: false });
+   const root = document.documentElement;
+   const themeState = window.__ccThemeState || (window.__ccThemeState = { logos: [], buttons: [] });
 
- const applyTheme = (theme) => {
- root.dataset.theme = theme;
- localStorage.setItem('theme', theme);
- const themeColor = theme === 'light' ? '#f8fafc' : '#020617';
- let themeMeta = document.querySelector('meta[name="theme-color"]') || document.createElement('meta');
- themeMeta.name = 'theme-color';
- themeMeta.setAttribute('content', themeColor);
- document.head.appendChild(themeMeta);
+   const applyTheme = (theme) => {
+     root.dataset.theme = theme;
+     localStorage.setItem('theme', theme);
+     themeState.logos.forEach(img => { img.src = theme === 'light' ? img.dataset.logoLight : img.dataset.logoDark; });
+     themeState.buttons.forEach(btn => {
+       const dark = btn.querySelector('[data-icon-dark]');
+       const light = btn.querySelector('[data-icon-light]');
+       if (theme === 'light') { dark?.classList.add('hidden'); light?.classList.remove('hidden'); }
+       else { dark?.classList.remove('hidden'); light?.classList.add('hidden'); }
+     });
+   };
 
- themeState.logos.forEach((logo) => {
- const nextSrc = theme === 'light' ? logo.getAttribute('data-logo-light') : logo.getAttribute('data-logo-dark');
- if (nextSrc) logo.setAttribute('src', nextSrc);
- });
+   const setup = () => {
+     const toggle = document.getElementById('menu-toggle');
+     const menu = document.getElementById('mobile-menu');
+     const hIcon = document.getElementById('hamburger-icon');
+     const cIcon = document.getElementById('close-icon');
+     const themeBtn = document.querySelector('[data-theme-toggle]');
+     
+     themeState.logos = Array.from(document.querySelectorAll('img[data-logo-dark]'));
+     themeState.buttons = Array.from(document.querySelectorAll('[data-theme-toggle]'));
 
- themeState.buttons.forEach((button) => {
- const darkIcon = button.querySelector('[data-icon-dark]');
- const lightIcon = button.querySelector('[data-icon-light]');
- if (theme === 'light') { darkIcon?.classList.add('hidden'); lightIcon?.classList.remove('hidden'); }
- else { darkIcon?.classList.remove('hidden'); lightIcon?.classList.add('hidden'); }
- });
- };
+     if (toggle && menu) {
+       toggle.onclick = () => {
+         const isHidden = menu.classList.contains('hidden');
+         if (isHidden) {
+           menu.classList.remove('hidden');
+           hIcon.classList.add('hidden');
+           cIcon.classList.remove('hidden');
+         } else {
+           menu.classList.add('hidden');
+           hIcon.classList.remove('hidden');
+           cIcon.classList.add('hidden');
+         }
+       };
+       menu.querySelectorAll('a').forEach(link => link.onclick = () => {
+         menu.classList.add('hidden');
+         hIcon.classList.remove('hidden');
+         cIcon.classList.add('hidden');
+       });
+     }
 
- const toggleTheme = () => applyTheme(getCurrentTheme() === 'dark' ? 'light' : 'dark');
- const refreshThemeNodes = () => {
- themeState.logos = Array.from(document.querySelectorAll('img[data-logo-dark]'));
- themeState.buttons = Array.from(document.querySelectorAll('[data-theme-toggle]'));
- };
- const bindThemeButtons = () => themeState.buttons.forEach(btn => {
- if (btn.dataset.themeBound) return;
- btn.dataset.themeBound = "true";
- btn.addEventListener('click', toggleTheme);
- });
- const initThemeControls = () => { refreshThemeNodes(); applyTheme(localStorage.getItem('theme') || getCurrentTheme()); bindThemeButtons(); };
+     if (themeBtn) themeBtn.onclick = () => {
+       applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
+     };
 
- if (!themeState.listenersBound) {
- themeState.listenersBound = true;
- document.addEventListener('astro:after-swap', initThemeControls);
- document.addEventListener('astro:page-load', initThemeControls);
- }
- initThemeControls();
+     applyTheme(localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+   };
+
+   document.addEventListener('astro:after-swap', setup);
+   document.addEventListener('astro:page-load', setup);
+   setup();
  })();
 </script>

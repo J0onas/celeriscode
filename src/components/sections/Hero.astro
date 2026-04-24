@@ -82,9 +82,8 @@ const {
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      // INSTRUCCIÓN: Reemplaza la URL de abajo por el path de tu archivo JSON descargado
-      path: '/public/hero-icon.json',
-      //path: 'https://assets9.lottiefiles.com/packages/lf20_m6cuL6.json', 
+      // Fixed path for production: files in /public are served from root /
+      path: '/hero-icon.json', 
     });
   };
 

@@ -36,10 +36,10 @@ const sizes = {
 
 const Element = href ? 'a' : 'button';
 const baseStyles =
- 'inline-flex items-center justify-center rounded-xl transition-all duration-300 disabled:opacity-50 disabled:pointer-events-none cursor-pointer relative overflow-hidden';
+ 'items-center justify-center rounded-xl transition-all duration-300 disabled:opacity-50 disabled:pointer-events-none cursor-pointer relative overflow-hidden';
 ---
 
-<Element href={href} class:list={[baseStyles, variants[variant], sizes[size], className]} {...rest}>
+<Element href={href} class:list={['inline-flex', baseStyles, variants[variant], sizes[size], className]} {...rest}>
   {/* Capa de contenido para asegurar visibilidad total */}
   <span class="relative z-20 flex items-center justify-center w-full h-full">
     <slot />
