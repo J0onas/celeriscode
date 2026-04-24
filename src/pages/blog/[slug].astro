@@ -7,200 +7,200 @@ import Badge from '../../components/ui/Badge.astro';
 import FinalCTA from '../../components/sections/FinalCTA.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map((entry) => ({
-    params: { slug: entry.id },
-    props: { entry, allPosts: posts },
-  }));
+ const posts = await getCollection('blog');
+ return posts.map((entry) => ({
+ params: { slug: entry.id },
+ props: { entry, allPosts: posts },
+ }));
 }
 
 const { entry, allPosts } = Astro.props;
 const { Content } = await render(entry);
 
 const relatedPosts = allPosts
-  .filter((p) => p.id !== entry.id && p.data.tags.some((t) => entry.data.tags.includes(t)))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 2);
+ .filter((p) => p.id !== entry.id && p.data.tags.some((t) => entry.data.tags.includes(t)))
+ .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+ .slice(0, 2);
 
 const formatDate = (date: Date) =>
-  new Intl.DateTimeFormat('es-ES', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }).format(date);
+ new Intl.DateTimeFormat('es-ES', {
+ year: 'numeric',
+ month: 'long',
+ day: 'numeric',
+ }).format(date);
 
 const blogPostingSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BlogPosting',
-  headline: entry.data.title,
-  description: entry.data.description ?? entry.data.excerpt,
-  image: entry.data.cover,
-  datePublished: entry.data.date.toISOString(),
-  author: {
-    '@type': 'Organization',
-    name: entry.data.author,
-  },
-  mainEntityOfPage: {
-    '@type': 'WebPage',
-    '@id': `/blog/${entry.id}`,
-  },
+ '@context': 'https://schema.org',
+ '@type': 'BlogPosting',
+ headline: entry.data.title,
+ description: entry.data.description ?? entry.data.excerpt,
+ image: entry.data.cover,
+ datePublished: entry.data.date.toISOString(),
+ author: {
+ '@type': 'Organization',
+ name: entry.data.author,
+ },
+ mainEntityOfPage: {
+ '@type': 'WebPage',
+ '@id': `/blog/${entry.id}`,
+ },
 };
 ---
 
 <MainLayout
-  title={`${entry.data.title} | Blog Celeris Code`}
-  description={entry.data.description ?? entry.data.excerpt}
-  image={entry.data.cover}
-  schema={blogPostingSchema}
-  article={true}
+ title={`${entry.data.title} | Blog Celeris Code`}
+ description={entry.data.description ?? entry.data.excerpt}
+ image={entry.data.cover}
+ schema={blogPostingSchema}
+ article={true}
 >
-  <!-- Article Header -->
-  <section class="relative overflow-hidden pt-24 pb-12">
-    <div class="pointer-events-none absolute inset-0 -z-20">
-      <div class="aurora-blue absolute -left-[10%] top-[-10%] h-96 w-96 opacity-30"></div>
-      <div class="aurora-purple absolute right-[-10%] top-[10%] h-80 w-80 opacity-20"></div>
-    </div>
+ <!-- Article Header -->
+ <section class="relative overflow-hidden pt-24 pb-12">
+ <div class="pointer-events-none absolute inset-0 -z-20">
+ <div class="aurora-blue absolute -left-[10%] top-[-10%] h-96 w-96 opacity-30"></div>
+ <div class="aurora-purple absolute right-[-10%] top-[10%] h-80 w-80 opacity-20"></div>
+ </div>
 
-    <div class="container mx-auto px-6">
-      <div class="max-w-4xl mx-auto">
-        <nav
-          class="flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-slate-300 mb-8"
-          aria-label="Breadcrumb"
-        >
-          <a href="/blog" class="hover:text-primary-vibrant transition-colors">Blog</a>
-          <span class="w-1 h-1 rounded-full bg-slate-700"></span>
-          <span class="text-slate-300">Artículo</span>
-        </nav>
+ <div class="container mx-auto px-6">
+ <div class="max-w-4xl mx-auto">
+ <nav
+ class="flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-text-secondary mb-8"
+ aria-label="Breadcrumb"
+ >
+ <a href="/blog" class="hover:text-primary-vibrant transition-colors">Blog</a>
+ <span class="w-1 h-1 rounded-full bg-slate-700"></span>
+ <span class="text-text-secondary">Artículo</span>
+ </nav>
 
-        <div class="flex flex-wrap gap-2 mb-6">
-          {entry.data.tags.map((tag: string) => <Badge variant="accent">{tag}</Badge>)}
-        </div>
+ <div class="flex flex-wrap gap-2 mb-6">
+ {entry.data.tags.map((tag: string) => <Badge variant="accent">{tag}</Badge>)}
+ </div>
 
-        <h1 class="text-4xl md:text-6xl font-black text-white leading-[1.1] tracking-tight mb-8">
-          {entry.data.title}
-        </h1>
+ <h1 class="text-4xl md:text-6xl font-black text-text-primary leading-[1.1] tracking-tight mb-8">
+ {entry.data.title}
+ </h1>
 
-        <div class="flex items-center gap-6 text-sm text-slate-300 border-y border-white/5 py-6">
-          <div class="flex items-center gap-3">
-            <div
-              class="w-10 h-10 rounded-full bg-gradient-to-tr from-primary-vibrant to-accent flex items-center justify-center text-xs font-bold text-white"
-            >
-              {entry.data.author.charAt(0)}
-            </div>
-            <span class="font-bold text-slate-300">{entry.data.author}</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-4 w-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              ><path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-              ></path></svg
-            >
-            <span>{formatDate(entry.data.date)}</span>
-          </div>
-          <Badge variant="outline">{entry.data.readingTime}</Badge>
-        </div>
-      </div>
-    </div>
-  </section>
+ <div class="flex items-center gap-6 text-sm text-text-secondary border-y border-border-subtle py-6">
+ <div class="flex items-center gap-3">
+ <div
+ class="w-10 h-10 rounded-full bg-gradient-to-tr from-primary-vibrant to-accent flex items-center justify-center text-xs font-bold text-text-primary"
+ >
+ {entry.data.author.charAt(0)}
+ </div>
+ <span class="font-bold text-text-secondary">{entry.data.author}</span>
+ </div>
+ <div class="flex items-center gap-2">
+ <svg
+ xmlns="http://www.w3.org/2000/svg"
+ class="h-4 w-4"
+ fill="none"
+ viewBox="0 0 24 24"
+ stroke="currentColor"
+ ><path
+ stroke-linecap="round"
+ stroke-linejoin="round"
+ stroke-width="2"
+ d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+ ></path></svg
+ >
+ <span>{formatDate(entry.data.date)}</span>
+ </div>
+ <Badge variant="outline">{entry.data.readingTime}</Badge>
+ </div>
+ </div>
+ </div>
+ </section>
 
-  <!-- Featured Image -->
-  <section class="pb-20">
-    <div class="container mx-auto px-6 max-w-5xl">
-      <Card padding="none" isPremium className="overflow-hidden shadow-2xl">
-        <img
-          src={entry.data.cover}
-          alt={entry.data.title}
-          class="w-full aspect-video object-cover"
-          loading="eager"
-        />
-      </Card>
-    </div>
-  </section>
+ <!-- Featured Image -->
+ <section class="pb-20">
+ <div class="container mx-auto px-6 max-w-5xl">
+ <Card padding="none" isPremium className="overflow-hidden shadow-2xl">
+ <img
+ src={entry.data.cover}
+ alt={entry.data.title}
+ class="w-full aspect-video object-cover"
+ loading="eager"
+ />
+ </Card>
+ </div>
+ </section>
 
-  <!-- Article Content -->
-  <section class="pb-24">
-    <div class="container mx-auto px-6 max-w-4xl">
-      <Card padding="lg" isPremium className="content-rich shadow-xl border-white/5">
-        <Content />
-      </Card>
+ <!-- Article Content -->
+ <section class="pb-24">
+ <div class="container mx-auto px-6 max-w-4xl">
+ <Card padding="lg" isPremium className="content-rich shadow-xl border-border-subtle">
+ <Content />
+ </Card>
 
-      <div
-        class="mt-16 pt-12 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-8"
-      >
-        <div class="flex flex-wrap gap-2">
-          {entry.data.tags.map((tag: string) => <Badge variant="outline">{tag}</Badge>)}
-        </div>
-        <Button href="/blog" variant="ghost" className="group">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-4 w-4 mr-2 transition-transform group-hover:-translate-x-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            ><path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg
-          >
-          Volver al Blog
-        </Button>
-      </div>
-    </div>
-  </section>
+ <div
+ class="mt-16 pt-12 border-t border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-8"
+ >
+ <div class="flex flex-wrap gap-2">
+ {entry.data.tags.map((tag: string) => <Badge variant="outline">{tag}</Badge>)}
+ </div>
+ <Button href="/blog" variant="ghost" className="group">
+ <svg
+ xmlns="http://www.w3.org/2000/svg"
+ class="h-4 w-4 mr-2 transition-transform group-hover:-translate-x-1"
+ fill="none"
+ viewBox="0 0 24 24"
+ stroke="currentColor"
+ ><path
+ stroke-linecap="round"
+ stroke-linejoin="round"
+ stroke-width="2"
+ d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg
+ >
+ Volver al Blog
+ </Button>
+ </div>
+ </div>
+ </section>
 
-  <!-- Related -->
-  {
-    relatedPosts.length > 0 && (
-      <section class="py-24 bg-slate-900/30">
-        <div class="container mx-auto px-6 max-w-4xl">
-          <div class="flex items-center gap-4 mb-12">
-            <div class="h-px flex-1 bg-white/10" />
-            <h2 class="text-xl font-bold text-white uppercase tracking-widest text-center">
-              Te puede interesar
-            </h2>
-            <div class="h-px flex-1 bg-white/10" />
-          </div>
+ <!-- Related -->
+ {
+ relatedPosts.length > 0 && (
+ <section class="py-24 bg-bg-default">
+ <div class="container mx-auto px-6 max-w-4xl">
+ <div class="flex items-center gap-4 mb-12">
+ <div class="h-px flex-1 bg-bg-card" />
+ <h2 class="text-xl font-bold text-text-primary uppercase tracking-widest text-center">
+ Te puede interesar
+ </h2>
+ <div class="h-px flex-1 bg-bg-card" />
+ </div>
 
-          <div class="grid md:grid-cols-2 gap-8">
-            {relatedPosts.map((post) => (
-              <a href={`/blog/${post.id}`} class="group">
-                <Card
-                  padding="none"
-                  className="h-full border-white/5 hover:border-primary-vibrant/30"
-                >
-                  <div class="aspect-video overflow-hidden">
-                    <img
-                      src={post.data.cover}
-                      alt={post.data.title}
-                      class="w-full h-full object-cover transition-transform group-hover:scale-105"
-                    />
-                  </div>
-                  <div class="p-6">
-                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-primary-vibrant transition-colors line-clamp-2">
-                      {post.data.title}
-                    </h3>
-                    <p class="text-xs text-slate-300">{formatDate(post.data.date)}</p>
-                  </div>
-                </Card>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
+ <div class="grid md:grid-cols-2 gap-8">
+ {relatedPosts.map((post) => (
+ <a href={`/blog/${post.id}`} class="group">
+ <Card
+ padding="none"
+ className="h-full border-border-subtle hover:border-primary-vibrant/30"
+ >
+ <div class="aspect-video overflow-hidden">
+ <img
+ src={post.data.cover}
+ alt={post.data.title}
+ class="w-full h-full object-cover transition-transform group-hover:scale-105"
+ />
+ </div>
+ <div class="p-6">
+ <h3 class="text-lg font-bold text-text-primary mb-2 group-hover:text-primary-vibrant transition-colors line-clamp-2">
+ {post.data.title}
+ </h3>
+ <p class="text-xs text-text-secondary">{formatDate(post.data.date)}</p>
+ </div>
+ </Card>
+ </a>
+ ))}
+ </div>
+ </div>
+ </section>
+ )
+ }
 
-  <FinalCTA
-    title="Aplica estas estrategias en tu <span class='gradient-text'>proyecto</span>"
-    subtitle="Te ayudamos a convertir insights estratégicos en resultados de negocio tangibles."
-  />
+ <FinalCTA
+ title="Aplica estas estrategias en tu <span class='gradient-text'>proyecto</span>"
+ subtitle="Te ayudamos a convertir insights estratégicos en resultados de negocio tangibles."
+ />
 </MainLayout>

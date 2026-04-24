@@ -1,48 +1,48 @@
 ---
 interface Props {
-  title: string;
-  subtitle?: string;
-  badge?: string;
-  align?: 'left' | 'center';
-  className?: string;
-  titleClassName?: string;
+ title: string;
+ subtitle?: string;
+ badge?: string;
+ align?: 'left' | 'center';
+ className?: string;
+ titleClassName?: string;
 }
 
 const {
-  title,
-  subtitle,
-  badge,
-  align = 'center',
-  className = '',
-  titleClassName = '',
+ title,
+ subtitle,
+ badge,
+ align = 'center',
+ className = '',
+ titleClassName = '',
 } = Astro.props;
 
 const alignment = {
-  left: 'text-left',
-  center: 'text-center mx-auto',
+ left: 'text-left',
+ center: 'text-center mx-auto',
 };
 ---
 
 <div class:list={['max-w-4xl', alignment[align], className]}>
-  {
-    badge && (
-      <span class="inline-flex items-center rounded-full border border-primary-vibrant/30 bg-primary-vibrant/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-primary-vibrant mb-6">
-        {badge}
-      </span>
-    )
-  }
+ {
+ badge && (
+ <span class="inline-flex items-center rounded-full border border-primary-vibrant/30 bg-primary-vibrant/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-primary-vibrant mb-6">
+ {badge}
+ </span>
+ )
+ }
 
-  <h2
-    class:list={['text-3xl md:text-5xl font-extrabold tracking-tight text-white', titleClassName]}
-  >
-    {title.includes('<span') ? <Fragment set:html={title} /> : title}
-  </h2>
+ <h2
+ class:list={['text-3xl md:text-5xl font-extrabold tracking-tight text-text-primary', titleClassName]}
+ >
+ {title.includes('<span') ? <Fragment set:html={title} /> : title}
+ </h2>
 
-  {
-    subtitle && (
-      <p class="mt-5 text-base md:text-lg leading-relaxed text-slate-300 max-w-3xl mx-auto">
-        {subtitle}
-      </p>
-    )
-  }
+ {
+ subtitle && (
+ <p class="mt-5 text-base md:text-lg leading-relaxed text-text-secondary max-w-3xl mx-auto">
+ {subtitle}
+ </p>
+ )
+ }
 </div>

@@ -7,166 +7,177 @@ import FinalCTA from '../components/sections/FinalCTA.astro';
 
 import { VALUE_PILLARS, PROCESS_STEPS, SITE_NAME } from '../lib/constants';
 import { getServiceIcon } from '../lib/service-assets';
+import { ICON_BY_SERVICE } from '../lib/site-config';
 
 const aboutSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'AboutPage',
-  name: `Nosotros | ${SITE_NAME}`,
-  description:
-    'Visión, metodología y valores de Celeris Code para crear activos digitales de alto impacto.',
-  url: '/nosotros',
+ '@context': 'https://schema.org',
+ '@type': 'AboutPage',
+ name: `Nosotros | ${SITE_NAME}`,
+ description:
+ 'Visión, metodología y valores de Celeris Code para crear activos digitales de alto impacto.',
+ url: '/nosotros',
 };
 ---
 
 <MainLayout title="Nosotros | Celeris Code" schema={aboutSchema}>
-  <!-- Hero Section -->
-  <section class="relative overflow-hidden py-24 md:py-32">
-    <div class="pointer-events-none absolute inset-0 -z-20">
-      <div class="aurora-blue absolute -left-[10%] top-[-10%] h-96 w-96 opacity-40"></div>
-      <div class="aurora-purple absolute right-[-10%] top-[10%] h-80 w-80 opacity-30"></div>
-    </div>
+ <!-- Hero Section -->
+ <section class="relative overflow-hidden py-24 md:py-32">
+ <div class="pointer-events-none absolute inset-0 -z-20">
+ <div class="aurora-blue absolute -left-[10%] top-[-10%] h-96 w-96 opacity-40"></div>
+ <div class="aurora-purple absolute right-[-10%] top-[10%] h-80 w-80 opacity-30"></div>
+ </div>
 
-    <div class="container mx-auto px-6 text-center">
-      <SectionTitle
-        badge="Sobre Nosotros"
-        title="Creamos experiencias que <span class='gradient-text'>impulsan negocios</span>"
-        subtitle="Somos un equipo de diseñadores, desarrolladores y estrategas digitales comprometidos con transformar ideas en productos web de alto impacto."
-        className="mb-12"
-      />
+ <div class="container mx-auto px-6 text-center">
+ <SectionTitle
+ badge="Sobre Nosotros"
+ title="Creamos experiencias que <span class='gradient-text'>impulsan negocios</span>"
+ subtitle="Somos un equipo de diseñadores, desarrolladores y estrategas digitales comprometidos con transformar ideas en productos web de alto impacto."
+ className="mb-12"
+ />
 
-      <div
-        class="mx-auto max-w-5xl mt-16 rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative group"
-      >
-        <img
-          src="/assets/blog/minimalismo-conversion.jpg"
-          alt="Equipo colaborando"
-          class="w-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
-          loading="eager"
-        />
-        <div
-          class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"
-        >
-        </div>
-      </div>
-    </div>
-  </section>
+ <div
+ class="mx-auto max-w-5xl mt-16 rounded-3xl overflow-hidden border border-border-subtle shadow-2xl relative group"
+ >
+ <img
+ src="/assets/blog/minimalismo-conversion.webp"
+ alt="Equipo colaborando"
+ class="w-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
+ loading="eager"
+ />
+ <div
+ class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"
+ >
+ </div>
+ </div>
+ </div>
+ </section>
 
-  <!-- Mission & Vision -->
-  <section class="py-24 bg-slate-900/20">
-    <div class="container mx-auto px-6">
-      <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-        <Card isPremium padding="lg">
-          <Badge variant="accent" className="mb-6">Misión</Badge>
-          <h2 class="text-3xl font-bold text-white mb-6">Transformar la presencia digital</h2>
-          <p class="text-slate-300 leading-relaxed text-lg">
-            Nuestra misión es ayudar a marcas ambiciosas a construir <strong class="text-white"
-              >activos digitales de alto rendimiento</strong
-            > que no solo se vean bien, sino que generen resultados medibles y confianza duradera.
-          </p>
-        </Card>
+ <!-- Mission & Vision -->
+ <section class="py-24 bg-bg-default">
+ <div class="container mx-auto px-6">
+ <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+ <Card isPremium padding="lg">
+ <Badge variant="accent" className="mb-6">Misión</Badge>
+ <h2 class="text-3xl font-bold text-text-primary mb-6">Transformar la presencia digital</h2>
+ <p class="text-text-secondary leading-relaxed text-lg">
+ Nuestra misión es ayudar a marcas ambiciosas a construir <strong class="text-text-primary"
+ >activos digitales de alto rendimiento</strong
+ > que no solo se vean bien, sino que generen resultados medibles y confianza duradera.
+ </p>
+ </Card>
 
-        <Card isPremium padding="lg">
-          <Badge variant="accent" className="mb-6">Visión</Badge>
-          <h2 class="text-3xl font-bold text-white mb-6">El socio tecnológico del futuro</h2>
-          <p class="text-slate-300 leading-relaxed text-lg">
-            Aspiramos a ser el referente en ejecución técnica y estrategia UX, donde la velocidad y
-            la calidad convergen para crear el <strong class="text-white"
-              >estándar de la industria</strong
-            > en productos digitales.
-          </p>
-        </Card>
-      </div>
-    </div>
-  </section>
+ <Card isPremium padding="lg">
+ <Badge variant="accent" className="mb-6">Visión</Badge>
+ <h2 class="text-3xl font-bold text-text-primary mb-6">El socio tecnológico del futuro</h2>
+ <p class="text-text-secondary leading-relaxed text-lg">
+ Aspiramos a ser el referente en ejecución técnica y estrategia UX, donde la velocidad y
+ la calidad convergen para crear el <strong class="text-text-primary"
+ >estándar de la industria</strong
+ > en productos digitales.
+ </p>
+ </Card>
+ </div>
+ </div>
+ </section>
 
-  <!-- Values -->
-  <section class="py-24">
-    <div class="container mx-auto px-6">
-      <SectionTitle
-        badge="Nuestros Valores"
-        title="Principios que <span class='gradient-text'>guían cada decisión</span>"
-        className="mb-16"
-      />
+ <!-- Values -->
+ <section class="py-24">
+ <div class="container mx-auto px-6">
+ <SectionTitle
+ badge="Nuestros Valores"
+ title="Principios que <span class='gradient-text'>guían cada decisión</span>"
+ className="mb-16"
+ />
 
-      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {
-          VALUE_PILLARS.map((pillar, index) => (
-            <Card data-reveal style={`--reveal-delay: ${index * 100}ms`}>
-              <div class="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary-vibrant/10 text-primary-vibrant">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                    d={getServiceIcon(pillar.icon)}
-                  />
-                </svg>
-              </div>
-              <h3 class="text-xl font-bold text-white mb-4">{pillar.title}</h3>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">{pillar.description}</p>
-              <div class="flex flex-wrap gap-2">
-                {pillar.tags.map((tag) => (
-                  <Badge variant="outline">{tag}</Badge>
-                ))}
-              </div>
-            </Card>
-          ))
-        }
-      </div>
-    </div>
-  </section>
+ <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+ {
+ VALUE_PILLARS.map((pillar, index) => (
+ <Card data-reveal style={`--reveal-delay: ${index * 100}ms`}>
+ <div class="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary-vibrant/10 text-primary-vibrant">
+ <svg
+ xmlns="http://www.w3.org/2000/svg"
+ class="h-6 w-6"
+ fill="none"
+ viewBox="0 0 24 24"
+ stroke="currentColor"
+ >
+ <path
+ stroke-linecap="round"
+ stroke-linejoin="round"
+ stroke-width="1.5"
+ d={getServiceIcon(pillar.icon)}
+ />
+ </svg>
+ </div>
+ <h3 class="text-xl font-bold text-text-primary mb-4">{pillar.title}</h3>
+ <p class="text-text-secondary text-sm leading-relaxed mb-6">{pillar.description}</p>
+ <div class="flex flex-wrap gap-2">
+ {pillar.tags.map((tag) => (
+ <Badge variant="outline">{tag}</Badge>
+ ))}
+ </div>
+ </Card>
+ ))
+ }
+ </div>
+ </div>
+ </section>
 
-  <!-- Process -->
-  <section class="py-24 bg-slate-900/30">
-    <div class="container mx-auto px-6">
-      <div class="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
-        <div>
-          <SectionTitle
-            align="left"
-            badge="Metodología"
-            title="Cómo convertimos ideas en <span class='gradient-text'>realidad rentable</span>"
-            subtitle="Un proceso iterativo diseñado para minimizar riesgos y maximizar el impacto en cada fase."
-          />
+ <!-- Process -->
+ <section class="py-24 relative overflow-hidden">
+ <div class="container mx-auto px-6">
+   <div class="max-w-6xl mx-auto">
+     <SectionTitle
+       badge="Metodología"
+       title="Cómo convertimos ideas en <span class='gradient-text'>realidad rentable</span>"
+       subtitle="Un proceso iterativo diseñado para minimizar riesgos y maximizar el impacto en cada fase."
+       className="mb-16"
+     />
 
-          <div class="mt-12 space-y-8">
-            {
-              PROCESS_STEPS.map((step) => (
-                <div class="flex gap-6 group">
-                  <div class="flex-shrink-0 w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-primary-vibrant font-black group-hover:border-primary-vibrant/50 transition-colors">
-                    {step.id}
-                  </div>
-                  <div>
-                    <h3 class="text-lg font-bold text-white mb-2">{step.title}</h3>
-                    <p class="text-sm text-slate-300 leading-relaxed">{step.description}</p>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-        </div>
+     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+       {[
+         { id: '01', title: 'Diagnóstico', icon: 'diagnose', desc: 'Analizamos objetivos, público y propuesta de valor priorizada.' },
+         { id: '02', title: 'Arquitectura', icon: 'architecture', desc: 'Mapa de contenidos y flujo UX orientado a minimizar fricción.' },
+         { id: '03', title: 'Diseño + Build', icon: 'build', desc: 'UI moderna con microanimaciones y rendimiento técnico sólido.' },
+         { id: '04', title: 'Optimización', icon: 'optimization', desc: 'Lanzamiento e iteración continua basada en comportamiento real.' }
+       ].map((step, index) => (
+         <Card 
+           padding="lg"
+           className="relative group flex flex-col items-center text-center h-full" 
+           data-reveal 
+           style={`--reveal-delay: ${index * 150}ms`}
+         >
+           {/* Step number background bubble */}
+           <div class="absolute -top-3 -right-3 w-12 h-12 rounded-full bg-bg-card border border-primary/20 shadow-md flex items-center justify-center text-lg font-black text-primary/80 group-hover:text-primary/80 group-hover:scale-110 transition-all duration-500 select-none shadow-sm">
+             {step.id}
+           </div>
 
-        <div class="relative">
-          <div
-            class="absolute inset-0 bg-gradient-to-tr from-primary-vibrant/20 to-accent/20 blur-3xl rounded-full"
-          >
-          </div>
-          <Card padding="none" isPremium className="relative z-10">
-            <img
-              src="/assets/projects/posmart.png"
-              alt="Caso real Celeris Code"
-              class="w-full h-auto"
-            />
-          </Card>
-        </div>
-      </div>
-    </div>
-  </section>
+           {/* Icon Container with Glass Effect */}
+           <div class="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl backdrop-blur-md bg-primary/10 text-primary border border-primary/20 shadow-inner group-hover:bg-primary group-hover:text-white group-hover:rotate-6 transition-all duration-500">
+             <svg
+               xmlns="http://www.w3.org/2000/svg"
+               class="h-7 w-7"
+               fill="none"
+               viewBox="0 0 24 24"
+               stroke="currentColor"
+             >
+               <path
+                 stroke-linecap="round"
+                 stroke-linejoin="round"
+                 stroke-width="1.5"
+                 d={getServiceIcon(step.icon)}
+               />
+             </svg>
+           </div>
 
-  <FinalCTA />
+           <h3 class="text-lg font-bold text-text-primary mb-3">{step.title}</h3>
+           <p class="text-xs text-text-secondary leading-relaxed">{step.desc}</p>
+         </Card>
+       ))}
+     </div>
+   </div>
+ </div>
+ </section>
+
+ <FinalCTA />
 </MainLayout>

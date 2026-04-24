@@ -4,7 +4,7 @@ export const SITE_DEFAULTS = {
   title: 'Celeris Code | Engineering Digital Dominance',
   description:
     'Diseñamos y desarrollamos activos digitales de alto rendimiento: landing pages, sitios multipage, ecommerce y SaaS.',
-  image: '/assets/projects/posmart.png',
+  image: '/assets/projects/posmart.webp',
 };
 
 export const BRAND_CTA = {

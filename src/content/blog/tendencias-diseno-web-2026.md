@@ -5,7 +5,7 @@ description: 'Análisis de las tendencias más relevantes de diseño web en 2026
 date: 2026-04-08
 author: 'Equipo Celeris Code'
 tags: ['Tendencias', 'Diseño Web', 'UI/UX']
-cover: '/assets/blog/minimalismo-conversion.jpg'
+cover: '/assets/blog/minimalismo-conversion.webp'
 isFeatured: true
 readingTime: '7 min'
 ---

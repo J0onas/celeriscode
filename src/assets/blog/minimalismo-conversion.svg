@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Blog minimalismo cover">
+  <defs>
+    <linearGradient id="bg3" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg3)"/>
+  <text x="90" y="250" fill="#f8fafc" font-size="56" font-family="Inter, Arial, sans-serif" font-weight="700">Minimalismo que sí vende</text>
+  <text x="90" y="315" fill="#ddd6fe" font-size="30" font-family="Inter, Arial, sans-serif">Balance, contraste y enfoque comercial</text>
+</svg>

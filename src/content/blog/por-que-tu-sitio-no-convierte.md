@@ -5,7 +5,7 @@ description: 'Identifica y corrige los 7 errores más frecuentes que reducen la 
 date: 2026-04-10
 author: 'Equipo Celeris Code'
 tags: ['Conversión', 'UX', 'Estrategia Digital']
-cover: '/assets/projects/posmart.png'
+cover: '/assets/projects/posmart.webp'
 isFeatured: true
 readingTime: '8 min'
 ---

@@ -4,7 +4,7 @@ client: 'inPERU'
 industry: 'Finanzas e Inversión'
 projectType: 'landing-page'
 date: 2026-03-01
-image: '/assets/projects/inperu.png'
+image: '/assets/projects/inperu.webp'
 url: 'https://inperuroadshow.pe/'
 tags: ['Landing Page', 'Institucional', 'Eventos', 'Conversión']
 summary: 'Landing institucional para comunicar agenda, delegación oficial y posicionamiento internacional de inPERU.'

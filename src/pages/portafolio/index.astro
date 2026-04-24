@@ -14,141 +14,141 @@ const cases = await getCollection('cases');
 const portfolioCases = getOrderedPortfolioCases(cases);
 
 const portfolioSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  name: `Portafolio | ${SITE_NAME}`,
-  itemListElement: portfolioCases.map((item, index) => ({
-    '@type': 'ListItem',
-    position: index + 1,
-    item: {
-      '@type': 'CreativeWork',
-      name: item.data.title,
-      description: item.data.summary,
-      image: item.data.image,
-      url: item.data.url,
-    },
-  })),
+ '@context': 'https://schema.org',
+ '@type': 'ItemList',
+ name: `Portafolio | ${SITE_NAME}`,
+ itemListElement: portfolioCases.map((item, index) => ({
+ '@type': 'ListItem',
+ position: index + 1,
+ item: {
+ '@type': 'CreativeWork',
+ name: item.data.title,
+ description: item.data.summary,
+ image: item.data.image,
+ url: item.data.url,
+ },
+ })),
 };
 
 const formatDate = (date: Date) =>
-  new Intl.DateTimeFormat('es-ES', {
-    month: 'short',
-    year: 'numeric',
-  }).format(date);
+ new Intl.DateTimeFormat('es-ES', {
+ month: 'short',
+ year: 'numeric',
+ }).format(date);
 ---
 
 <MainLayout
-  title="Portafolio | Celeris Code"
-  description="Explora nuestros casos de éxito en desarrollo de software, ecommerce y plataformas digitales de alto impacto."
-  schema={portfolioSchema}
+ title="Portafolio | Celeris Code"
+ description="Explora nuestros casos de éxito en desarrollo de software, ecommerce y plataformas digitales de alto impacto."
+ schema={portfolioSchema}
 >
-  <!-- Hero -->
-  <section class="relative overflow-hidden pt-24 pb-12">
-    <div class="pointer-events-none absolute inset-0 -z-20">
-      <div class="aurora-blue absolute -left-[10%] top-[-10%] h-80 w-80 opacity-55"></div>
-      <div class="aurora-purple absolute right-[-10%] top-[6%] h-80 w-80 opacity-50"></div>
-    </div>
+ <!-- Hero -->
+ <section class="relative overflow-hidden pt-24 pb-12">
+ <div class="pointer-events-none absolute inset-0 -z-20">
+ <div class="aurora-blue absolute -left-[10%] top-[-10%] h-80 w-80 opacity-55"></div>
+ <div class="aurora-purple absolute right-[-10%] top-[6%] h-80 w-80 opacity-50"></div>
+ </div>
 
-    <div class="container mx-auto px-6 text-center">
-      <SectionTitle
-        badge="Evidencia Real"
-        title="Resultados que <span class='gradient-text'>hablan por nosotros</span>"
-        subtitle="Cada proyecto es un activo digital diseñado para cumplir objetivos comerciales específicos."
-        className="mb-10"
-      />
+ <div class="container mx-auto px-6 text-center">
+ <SectionTitle
+ badge="Evidencia Real"
+ title="Resultados que <span class='gradient-text'>hablan por nosotros</span>"
+ subtitle="Cada proyecto es un activo digital diseñado para cumplir objetivos comerciales específicos."
+ className="mb-10"
+ />
 
-      <div class="flex justify-center gap-4">
-        <Button href="#proyectos" variant="primary">Ver casos activos</Button>
-        <Button href="/contacto" variant="secondary">Iniciar mi proyecto</Button>
-      </div>
-    </div>
-  </section>
+ <div class="flex justify-center gap-4">
+ <Button href="#proyectos" variant="primary">Ver casos activos</Button>
+ <Button href="/contacto" variant="secondary">Iniciar mi proyecto</Button>
+ </div>
+ </div>
+ </section>
 
-  <!-- Projects Grid -->
-  <section id="proyectos" class="py-20 bg-slate-900/20">
-    <div class="container mx-auto px-6">
-      <div class="grid gap-12 lg:grid-cols-2">
-        {
-          portfolioCases.map((item, index) => (
-            <Card padding="none" isPremium data-reveal style={`--reveal-delay: ${index * 100}ms`}>
-              <div class="flex flex-col h-full">
-                <div class="aspect-video w-full overflow-hidden border-b border-white/10 relative group">
-                  <img
-                    src={item.data.image}
-                    alt={item.data.title}
-                    class="h-full w-full object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
-                    loading="lazy"
-                  />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-60" />
-                  <div class="absolute bottom-6 left-8">
-                    <Badge variant="accent">{PROJECT_TYPE_LABEL[item.data.projectType]}</Badge>
-                  </div>
-                </div>
+ <!-- Projects Grid -->
+ <section id="proyectos" class="py-20 bg-bg-default">
+ <div class="container mx-auto px-6">
+ <div class="grid gap-12 lg:grid-cols-2">
+ {
+ portfolioCases.map((item, index) => (
+ <Card padding="none" isPremium data-reveal style={`--reveal-delay: ${index * 100}ms`}>
+ <div class="flex flex-col h-full">
+ <div class="aspect-video w-full overflow-hidden border-b border-border-subtle relative group">
+ <img
+ src={item.data.image}
+ alt={item.data.title}
+ class="h-full w-full object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+ loading="lazy"
+ />
+ <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-60" />
+ <div class="absolute bottom-6 left-8">
+ <Badge variant="accent">{PROJECT_TYPE_LABEL[item.data.projectType]}</Badge>
+ </div>
+ </div>
 
-                <div class="p-8 md:p-10 flex flex-col justify-between flex-1">
-                  <div>
-                    <div class="flex items-center justify-between gap-4 mb-4">
-                      <span class="text-[10px] font-mono uppercase tracking-widest text-slate-300">
-                        {item.data.industry}
-                      </span>
-                      <span class="text-[10px] font-mono text-slate-600">
-                        {formatDate(item.data.date)}
-                      </span>
-                    </div>
+ <div class="p-8 md:p-10 flex flex-col justify-between flex-1">
+ <div>
+ <div class="flex items-center justify-between gap-4 mb-4">
+ <span class="text-[10px] font-mono uppercase tracking-widest text-text-secondary">
+ {item.data.industry}
+ </span>
+ <span class="text-[10px] font-mono text-text-secondary">
+ {formatDate(item.data.date)}
+ </span>
+ </div>
 
-                    <h2 class="text-3xl font-bold text-white mb-4">{item.data.title}</h2>
-                    <p class="text-slate-300 leading-relaxed mb-8 text-lg">{item.data.summary}</p>
+ <h2 class="text-3xl font-bold text-text-primary mb-4">{item.data.title}</h2>
+ <p class="text-text-secondary leading-relaxed mb-8 text-lg">{item.data.summary}</p>
 
-                    <div class="grid sm:grid-cols-2 gap-8 mb-10">
-                      <div>
-                        <p class="font-mono text-[10px] uppercase tracking-widest text-primary-vibrant mb-4">
-                          Reto superado
-                        </p>
-                        <p class="text-sm text-slate-300 leading-relaxed italic border-l-2 border-primary-vibrant/30 pl-4">
-                          "{item.data.challenge}"
-                        </p>
-                      </div>
-                      <div>
-                        <p class="font-mono text-[10px] uppercase tracking-widest text-accent mb-4">
-                          Resultados clave
-                        </p>
-                        <ul class="space-y-2">
-                          {item.data.results.slice(0, 3).map((res: string) => (
-                            <li class="flex items-start gap-2 text-xs text-slate-300">
-                              <span class="mt-1 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                              <span>{res}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
+ <div class="grid sm:grid-cols-2 gap-8 mb-10">
+ <div>
+ <p class="font-mono text-[10px] uppercase tracking-widest text-primary-vibrant mb-4">
+ Reto superado
+ </p>
+ <p class="text-sm text-text-secondary leading-relaxed italic border-l-2 border-primary-vibrant/30 pl-4">
+ "{item.data.challenge}"
+ </p>
+ </div>
+ <div>
+ <p class="font-mono text-[10px] uppercase tracking-widest text-accent mb-4">
+ Resultados clave
+ </p>
+ <ul class="space-y-2">
+ {item.data.results.slice(0, 3).map((res: string) => (
+ <li class="flex items-start gap-2 text-xs text-text-secondary">
+ <span class="mt-1 h-1 w-1 shrink-0 rounded-full bg-accent" />
+ <span>{res}</span>
+ </li>
+ ))}
+ </ul>
+ </div>
+ </div>
+ </div>
 
-                  <div class="flex flex-col sm:flex-row items-center gap-4 pt-8 border-t border-white/5">
-                    <Button
-                      href={item.data.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      variant="primary"
-                      className="w-full sm:w-auto"
-                    >
-                      Visitar sitio en vivo
-                    </Button>
-                    <Button href="/contacto" variant="ghost" className="w-full sm:w-auto">
-                      Quiero algo similar &rarr;
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </Card>
-          ))
-        }
-      </div>
-    </div>
-  </section>
+ <div class="flex flex-col sm:flex-row items-center gap-4 pt-8 border-t border-border-subtle">
+ <Button
+ href={item.data.url}
+ target="_blank"
+ rel="noopener noreferrer"
+ variant="primary"
+ className="w-full sm:w-auto"
+ >
+ Visitar sitio en vivo
+ </Button>
+ <Button href="/contacto" variant="ghost" className="w-full sm:w-auto">
+ Quiero algo similar &rarr;
+ </Button>
+ </div>
+ </div>
+ </div>
+ </Card>
+ ))
+ }
+ </div>
+ </div>
+ </section>
 
-  <FinalCTA
-    title="Tu próximo éxito comienza con un <span class='gradient-text'>paso estratégico</span>"
-    subtitle="Estamos listos para diseñar y construir la solución que elevará tu marca al siguiente nivel."
-  />
+ <FinalCTA
+ title="Tu próximo éxito comienza con un <span class='gradient-text'>paso estratégico</span>"
+ subtitle="Estamos listos para diseñar y construir la solución que elevará tu marca al siguiente nivel."
+ />
 </MainLayout>

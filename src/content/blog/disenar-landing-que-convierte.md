@@ -5,7 +5,7 @@ description: 'Buenas prácticas aplicadas para landing pages de alto rendimiento
 date: 2026-04-02
 author: 'Equipo Celeris Code'
 tags: ['Landing Page', 'Conversión', 'UI/UX']
-cover: '/assets/blog/landing-conversion.jpg'
+cover: '/assets/blog/landing-conversion.webp'
 isFeatured: true
 readingTime: '6 min'
 ---

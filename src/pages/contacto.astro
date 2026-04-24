@@ -3,69 +3,277 @@ import MainLayout from '../layouts/MainLayout.astro';
 import SectionTitle from '../components/ui/SectionTitle.astro';
 import Button from '../components/ui/Button.astro';
 import Card from '../components/ui/Card.astro';
-import { getWhatsAppUrl, WHATSAPP_DISPLAY } from '../lib/site-config';
+import { getWhatsAppUrl, WHATSAPP_DISPLAY, ICON_BY_SERVICE } from '../lib/site-config';
+import { getServiceIcon } from '../lib/service-assets';
 import { SITE_NAME } from '../lib/constants';
 
 const whatsappUrl = getWhatsAppUrl('Hola Celeris Code, quiero conversar sobre mi proyecto.');
 const contactSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'ContactPage',
-  name: `Contacto | ${SITE_NAME}`,
-  description: 'Formulario de contacto para solicitar landing, multipage, ecommerce o SaaS.',
-  url: '/contacto',
+ '@context': 'https://schema.org',
+ '@type': 'ContactPage',
+ name: `Contacto | ${SITE_NAME}`,
+ description: 'Formulario de contacto para solicitar landing, multipage, ecommerce o SaaS.',
+ url: '/contacto',
 };
 ---
 
 <MainLayout title="Contacto | Celeris Code" schema={contactSchema}>
-  <!-- Netlify static form detection -->
-  <form
-    name="contacto"
-    method="POST"
-    data-netlify="true"
-    netlify-honeypot="bot-field"
-    action="/contacto/exito/"
-    class="hidden"
-    aria-hidden="true"
-    data-netlify-form
-  >
-    <input type="hidden" name="form-name" value="contacto" />
-    <input name="bot-field" />
-    <input name="name" />
-    <input name="email" />
-    <input name="company" />
-    <select name="service"><option>landing-page</option></select>
-    <select name="budget"><option>1500-3000</option></select>
-    <textarea name="message"></textarea>
-    <select name="source"><option>google</option></select>
-  </form>
+ <!-- Netlify static form detection -->
+ <form
+ name="contacto"
+ method="POST"
+ data-netlify="true"
+ netlify-honeypot="bot-field"
+ action="/contacto/exito/"
+ class="hidden"
+ aria-hidden="true"
+ data-netlify-form
+ >
+ <input type="hidden" name="form-name" value="contacto" />
+ <input name="bot-field" />
+ <input name="name" />
+ <input name="email" />
+ <input name="company" />
+ <select name="service"><option>landing-page</option></select>
+ <select name="budget"><option>1500-3000</option></select>
+ <textarea name="message"></textarea>
+ <select name="source"><option>google</option></select>
+ </form>
 
-  <!-- Hero Section -->
-  <section class="relative overflow-hidden pt-24 pb-12">
-    <div class="pointer-events-none absolute inset-0 -z-20">
-      <div class="aurora-blue absolute -left-[10%] top-[-10%] h-96 w-96 opacity-40"></div>
-      <div class="aurora-purple absolute right-[-10%] top-[10%] h-80 w-80 opacity-30"></div>
-    </div>
+ <!-- Hero Section -->
+ <section class="relative overflow-hidden pt-24 pb-12">
+ <div class="pointer-events-none absolute inset-0 -z-20">
+ <div class="aurora-blue absolute -left-[10%] top-[-10%] h-96 w-96 opacity-40"></div>
+ <div class="aurora-purple absolute right-[-10%] top-[10%] h-80 w-80 opacity-30"></div>
+ </div>
 
-    <div class="container mx-auto px-6 text-center">
+ <div class="container mx-auto px-6 text-center">
+ <SectionTitle
+ badge="Contacto"
+ title="Hagamos realidad tu <span class='gradient-text'>próximo proyecto</span>"
+ subtitle="Cuéntanos tu idea y te contactaremos en menos de 24 horas con una propuesta clara."
+ className="mb-12"
+ />
+ </div>
+ </section>
+
+ <section class="py-12">
+ <div class="container mx-auto px-6">
+ <div class="grid lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
+ <!-- Info -->
+ <div class="lg:col-span-2 space-y-6">
+ <Card isPremium padding="md" className="border-success/20 bg-success/5">
+ <div class="flex items-center gap-4 text-success">
+ <svg
+ xmlns="http://www.w3.org/2000/svg"
+ class="h-6 w-6"
+ fill="none"
+ viewBox="0 0 24 24"
+ stroke="currentColor"
+ >
+ <path
+ stroke-linecap="round"
+ stroke-linejoin="round"
+ stroke-width="2"
+ d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+ </svg>
+ <div>
+ <p class="font-bold text-sm">Respuesta Prioritaria</p>
+ <p class="text-xs text-text-secondary">Garantizada en menos de 24h laborables.</p>
+ </div>
+ </div>
+ </Card>
+
+ <Card padding="md" className="space-y-4">
+ <div>
+ <p class="text-[10px] font-mono uppercase tracking-widest text-text-secondary mb-2">
+ Email Directo
+ </p>
+ <a
+ href="mailto:contacto@celeriscode.com"
+ class="text-text-primary font-bold hover:text-primary-vibrant transition-colors"
+ >
+ contacto@celeriscode.com
+ </a>
+ </div>
+
+ <div class="pt-4 border-t border-border-subtle">
+ <p class="text-[10px] font-mono uppercase tracking-widest text-text-secondary mb-2">
+ WhatsApp
+ </p>
+ <a
+ href={whatsappUrl}
+ target="_blank"
+ rel="noopener noreferrer"
+ class="text-text-primary font-bold hover:text-success transition-colors"
+ >
+ {WHATSAPP_DISPLAY}
+ </a>
+ </div>
+ </Card>
+
+ <Card padding="md" isPremium className="relative group">
+ <div class="flex flex-col gap-4">
+ <p class="text-sm text-text-secondary leading-relaxed italic">
+ "Buscamos ser el brazo tecnológico que tu negocio necesita para dominar su mercado
+ digital."
+ </p>
+ <div class="flex items-center gap-3">
+ <div
+ class="w-8 h-8 rounded-full bg-gradient-to-tr from-primary-vibrant to-accent flex items-center justify-center text-[10px] font-bold text-text-primary"
+ >
+ CC
+ </div>
+ <span class="text-xs font-bold text-text-primary">Equipo Celeris Code</span>
+ </div>
+ </div>
+ </Card>
+ </div>
+
+ <!-- Form -->
+ <div class="lg:col-span-3">
+ <Card padding="lg" isPremium className="h-full">
+ <form id="contact-form" name="contacto" method="POST" data-track-form class="space-y-8">
+ <input type="hidden" name="form-name" value="contacto" />
+ <p class="hidden"><label>No llenes esto: <input name="bot-field" /></label></p>
+
+ <div class="grid md:grid-cols-2 gap-6">
+ <div class="space-y-2">
+ <label
+ for="name"
+ class="text-xs font-bold uppercase tracking-wider text-text-secondary">Nombre</label
+ >
+ <input
+ type="text"
+ id="name"
+ name="name"
+ required
+ placeholder="Tu nombre..."
+ class="w-full bg-bg-card border border-border-subtle rounded-xl px-4 py-3 text-text-primary focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all duration-300"
+ />
+ </div>
+ <div class="space-y-2">
+ <label
+ for="email"
+ class="text-xs font-bold uppercase tracking-wider text-text-secondary">Email</label
+ >
+ <input
+ type="email"
+ id="email"
+ name="email"
+ required
+ placeholder="tu@email.com"
+ class="w-full bg-bg-card border border-border-subtle rounded-xl px-4 py-3 text-text-primary focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all duration-300"
+ />
+ </div>
+ </div>
+
+ <div class="space-y-2">
+ <label
+ for="service"
+ class="text-xs font-bold uppercase tracking-wider text-text-secondary"
+ >Tipo de Proyecto</label
+ >
+ <select
+ id="service"
+ name="service"
+ required
+ class="w-full bg-bg-card border border-border-subtle rounded-xl px-4 py-3 text-text-primary focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all duration-300 appearance-none cursor-pointer"
+ >
+ <option value="">Selecciona una opción</option>
+ <option value="landing-page">Landing Page</option>
+ <option value="multipage">Sitio Multipage</option>
+ <option value="ecommerce">Ecommerce</option>
+ <option value="saas">Plataforma SaaS</option>
+ </select>
+ </div>
+
+ <div class="space-y-2">
+ <label
+ for="message"
+ class="text-xs font-bold uppercase tracking-wider text-text-secondary"
+ >Descripción</label
+ >
+ <textarea
+ id="message"
+ name="message"
+ required
+ rows="4"
+ placeholder="¿En qué podemos ayudarte?"
+ class="w-full bg-bg-card border border-border-subtle rounded-xl px-4 py-3 text-text-primary focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all duration-300 resize-none"
+ ></textarea>
+ </div>
+
+ <div class="pt-4">
+ <Button type="submit" variant="primary" size="lg" className="w-full group">
+ <span data-submit-label>Enviar Solicitud</span>
+ <svg
+ xmlns="http://www.w3.org/2000/svg"
+ class="h-5 w-5 ml-2 transition-transform group-hover:translate-x-1"
+ fill="none"
+ viewBox="0 0 24 24"
+ stroke="currentColor"
+ >
+ <path
+ stroke-linecap="round"
+ stroke-linejoin="round"
+ stroke-width="2"
+ d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+ </svg>
+ </Button>
+ <p class="text-[10px] text-center text-text-secondary mt-4 leading-relaxed">
+ Al enviar aceptas nuestra política de tratamiento de datos.
+ </p>
+ </div>
+
+ <div
+ class="hidden p-4 rounded-xl bg-red-900/30 border border-red-500/40 text-red-300 text-xs text-center"
+ data-form-error
+ >
+ </div>
+ </form>
+ </Card>
+ </div>
+ </div>
+ </div>
+ </section>
+
+  <!-- FAQ / Process -->
+  <section class="py-24 relative overflow-hidden">
+    <div class="container mx-auto px-6 max-w-5xl">
       <SectionTitle
-        badge="Contacto"
-        title="Hagamos realidad tu <span class='gradient-text'>próximo proyecto</span>"
-        subtitle="Cuéntanos tu idea y te contactaremos en menos de 24 horas con una propuesta clara."
-        className="mb-12"
+        badge="Proceso"
+        title="Qué pasa después de <span class='gradient-text'>contactarnos</span>"
+        subtitle="Nuestro flujo de trabajo está diseñado para darte respuestas rápidas y resultados tangibles desde la primera semana."
+        className="mb-16"
       />
-    </div>
-  </section>
 
-  <section class="py-12">
-    <div class="container mx-auto px-6">
-      <div class="grid lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
-        <!-- Info -->
-        <div class="lg:col-span-2 space-y-6">
-          <Card isPremium padding="md" className="border-success/20 bg-success/5">
-            <div class="flex items-center gap-4 text-success">
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4 relative">
+        {/* Connection line for desktop */}
+        <div class="hidden lg:block absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-border-subtle to-transparent -translate-y-12 z-0"></div>
+
+        {[
+          { id: '01', title: 'Revisión', desc: 'Analizamos tu solicitud y preparamos preguntas iniciales.', icon: 'diagnose', color: 'primary' },
+          { id: '02', title: 'Diagnóstico', desc: 'Agendamos una breve llamada para definir alcance y objetivos.', icon: 'spark', color: 'accent' },
+          { id: '03', title: 'Propuesta', desc: 'Enviamos presupuesto detallado y plan de ejecución.', icon: 'layers', color: 'success' },
+          { id: '04', title: 'Kickoff', desc: 'Iniciamos el desarrollo con entregas semanales visibles.', icon: 'rocket', color: 'primary' }
+        ].map((step, index) => (
+          <Card 
+            padding="lg"
+            className="relative z-10 group flex flex-col items-center text-center h-full" 
+            data-reveal 
+            style={`--reveal-delay: ${index * 150}ms`}
+          >
+            {/* Step number background bubble */}
+            <div class="absolute -top-3 -right-3 w-12 h-12 rounded-full bg-bg-card border border-primary/20 shadow-md flex items-center justify-center text-lg font-black text-primary/80 group-hover:text-primary/80 group-hover:scale-110 transition-all duration-500 select-none shadow-sm">
+              {step.id}
+            </div>
+
+            {/* Icon Container with Glass Effect */}
+            <div class={`mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl backdrop-blur-md bg-${step.color}/10 text-${step.color} border border-${step.color}/20 shadow-inner group-hover:bg-${step.color} group-hover:text-white group-hover:rotate-6 transition-all duration-500`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
+                class="h-7 w-7"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -73,274 +281,58 @@ const contactSchema = {
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  stroke-width="1.5"
+                  d={getServiceIcon(step.icon)}
+                />
               </svg>
-              <div>
-                <p class="font-bold text-sm">Respuesta Prioritaria</p>
-                <p class="text-xs text-slate-300">Garantizada en menos de 24h laborables.</p>
-              </div>
-            </div>
-          </Card>
-
-          <Card padding="md" className="space-y-4">
-            <div>
-              <p class="text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-2">
-                Email Directo
-              </p>
-              <a
-                href="mailto:contacto@celeriscode.com"
-                class="text-white font-bold hover:text-primary-vibrant transition-colors"
-              >
-                contacto@celeriscode.com
-              </a>
             </div>
 
-            <div class="pt-4 border-t border-white/5">
-              <p class="text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-2">
-                WhatsApp
-              </p>
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-white font-bold hover:text-success transition-colors"
-              >
-                {WHATSAPP_DISPLAY}
-              </a>
-            </div>
+            <h3 class="text-lg font-bold text-text-primary mb-3">{step.title}</h3>
+            <p class="text-xs text-text-secondary leading-relaxed">{step.desc}</p>
           </Card>
-
-          <Card padding="md" isPremium className="relative group">
-            <div class="flex flex-col gap-4">
-              <p class="text-sm text-slate-300 leading-relaxed italic">
-                "Buscamos ser el brazo tecnológico que tu negocio necesita para dominar su mercado
-                digital."
-              </p>
-              <div class="flex items-center gap-3">
-                <div
-                  class="w-8 h-8 rounded-full bg-gradient-to-tr from-primary-vibrant to-accent flex items-center justify-center text-[10px] font-bold text-white"
-                >
-                  CC
-                </div>
-                <span class="text-xs font-bold text-white">Equipo Celeris Code</span>
-              </div>
-            </div>
-          </Card>
-        </div>
-
-        <!-- Form -->
-        <div class="lg:col-span-3">
-          <Card padding="lg" isPremium className="h-full">
-            <form id="contact-form" name="contacto" method="POST" data-track-form class="space-y-8">
-              <input type="hidden" name="form-name" value="contacto" />
-              <p class="hidden"><label>No llenes esto: <input name="bot-field" /></label></p>
-
-              <div class="grid md:grid-cols-2 gap-6">
-                <div class="space-y-2">
-                  <label
-                    for="name"
-                    class="text-xs font-bold uppercase tracking-wider text-slate-300">Nombre</label
-                  >
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    placeholder="Tu nombre..."
-                    class="w-full bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-vibrant outline-none transition-all"
-                  />
-                </div>
-                <div class="space-y-2">
-                  <label
-                    for="email"
-                    class="text-xs font-bold uppercase tracking-wider text-slate-300">Email</label
-                  >
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    placeholder="tu@email.com"
-                    class="w-full bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-vibrant outline-none transition-all"
-                  />
-                </div>
-              </div>
-
-              <div class="space-y-2">
-                <label
-                  for="service"
-                  class="text-xs font-bold uppercase tracking-wider text-slate-300"
-                  >Tipo de Proyecto</label
-                >
-                <select
-                  id="service"
-                  name="service"
-                  required
-                  class="w-full bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-vibrant outline-none transition-all appearance-none"
-                >
-                  <option value="">Selecciona una opción</option>
-                  <option value="landing-page">Landing Page</option>
-                  <option value="multipage">Sitio Multipage</option>
-                  <option value="ecommerce">Ecommerce</option>
-                  <option value="saas">Plataforma SaaS</option>
-                </select>
-              </div>
-
-              <div class="space-y-2">
-                <label
-                  for="message"
-                  class="text-xs font-bold uppercase tracking-wider text-slate-300"
-                  >Descripción</label
-                >
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows="4"
-                  placeholder="¿En qué podemos ayudarte?"
-                  class="w-full bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-vibrant outline-none transition-all resize-none"
-                ></textarea>
-              </div>
-
-              <div class="pt-4">
-                <Button type="submit" variant="primary" size="lg" className="w-full group">
-                  <span data-submit-label>Enviar Solicitud</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 ml-2 transition-transform group-hover:translate-x-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                  </svg>
-                </Button>
-                <p class="text-[10px] text-center text-slate-400 mt-4 leading-relaxed">
-                  Al enviar aceptas nuestra política de tratamiento de datos.
-                </p>
-              </div>
-
-              <div
-                class="hidden p-4 rounded-xl bg-red-900/30 border border-red-500/40 text-red-300 text-xs text-center"
-                data-form-error
-              >
-              </div>
-            </form>
-          </Card>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ / Process -->
-  <section class="py-24 bg-slate-900/20">
-    <div class="container mx-auto px-6 max-w-4xl">
-      <SectionTitle
-        badge="Proceso"
-        title="Qué pasa después de <span class='gradient-text'>contactarnos</span>"
-        className="mb-16"
-      />
-
-      <div class="grid sm:grid-cols-2 gap-8">
-        <div class="flex gap-6">
-          <div
-            class="shrink-0 w-10 h-10 rounded-full bg-primary-vibrant/10 text-primary-vibrant flex items-center justify-center font-black"
-          >
-            1
-          </div>
-          <div>
-            <h3 class="font-bold text-white mb-2">Revisión</h3>
-            <p class="text-sm text-slate-300">
-              Analizamos tu solicitud y preparamos preguntas iniciales.
-            </p>
-          </div>
-        </div>
-        <div class="flex gap-6">
-          <div
-            class="shrink-0 w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center font-black"
-          >
-            2
-          </div>
-          <div>
-            <h3 class="font-bold text-white mb-2">Diagnóstico</h3>
-            <p class="text-sm text-slate-300">
-              Agendamos una breve llamada para definir alcance y objetivos.
-            </p>
-          </div>
-        </div>
-        <div class="flex gap-6">
-          <div
-            class="shrink-0 w-10 h-10 rounded-full bg-success/10 text-success flex items-center justify-center font-black"
-          >
-            3
-          </div>
-          <div>
-            <h3 class="font-bold text-white mb-2">Propuesta</h3>
-            <p class="text-sm text-slate-300">
-              Enviamos presupuesto detallado y plan de ejecución.
-            </p>
-          </div>
-        </div>
-        <div class="flex gap-6">
-          <div
-            class="shrink-0 w-10 h-10 rounded-full bg-primary-vibrant/10 text-primary-vibrant flex items-center justify-center font-black"
-          >
-            4
-          </div>
-          <div>
-            <h3 class="font-bold text-white mb-2">Kickoff</h3>
-            <p class="text-sm text-slate-300">
-              Iniciamos el desarrollo con entregas semanales visibles.
-            </p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 </MainLayout>
 
 <script is:inline>
-  (() => {
-    const setupForm = () => {
-      const form = document.getElementById('contact-form');
-      if (!form) return;
+ (() => {
+ const setupForm = () => {
+ const form = document.getElementById('contact-form');
+ if (!form) return;
 
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const submitLabel = form.querySelector('[data-submit-label]');
-      const errorBox = form.querySelector('[data-form-error]');
+ const submitBtn = form.querySelector('button[type="submit"]');
+ const submitLabel = form.querySelector('[data-submit-label]');
+ const errorBox = form.querySelector('[data-form-error]');
 
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        submitBtn.disabled = true;
-        submitLabel.textContent = 'Enviando...';
-        errorBox.classList.add('hidden');
+ form.addEventListener('submit', async (e) => {
+ e.preventDefault();
+ submitBtn.disabled = true;
+ submitLabel.textContent = 'Enviando...';
+ errorBox.classList.add('hidden');
 
-        try {
-          const formData = new FormData(form);
-          const res = await fetch('/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams(formData).toString(),
-          });
+ try {
+ const formData = new FormData(form);
+ const res = await fetch('/', {
+ method: 'POST',
+ headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+ body: new URLSearchParams(formData).toString(),
+ });
 
-          if (!res.ok) throw new Error('Error en el servidor');
+ if (!res.ok) throw new Error('Error en el servidor');
 
-          window.location.assign('/contacto/exito/');
-        } catch {
-          submitBtn.disabled = false;
-          submitLabel.textContent = 'Enviar Solicitud';
-          errorBox.textContent = 'Hubo un problema al enviar. Por favor, intenta de nuevo o escríbenos por WhatsApp.';
-          errorBox.classList.remove('hidden');
-        }
-      });
-    };
+ window.location.assign('/contacto/exito/');
+ } catch {
+ submitBtn.disabled = false;
+ submitLabel.textContent = 'Enviar Solicitud';
+ errorBox.textContent = 'Hubo un problema al enviar. Por favor, intenta de nuevo o escríbenos por WhatsApp.';
+ errorBox.classList.remove('hidden');
+ }
+ });
+ };
 
-    document.addEventListener('astro:page-load', setupForm);
-    setupForm();
-  })();
+ document.addEventListener('astro:page-load', setupForm);
+ setupForm();
+ })();
 </script>

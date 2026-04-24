@@ -4,7 +4,7 @@ client: 'Trattoria El Bambino'
 industry: 'Restaurantes'
 projectType: 'landing-page'
 date: 2025-12-10
-image: '/assets/projects/bambino.png'
+image: '/assets/projects/bambino.webp'
 url: 'https://tratoriabambino.netlify.app/'
 tags: ['Menú Digital', 'Landing', 'Restaurante', 'Mobile-first']
 summary: 'Experiencia de menú digital enfocada en navegación móvil, lectura rápida de productos y contacto directo.'

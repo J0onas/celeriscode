@@ -4,7 +4,7 @@ client: 'POSmart'
 industry: 'Retail / SaaS'
 projectType: 'saas'
 date: 2026-02-10
-image: '/assets/projects/posmart.png'
+image: '/assets/projects/posmart.webp'
 url: 'https://posmart-app.vercel.app/login'
 tags: ['SaaS', 'Punto de Venta', 'Dashboard', 'Operación']
 summary: 'Plataforma SaaS para facturación, inventario y control operativo con foco en velocidad de uso diario.'

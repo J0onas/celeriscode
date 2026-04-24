@@ -4,7 +4,7 @@ client: 'ZoiBeauty'
 industry: 'Belleza'
 projectType: 'ecommerce'
 date: 2026-02-22
-image: '/assets/projects/zoibeauty.png'
+image: '/assets/projects/zoibeauty.webp'
 url: 'https://zoibeauty.netlify.app/'
 tags: ['Ecommerce', 'Checkout WhatsApp', 'Catálogo', 'Conversión']
 summary: 'Tienda online de belleza con experiencia de compra simplificada y cierre de pedidos por WhatsApp.'

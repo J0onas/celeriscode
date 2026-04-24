@@ -5,7 +5,7 @@ description: 'Guía completa sobre velocidad web: impacto en negocio, métricas 
 date: 2026-04-15
 author: 'Equipo Celeris Code'
 tags: ['Performance', 'SEO', 'Desarrollo Web']
-cover: '/assets/projects/turquesa.png'
+cover: '/assets/projects/turquesa.webp'
 isFeatured: false
 readingTime: '9 min'
 ---

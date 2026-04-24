@@ -5,7 +5,7 @@ description: 'Patrones UX probados para ecommerce con cierre comercial en WhatsA
 date: 2026-03-26
 author: 'Equipo Celeris Code'
 tags: ['Ecommerce', 'WhatsApp', 'UX']
-cover: '/assets/blog/ecommerce-whatsapp.jpg'
+cover: '/assets/blog/ecommerce-whatsapp.webp'
 isFeatured: true
 readingTime: '7 min'
 ---

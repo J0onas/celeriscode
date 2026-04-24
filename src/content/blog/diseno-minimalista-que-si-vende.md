@@ -5,7 +5,7 @@ description: 'Principios de diseño minimalista aplicados a sitios comerciales m
 date: 2026-03-18
 author: 'Equipo Celeris Code'
 tags: ['Minimalismo', 'Diseño Web', 'Branding']
-cover: '/assets/blog/minimalismo-conversion.jpg'
+cover: '/assets/blog/minimalismo-conversion.webp'
 isFeatured: false
 readingTime: '5 min'
 ---

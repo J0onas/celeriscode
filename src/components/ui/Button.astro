@@ -1,42 +1,47 @@
 ---
 interface Props {
-  href?: string;
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'success';
-  size?: 'sm' | 'md' | 'lg';
-  className?: string;
-  [key: string]: unknown;
-  }
+ href?: string;
+ variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'success';
+ size?: 'sm' | 'md' | 'lg';
+ className?: string;
+ [key: string]: unknown;
+}
 
-  const {
-  href,
-  variant = 'primary',
-  size = 'md',
-  className = '',
-  ...rest
-  } = Astro.props as Props;
+const {
+ href,
+ variant = 'primary',
+ size = 'md',
+ className = '',
+ ...rest
+} = Astro.props as Props;
 
 const variants = {
   primary:
-    'bg-gradient-to-r from-primary-vibrant to-accent text-white shadow-lg shadow-sky-600/20 hover:scale-[1.02] hover:opacity-95',
-  secondary:
-    'bg-white/10 text-white border border-white/15 hover:border-primary-vibrant/50 hover:text-primary-vibrant',
-  outline:
-    'border border-white/20 text-slate-200 hover:border-primary-vibrant/50 hover:text-primary-vibrant',
-  ghost: 'text-slate-300 hover:text-white hover:bg-white/5',
-  success: 'bg-success text-white shadow-lg shadow-teal-600/20 hover:scale-[1.02] hover:opacity-95',
+    'shimmer-btn border-beam bg-[#050a15] text-white hover-lift active:opacity-90',
+ secondary:
+ 'bg-bg-card text-text-primary border border-border-subtle shadow-elegant hover-lift',
+ outline:
+ 'border border-border-subtle text-text-secondary hover:border-primary hover:text-primary transition-colors',
+ ghost: 
+ 'text-text-secondary hover:text-text-primary hover:bg-bg-card/50 transition-colors',
+ success: 
+ 'bg-success text-text-primary shadow-lg shadow-success/10 hover-lift active:opacity-90',
 };
 
 const sizes = {
-  sm: 'px-4 py-2 text-xs font-semibold',
-  md: 'px-6 py-2.5 text-sm font-bold',
-  lg: 'px-8 py-4 text-base font-bold',
+ sm: 'px-4 py-2 text-xs font-semibold',
+ md: 'px-6 py-2.5 text-sm font-bold',
+ lg: 'px-8 py-4 text-base font-bold',
 };
 
 const Element = href ? 'a' : 'button';
 const baseStyles =
-  'inline-flex items-center justify-center rounded-xl transition-all duration-220 disabled:opacity-50 disabled:pointer-events-none';
+ 'inline-flex items-center justify-center rounded-xl transition-all duration-300 disabled:opacity-50 disabled:pointer-events-none cursor-pointer relative overflow-hidden';
 ---
 
 <Element href={href} class:list={[baseStyles, variants[variant], sizes[size], className]} {...rest}>
-  <slot />
+  {/* Capa de contenido para asegurar visibilidad total */}
+  <span class="relative z-20 flex items-center justify-center w-full h-full">
+    <slot />
+  </span>
 </Element>

@@ -2,22 +2,22 @@ import { ICON_BY_SERVICE } from './site-config';
 
 const HOME_SERVICE_MEDIA = {
   'landing-page': {
-    image: '/assets/blog/landing-conversion.jpg',
+    image: '/assets/blog/landing-conversion.webp',
     alt: 'Diseño de landing pages de alta conversión',
     focus: 'Captación de leads',
   },
   'multipage-corporativa': {
-    image: '/assets/projects/turquesa.png',
+    image: '/assets/projects/turquesa.webp',
     alt: 'Sitio multipage corporativo con arquitectura escalable',
     focus: 'Autoridad de marca',
   },
   'ecommerce-whatsapp': {
-    image: '/assets/blog/ecommerce-whatsapp.jpg',
+    image: '/assets/blog/ecommerce-whatsapp.webp',
     alt: 'Ecommerce con experiencia de compra optimizada para WhatsApp',
     focus: 'Conversión comercial',
   },
   'saas-producto-digital': {
-    image: '/assets/projects/posmart.png',
+    image: '/assets/projects/posmart.webp',
     alt: 'Producto SaaS con panel administrativo y experiencia operativa',
     focus: 'Escalabilidad de producto',
   },
@@ -25,22 +25,22 @@ const HOME_SERVICE_MEDIA = {
 
 const LIST_SERVICE_MEDIA = {
   'landing-page': {
-    image: '/assets/blog/landing-conversion.jpg',
+    image: '/assets/blog/landing-conversion.webp',
     alt: 'Diseño de landing pages de alta conversión',
     metric: 'Captación de leads',
   },
   'multipage-corporativa': {
-    image: '/assets/projects/turquesa.png',
+    image: '/assets/projects/turquesa.webp',
     alt: 'Sitio multipage corporativo con arquitectura clara',
     metric: 'Autoridad digital',
   },
   'ecommerce-whatsapp': {
-    image: '/assets/blog/ecommerce-whatsapp.jpg',
+    image: '/assets/blog/ecommerce-whatsapp.webp',
     alt: 'Ecommerce con checkout por WhatsApp',
     metric: 'Conversión comercial',
   },
   'saas-producto-digital': {
-    image: '/assets/projects/posmart.png',
+    image: '/assets/projects/posmart.webp',
     alt: 'Plataforma SaaS enfocada en operación',
     metric: 'Escalabilidad de producto',
   },
@@ -48,26 +48,26 @@ const LIST_SERVICE_MEDIA = {
 
 const DETAIL_SERVICE_VISUALS = {
   'landing-page': {
-    hero: '/assets/blog/landing-conversion.jpg',
-    secondary: '/assets/projects/inperu.png',
+    hero: '/assets/blog/landing-conversion.webp',
+    secondary: '/assets/projects/inperu.webp',
     alt: 'Landing page de alta conversión con propuesta clara y CTA fuerte',
     badge: 'Captación y conversión',
   },
   'multipage-corporativa': {
-    hero: '/assets/projects/turquesa.png',
-    secondary: '/assets/blog/minimalismo-conversion.jpg',
+    hero: '/assets/projects/turquesa.webp',
+    secondary: '/assets/blog/minimalismo-conversion.webp',
     alt: 'Sitio multipage con navegación clara y arquitectura de contenidos',
     badge: 'Autoridad de marca',
   },
   'ecommerce-whatsapp': {
-    hero: '/assets/blog/ecommerce-whatsapp.jpg',
-    secondary: '/assets/projects/zoibeauty.png',
+    hero: '/assets/blog/ecommerce-whatsapp.webp',
+    secondary: '/assets/projects/zoibeauty.webp',
     alt: 'Ecommerce con catálogo visual y cierre comercial en WhatsApp',
     badge: 'Venta digital asistida',
   },
   'saas-producto-digital': {
-    hero: '/assets/projects/posmart.png',
-    secondary: '/assets/projects/posmart.png',
+    hero: '/assets/projects/posmart.webp',
+    secondary: '/assets/projects/posmart.webp',
     alt: 'Plataforma SaaS con foco en operación, panel y escalabilidad',
     badge: 'Producto escalable',
   },

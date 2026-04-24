@@ -4,7 +4,7 @@ client: 'Turquesa Travel Ayacucho'
 industry: 'Turismo'
 projectType: 'multipage'
 date: 2026-01-18
-image: '/assets/projects/turquesa.png'
+image: '/assets/projects/turquesa.webp'
 url: 'https://turquesa-travel.com/'
 tags: ['Multipage', 'Turismo', 'Contenido', 'Confianza']
 summary: 'Sitio multipage para tours y captación de reservas con foco en confianza y experiencia de marca.'

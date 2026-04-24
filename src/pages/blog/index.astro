@@ -8,230 +8,230 @@ import Badge from '../../components/ui/Badge.astro';
 import FinalCTA from '../../components/sections/FinalCTA.astro';
 
 const posts = (await getCollection('blog'))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+ .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const getPostCategory = (tags: string[]) => {
-  const normalized = tags.join(' ').toLowerCase();
-  if (normalized.includes('ecommerce') || normalized.includes('whatsapp')) return 'ecommerce';
-  if (normalized.includes('conversión') || normalized.includes('conversion')) return 'conversion';
-  return 'uiux';
+ const normalized = tags.join(' ').toLowerCase();
+ if (normalized.includes('ecommerce') || normalized.includes('whatsapp')) return 'ecommerce';
+ if (normalized.includes('conversión') || normalized.includes('conversion')) return 'conversion';
+ return 'uiux';
 };
 
 const categories = [
-  { key: 'all', name: 'Todos' },
-  { key: 'uiux', name: 'UI/UX' },
-  { key: 'conversion', name: 'Conversión' },
-  { key: 'ecommerce', name: 'Ecommerce' },
+ { key: 'all', name: 'Todos' },
+ { key: 'uiux', name: 'UI/UX' },
+ { key: 'conversion', name: 'Conversión' },
+ { key: 'ecommerce', name: 'Ecommerce' },
 ];
 
 const formatDate = (date: Date) =>
-  new Intl.DateTimeFormat('es-ES', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }).format(date);
+ new Intl.DateTimeFormat('es-ES', {
+ year: 'numeric',
+ month: 'long',
+ day: 'numeric',
+ }).format(date);
 ---
 
 <MainLayout
-  title="Blog | Celeris Code"
-  description="Insights estratégicos sobre diseño, desarrollo y conversión para negocios digitales."
+ title="Blog | Celeris Code"
+ description="Insights estratégicos sobre diseño, desarrollo y conversión para negocios digitales."
 >
-  <!-- Hero -->
-  <section class="relative overflow-hidden pt-24 pb-12">
-    <div class="pointer-events-none absolute inset-0 -z-20">
-      <div class="aurora-blue absolute -left-[10%] top-[-10%] h-96 w-96 opacity-40"></div>
-      <div class="aurora-purple absolute right-[-10%] top-[10%] h-80 w-80 opacity-30"></div>
-    </div>
+ <!-- Hero -->
+ <section class="relative overflow-hidden pt-24 pb-12">
+ <div class="pointer-events-none absolute inset-0 -z-20">
+ <div class="aurora-blue absolute -left-[10%] top-[-10%] h-96 w-96 opacity-40"></div>
+ <div class="aurora-purple absolute right-[-10%] top-[10%] h-80 w-80 opacity-30"></div>
+ </div>
 
-    <div class="container mx-auto px-6 text-center">
-      <SectionTitle
-        badge="Blog & Recursos"
-        title="Insights para <span class='gradient-text'>acelerar tu negocio</span>"
-        subtitle="Estrategias probadas de diseño, UX y desarrollo para equipos que buscan resultados excepcionales."
-        className="mb-12"
-      />
-    </div>
-  </section>
+ <div class="container mx-auto px-6 text-center">
+ <SectionTitle
+ badge="Blog & Recursos"
+ title="Insights para <span class='gradient-text'>acelerar tu negocio</span>"
+ subtitle="Estrategias probadas de diseño, UX y desarrollo para equipos que buscan resultados excepcionales."
+ className="mb-12"
+ />
+ </div>
+ </section>
 
-  <!-- Filter & Search -->
-  <section class="py-8 sticky top-20 z-40 bg-slate-950/80 backdrop-blur-md border-y border-white/5">
-    <div class="container mx-auto px-6" data-blog-filter>
-      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="flex flex-wrap items-center gap-2">
-          {
-            categories.map((cat) => (
-              <button
-                type="button"
-                data-blog-category={cat.key}
-                class="px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider border border-white/10 bg-white/5 text-slate-300 hover:border-primary-vibrant/30 transition-all data-[active=true]:border-primary-vibrant data-[active=true]:bg-primary-vibrant/10 data-[active=true]:text-primary-vibrant"
-                data-active={cat.key === 'all'}
-              >
-                {cat.name}
-              </button>
-            ))
-          }
-        </div>
+ <!-- Filter & Search -->
+ <section class="py-8 sticky top-20 z-40 bg-bg-default backdrop-blur-md border-y border-border-subtle">
+ <div class="container mx-auto px-6" data-blog-filter>
+ <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+ <div class="flex flex-wrap items-center gap-2">
+ {
+ categories.map((cat) => (
+ <button
+ type="button"
+ data-blog-category={cat.key}
+ class="px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider border border-border-subtle bg-bg-card text-text-secondary hover:border-primary-vibrant/30 transition-all data-[active=true]:border-primary-vibrant data-[active=true]:bg-primary-vibrant/10 data-[active=true]:text-primary-vibrant"
+ data-active={cat.key === 'all'}
+ >
+ {cat.name}
+ </button>
+ ))
+ }
+ </div>
 
-        <div class="w-full md:w-80 relative">
-          <input
-            type="search"
-            placeholder="Buscar artículos..."
-            class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-slate-100 outline-none focus:border-primary-vibrant transition-all"
-            data-blog-search
-          />
-        </div>
-      </div>
-    </div>
-  </section>
+ <div class="w-full md:w-80 relative">
+ <input
+ type="search"
+ placeholder="Buscar artículos..."
+ class="w-full rounded-xl border border-border-subtle bg-bg-card px-4 py-2.5 text-sm text-text-primary outline-none focus:border-primary-vibrant transition-all"
+ data-blog-search
+ />
+ </div>
+ </div>
+ </div>
+ </section>
 
-  <!-- Posts Grid -->
-  <section class="py-20">
-    <div class="container mx-auto px-6">
-      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3" data-posts-container>
-        {
-          posts.map((post, index) => (
-            <article
-              class="group h-full"
-              data-post-card
-              data-post-category={getPostCategory(post.data.tags)}
-              data-post-title={post.data.title.toLowerCase()}
-              data-reveal
-              style={`--reveal-delay: ${index * 50}ms`}
-            >
-              <a href={`/blog/${post.id}`} class="flex flex-col h-full">
-                <Card
-                  padding="none"
-                  className="flex-1 flex flex-col overflow-hidden border-white/10 hover:border-primary-vibrant/30"
-                >
-                  <div class="aspect-video w-full overflow-hidden relative">
-                    <img
-                      src={post.data.cover}
-                      alt={post.data.title}
-                      class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      loading={index < 3 ? 'eager' : 'lazy'}
-                    />
-                    <div class="absolute top-4 right-4">
-                      <Badge variant="accent">{post.data.readingTime}</Badge>
-                    </div>
-                  </div>
+ <!-- Posts Grid -->
+ <section class="py-20">
+ <div class="container mx-auto px-6">
+ <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3" data-posts-container>
+ {
+ posts.map((post, index) => (
+ <article
+ class="group h-full"
+ data-post-card
+ data-post-category={getPostCategory(post.data.tags)}
+ data-post-title={post.data.title.toLowerCase()}
+ data-reveal
+ style={`--reveal-delay: ${index * 50}ms`}
+ >
+ <a href={`/blog/${post.id}`} class="flex flex-col h-full">
+ <Card
+ padding="none"
+ className="flex-1 flex flex-col overflow-hidden border-border-subtle hover:border-primary-vibrant/30"
+ >
+ <div class="aspect-video w-full overflow-hidden relative">
+ <img
+ src={post.data.cover}
+ alt={post.data.title}
+ class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+ loading={index < 3 ? 'eager' : 'lazy'}
+ />
+ <div class="absolute top-4 right-4">
+ <Badge variant="accent">{post.data.readingTime}</Badge>
+ </div>
+ </div>
 
-                  <div class="p-8 flex flex-col flex-1">
-                    <div class="flex items-center gap-4 mb-4 text-[10px] font-mono uppercase tracking-widest text-slate-300">
-                      <span>{formatDate(post.data.date)}</span>
-                      <span class="w-1 h-1 rounded-full bg-slate-700" />
-                      <span>{post.data.author}</span>
-                    </div>
+ <div class="p-8 flex flex-col flex-1">
+ <div class="flex items-center gap-4 mb-4 text-[10px] font-mono uppercase tracking-widest text-text-secondary">
+ <span>{formatDate(post.data.date)}</span>
+ <span class="w-1 h-1 rounded-full bg-slate-700" />
+ <span>{post.data.author}</span>
+ </div>
 
-                    <h2 class="text-xl font-bold text-white mb-4 group-hover:text-primary-vibrant transition-colors line-clamp-2">
-                      {post.data.title}
-                    </h2>
+ <h2 class="text-xl font-bold text-text-primary mb-4 group-hover:text-primary-vibrant transition-colors line-clamp-2">
+ {post.data.title}
+ </h2>
 
-                    <p class="text-sm text-slate-300 leading-relaxed line-clamp-3 mb-8 flex-1">
-                      {post.data.excerpt}
-                    </p>
+ <p class="text-sm text-text-secondary leading-relaxed line-clamp-3 mb-8 flex-1">
+ {post.data.excerpt}
+ </p>
 
-                    <div class="flex flex-wrap gap-2 mb-6">
-                      {post.data.tags.slice(0, 2).map((tag: string) => (
-                        <Badge variant="outline">{tag}</Badge>
-                      ))}
-                    </div>
+ <div class="flex flex-wrap gap-2 mb-6">
+ {post.data.tags.slice(0, 2).map((tag: string) => (
+ <Badge variant="outline">{tag}</Badge>
+ ))}
+ </div>
 
-                    <div class="pt-6 border-t border-white/5 flex items-center text-sm font-bold text-primary-vibrant">
-                      Leer artículo
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </Card>
-              </a>
-            </article>
-          ))
-        }
-      </div>
+ <div class="pt-6 border-t border-border-subtle flex items-center text-sm font-bold text-primary-vibrant">
+ Leer artículo
+ <svg
+ xmlns="http://www.w3.org/2000/svg"
+ class="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1"
+ fill="none"
+ viewBox="0 0 24 24"
+ stroke="currentColor"
+ >
+ <path
+ stroke-linecap="round"
+ stroke-linejoin="round"
+ stroke-width="2"
+ d="M17 8l4 4m0 0l-4 4m4-4H3"
+ />
+ </svg>
+ </div>
+ </div>
+ </Card>
+ </a>
+ </article>
+ ))
+ }
+ </div>
 
-      <div class="hidden py-24 text-center" data-no-results>
-        <p class="text-slate-300 text-lg">
-          No se encontraron artículos que coincidan con tu búsqueda.
-        </p>
-        <Button variant="ghost" className="mt-4" id="clear-filters">Limpiar filtros</Button>
-      </div>
-    </div>
-  </section>
+ <div class="hidden py-24 text-center" data-no-results>
+ <p class="text-text-secondary text-lg">
+ No se encontraron artículos que coincidan con tu búsqueda.
+ </p>
+ <Button variant="ghost" className="mt-4" id="clear-filters">Limpiar filtros</Button>
+ </div>
+ </div>
+ </section>
 
-  <FinalCTA />
+ <FinalCTA />
 </MainLayout>
 
 <script is:inline>
-  (() => {
-    const setupBlogFilter = () => {
-      const filterRoot = document.querySelector('[data-blog-filter]');
-      if (!filterRoot) return;
+ (() => {
+ const setupBlogFilter = () => {
+ const filterRoot = document.querySelector('[data-blog-filter]');
+ if (!filterRoot) return;
 
-      const searchInput = filterRoot.querySelector('[data-blog-search]');
-      const categoryButtons = filterRoot.querySelectorAll('[data-blog-category]');
-      const cards = document.querySelectorAll('[data-post-card]');
-      const noResults = document.querySelector('[data-no-results]');
-      const clearBtn = document.querySelector('#clear-filters');
+ const searchInput = filterRoot.querySelector('[data-blog-search]');
+ const categoryButtons = filterRoot.querySelectorAll('[data-blog-category]');
+ const cards = document.querySelectorAll('[data-post-card]');
+ const noResults = document.querySelector('[data-no-results]');
+ const clearBtn = document.querySelector('#clear-filters');
 
-      let activeCategory = 'all';
-      let searchQuery = '';
+ let activeCategory = 'all';
+ let searchQuery = '';
 
-      const updateUI = () => {
-        let visibleCount = 0;
+ const updateUI = () => {
+ let visibleCount = 0;
 
-        cards.forEach((card) => {
-          const category = card.dataset.postCategory;
-          const title = card.dataset.postTitle;
-          const categoryMatch = activeCategory === 'all' || category === activeCategory;
-          const searchMatch = title.includes(searchQuery);
+ cards.forEach((card) => {
+ const category = card.dataset.postCategory;
+ const title = card.dataset.postTitle;
+ const categoryMatch = activeCategory === 'all' || category === activeCategory;
+ const searchMatch = title.includes(searchQuery);
 
-          if (categoryMatch && searchMatch) {
-            card.classList.remove('hidden');
-            visibleCount++;
-          } else {
-            card.classList.add('hidden');
-          }
-        });
+ if (categoryMatch && searchMatch) {
+ card.classList.remove('hidden');
+ visibleCount++;
+ } else {
+ card.classList.add('hidden');
+ }
+ });
 
-        noResults.classList.toggle('hidden', visibleCount > 0);
-      };
+ noResults.classList.toggle('hidden', visibleCount > 0);
+ };
 
-      categoryButtons.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          categoryButtons.forEach((b) => (b.dataset.active = 'false'));
-          btn.dataset.active = 'true';
-          activeCategory = btn.dataset.blogCategory;
-          updateUI();
-        });
-      });
+ categoryButtons.forEach((btn) => {
+ btn.addEventListener('click', () => {
+ categoryButtons.forEach((b) => (b.dataset.active = 'false'));
+ btn.dataset.active = 'true';
+ activeCategory = btn.dataset.blogCategory;
+ updateUI();
+ });
+ });
 
-      searchInput?.addEventListener('input', (e) => {
-        searchQuery = e.target.value.toLowerCase();
-        updateUI();
-      });
+ searchInput?.addEventListener('input', (e) => {
+ searchQuery = e.target.value.toLowerCase();
+ updateUI();
+ });
 
-      clearBtn?.addEventListener('click', () => {
-        searchInput.value = '';
-        searchQuery = '';
-        activeCategory = 'all';
-        categoryButtons.forEach((b) => (b.dataset.active = b.dataset.blogCategory === 'all'));
-        updateUI();
-      });
-    };
+ clearBtn?.addEventListener('click', () => {
+ searchInput.value = '';
+ searchQuery = '';
+ activeCategory = 'all';
+ categoryButtons.forEach((b) => (b.dataset.active = b.dataset.blogCategory === 'all'));
+ updateUI();
+ });
+ };
 
-    document.addEventListener('astro:page-load', setupBlogFilter);
-    setupBlogFilter();
-  })();
+ document.addEventListener('astro:page-load', setupBlogFilter);
+ setupBlogFilter();
+ })();
 </script>
