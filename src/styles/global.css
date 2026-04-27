@@ -3,6 +3,7 @@
 @theme {
   /* Brand Colors */
   --color-primary: #3b82f6;
+  --color-primary-vibrant: #3b82f6;
   --color-accent: #8b5cf6;
   --color-success: #14b8a6;
 
@@ -18,6 +19,69 @@
   
   /* Custom Shadows & Animations */
   --shadow-elegant: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+}
+
+@layer components {
+  /* Blog & Content Typography */
+  .content-rich {
+    @apply text-text-secondary leading-relaxed text-lg;
+  }
+
+  .content-rich h2 {
+    @apply text-2xl md:text-3xl font-black text-text-primary mt-12 mb-6 scroll-mt-32;
+  }
+
+  .content-rich h3 {
+    @apply text-xl md:text-2xl font-black text-text-primary mt-8 mb-4 scroll-mt-32;
+  }
+
+  .content-rich p {
+    @apply mb-6 last:mb-0;
+  }
+
+  .content-rich ul, .content-rich ol {
+    @apply mb-6 ml-6 space-y-2;
+  }
+
+  .content-rich ul {
+    @apply list-disc;
+  }
+
+  .content-rich ol {
+    @apply list-decimal;
+  }
+
+  .content-rich li {
+    @apply pl-2;
+  }
+
+  .content-rich blockquote {
+    @apply border-l-4 border-primary-vibrant/50 bg-primary-vibrant/5 pl-6 py-4 pr-4 italic rounded-r-xl mb-8 font-medium;
+  }
+
+  .content-rich strong {
+    @apply font-bold text-text-primary;
+  }
+
+  .content-rich a {
+    @apply text-primary-vibrant font-bold underline underline-offset-4 decoration-primary-vibrant/30 hover:decoration-primary-vibrant transition-all;
+  }
+
+  .content-rich img {
+    @apply rounded-2xl shadow-lg my-12 border border-border-subtle mx-auto;
+  }
+
+  .content-rich hr {
+    @apply border-border-subtle my-12;
+  }
+
+  .content-rich pre {
+    @apply rounded-xl p-6 mb-8 overflow-x-auto border border-border-subtle bg-bg-card;
+  }
+
+  .content-rich code:not(pre code) {
+    @apply px-1.5 py-0.5 rounded-md bg-bg-card border border-border-subtle text-primary-vibrant text-sm font-mono;
+  }
 }
 
 @layer base {
@@ -69,6 +133,16 @@
       radial-gradient(circle at 10% 10%, rgba(59, 130, 246, 0.15) 0%, transparent 45%),
       radial-gradient(circle at 90% 10%, rgba(139, 92, 246, 0.1) 0%, transparent 40%),
       radial-gradient(circle at 50% 90%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  }
+
+  .aurora-blue {
+    background: radial-gradient(circle at center, var(--color-primary) 0%, transparent 70%);
+    filter: blur(60px);
+  }
+  
+  .aurora-purple {
+    background: radial-gradient(circle at center, var(--color-accent) 0%, transparent 70%);
+    filter: blur(60px);
   }
 
   /* --- Magic Card Spotlight --- */

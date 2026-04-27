@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "imagen": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "gemini-imagen-mcp-server"
+      ],
+      "env": {
+        "GEMINI_API_KEY": "AIzaSyAOylSuVxmWA5f6j02Yim57xglm39gXGjM"
+      }
+    }
+  }
+}

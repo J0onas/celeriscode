@@ -3,7 +3,11 @@ title: 'Tendencias de diseño web 2026: lo que funciona y lo que ya no'
 excerpt: 'Las tendencias de diseño web que realmente impactan en conversión y experiencia de usuario este año, basadas en datos y proyectos reales.'
 description: 'Análisis de las tendencias más relevantes de diseño web en 2026: bento grids, glassmorphism, microinteracciones, dark mode y más, con enfoque en resultados.'
 date: 2026-04-08
-author: 'Equipo Celeris Code'
+author:
+  name: 'Equipo Celeris Code'
+  role: 'Software Agency'
+  avatar: '/assets/brand/logo-dark.svg'
+  bio: 'Expertos en ingeniería de activos digitales de alto rendimiento.'
 tags: ['Tendencias', 'Diseño Web', 'UI/UX']
 cover: '/assets/blog/minimalismo-conversion.webp'
 isFeatured: true

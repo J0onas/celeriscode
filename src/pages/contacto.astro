@@ -3,6 +3,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 import SectionTitle from '../components/ui/SectionTitle.astro';
 import Button from '../components/ui/Button.astro';
 import Card from '../components/ui/Card.astro';
+import FAQ from '../components/sections/FAQ.astro';
 import { getWhatsAppUrl, WHATSAPP_DISPLAY, ICON_BY_SERVICE } from '../lib/site-config';
 import { getServiceIcon } from '../lib/service-assets';
 import { SITE_NAME } from '../lib/constants';
@@ -90,10 +91,10 @@ const contactSchema = {
  Email Directo
  </p>
  <a
- href="mailto:contacto@celeriscode.com"
+ href="mailto:zorrillalucajhonathan@gmail.com"
  class="text-text-primary font-bold hover:text-primary-vibrant transition-colors"
  >
- contacto@celeriscode.com
+ zorrillalucajhonathan@gmail.com
  </a>
  </div>
 
@@ -239,7 +240,7 @@ const contactSchema = {
  </section>
 
   <!-- FAQ / Process -->
-  <section class="py-24 relative overflow-hidden">
+  <section class="py-20 relative overflow-hidden">
     <div class="container mx-auto px-6 max-w-5xl">
       <SectionTitle
         badge="Proceso"
@@ -254,8 +255,8 @@ const contactSchema = {
 
         {[
           { id: '01', title: 'Revisión', desc: 'Analizamos tu solicitud y preparamos preguntas iniciales.', icon: 'diagnose', color: 'primary' },
-          { id: '02', title: 'Diagnóstico', desc: 'Agendamos una breve llamada para definir alcance y objetivos.', icon: 'spark', color: 'accent' },
-          { id: '03', title: 'Propuesta', desc: 'Enviamos presupuesto detallado y plan de ejecución.', icon: 'layers', color: 'success' },
+          { id: '02', title: 'Diagnóstico', desc: 'Agendamos una breve llamada para definir alcance y objetivos.', icon: 'spark', color: 'primary' },
+          { id: '03', title: 'Propuesta', desc: 'Enviamos presupuesto detallado y plan de ejecución.', icon: 'layers', color: 'primary' },
           { id: '04', title: 'Kickoff', desc: 'Iniciamos el desarrollo con entregas semanales visibles.', icon: 'rocket', color: 'primary' }
         ].map((step, index) => (
           <Card 
@@ -294,6 +295,8 @@ const contactSchema = {
       </div>
     </div>
   </section>
+
+  <FAQ className="bg-bg-default/50" />
 </MainLayout>
 
 <script is:inline>

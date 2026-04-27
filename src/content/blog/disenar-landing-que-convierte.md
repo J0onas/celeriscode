@@ -3,7 +3,12 @@ title: 'Cómo diseñar una landing page que convierta en 2026'
 excerpt: 'Guía práctica y actualizada para estructurar una landing moderna con mensaje claro, prueba social y CTA sin fricción.'
 description: 'Buenas prácticas aplicadas para landing pages de alto rendimiento: jerarquía visual, claridad de oferta, confianza y velocidad de carga.'
 date: 2026-04-02
-author: 'Equipo Celeris Code'
+author:
+  name: 'Equipo Celeris Code'
+  role: 'Software Agency'
+  avatar: '/assets/brand/logo-dark.svg'
+  bio: 'Expertos en ingeniería de activos digitales de alto rendimiento.'
+
 tags: ['Landing Page', 'Conversión', 'UI/UX']
 cover: '/assets/blog/landing-conversion.webp'
 isFeatured: true

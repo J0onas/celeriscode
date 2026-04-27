@@ -3,7 +3,11 @@ title: 'UX para ecommerce con checkout por WhatsApp: la guía definitiva'
 excerpt: 'Cómo diseñar una experiencia ecommerce pensada para negocios que venden desde catálogo y cierran pedidos por chat de forma efectiva.'
 description: 'Patrones UX probados para ecommerce con cierre comercial en WhatsApp: catálogo claro, confianza visible y reducción drástica de abandono.'
 date: 2026-03-26
-author: 'Equipo Celeris Code'
+author:
+  name: 'Equipo Celeris Code'
+  role: 'Software Agency'
+  avatar: '/assets/brand/logo-dark.svg'
+  bio: 'Expertos en ingeniería de activos digitales de alto rendimiento.'
 tags: ['Ecommerce', 'WhatsApp', 'UX']
 cover: '/assets/blog/ecommerce-whatsapp.webp'
 isFeatured: true

@@ -3,7 +3,11 @@ title: 'Velocidad web en 2026: por qué cada milisegundo cuesta ventas reales'
 excerpt: 'La velocidad de carga ya no es solo técnica: es una ventaja competitiva directa que afecta tu conversión, SEO y reputación de marca.'
 description: 'Guía completa sobre velocidad web: impacto en negocio, métricas Core Web Vitals, técnicas de optimización y cómo medir el rendimiento de tu sitio.'
 date: 2026-04-15
-author: 'Equipo Celeris Code'
+author:
+  name: 'Equipo Celeris Code'
+  role: 'Software Agency'
+  avatar: '/assets/brand/logo-dark.svg'
+  bio: 'Expertos en ingeniería de activos digitales de alto rendimiento.'
 tags: ['Performance', 'SEO', 'Desarrollo Web']
 cover: '/assets/projects/turquesa.webp'
 isFeatured: false

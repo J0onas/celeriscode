@@ -3,7 +3,11 @@ title: 'Diseño minimalista que sí vende: menos ruido, más resultados'
 excerpt: 'El minimalismo no es quitar por quitar: es priorizar información, contraste y ritmo visual para mejorar decisiones y conversiones.'
 description: 'Principios de diseño minimalista aplicados a sitios comerciales modernos: balance, contraste, alineación y jerarquía visual orientada a resultados.'
 date: 2026-03-18
-author: 'Equipo Celeris Code'
+author:
+  name: 'Equipo Celeris Code'
+  role: 'Software Agency'
+  avatar: '/assets/brand/logo-dark.svg'
+  bio: 'Expertos en ingeniería de activos digitales de alto rendimiento.'
 tags: ['Minimalismo', 'Diseño Web', 'Branding']
 cover: '/assets/blog/minimalismo-conversion.webp'
 isFeatured: false

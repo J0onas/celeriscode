@@ -69,3 +69,26 @@ export const TRUST_STATS = [
   { label: 'Servicios', value: '4', description: 'Líneas especializadas.' },
   { label: 'Enfoque', value: '100%', description: 'UX/UI + Conversión.' },
 ];
+
+export const FAQ_ITEMS = [
+  {
+    question: "¿Cuánto tiempo toma desarrollar un proyecto?",
+    answer: "Los tiempos varían según la complejidad. Una Landing Page suele estar lista en 1-2 semanas, mientras que proyectos más complejos como un Ecommerce o SaaS pueden tomar de 4 a 8 semanas."
+  },
+  {
+    question: "¿Qué tecnologías utilizan para el desarrollo?",
+    answer: "Utilizamos el stack de alto rendimiento Astro 5.x, React 19 y Tailwind CSS 4.x. Esto nos permite entregar sitios ultra-rápidos que cargan en menos de 1 segundo."
+  },
+  {
+    question: "¿Ofrecen servicios de mantenimiento post-lanzamiento?",
+    answer: "Sí, todos nuestros proyectos incluyen un periodo de soporte inicial. También ofrecemos planes de mantenimiento mensual para actualizaciones, seguridad y optimización continua."
+  },
+  {
+    question: "¿Cómo es el proceso de pago?",
+    answer: "Normalmente trabajamos con un anticipo del 50% para iniciar el proyecto y el 50% restante contra entrega. Para proyectos grandes, podemos establecer hitos de pago por entregables."
+  },
+  {
+    question: "¿Mis activos digitales estarán optimizados para Google?",
+    answer: "Absolutamente. El SEO técnico es parte de nuestro ADN. Optimizamos la estructura, velocidad y metadatos de cada página para asegurar el mejor posicionamiento posible."
+  }
+];

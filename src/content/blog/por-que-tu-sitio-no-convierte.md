@@ -3,7 +3,11 @@ title: 'Por qué tu sitio web no convierte: 7 errores que estás cometiendo ahor
 excerpt: 'Diagnóstico rápido de los errores más comunes que impiden a los sitios web generar leads, ventas y confianza con sus visitantes.'
 description: 'Identifica y corrige los 7 errores más frecuentes que reducen la conversión de sitios web: velocidad, mensajes confusos, falta de pruebas sociales y más.'
 date: 2026-04-10
-author: 'Equipo Celeris Code'
+author:
+  name: 'Equipo Celeris Code'
+  role: 'Software Agency'
+  avatar: '/assets/brand/logo-dark.svg'
+  bio: 'Expertos en ingeniería de activos digitales de alto rendimiento.'
 tags: ['Conversión', 'UX', 'Estrategia Digital']
 cover: '/assets/projects/posmart.webp'
 isFeatured: true

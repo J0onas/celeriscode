@@ -1,8 +1,9 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { z } from 'astro:schema';
 
 const services = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/services' }),
+  loader: glob({ pattern: '**/*.md', base: 'src/content/services' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -22,7 +23,7 @@ const services = defineCollection({
 });
 
 const cases = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/cases' }),
+  loader: glob({ pattern: '**/*.md', base: 'src/content/cases' }),
   schema: z.object({
     title: z.string(),
     client: z.string(),
@@ -50,13 +51,20 @@ const cases = defineCollection({
 });
 
 const blog = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  loader: glob({ pattern: '**/*.md', base: 'src/content/blog' }),
   schema: z.object({
     title: z.string(),
     excerpt: z.string(),
     description: z.string().optional(),
     date: z.date(),
-    author: z.string().default('Equipo Celeris Code'),
+    author: z.object({
+      name: z.string(),
+      role: z.string().default('Estratega Digital'),
+      avatar: z.string().optional(),
+      bio: z.string().optional(),
+      twitter: z.string().optional(),
+      linkedin: z.string().optional(),
+    }),
     tags: z.array(z.string()).default([]),
     cover: z.string(),
     isFeatured: z.boolean().default(false),

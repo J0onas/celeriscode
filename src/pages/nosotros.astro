@@ -19,9 +19,30 @@ const aboutSchema = {
 };
 ---
 
+<style>
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  .animate-dash {
+    animation: dash 3s ease-out forwards;
+  }
+  
+  .aurora-blue {
+    background: radial-gradient(circle at center, var(--color-primary) 0%, transparent 70%);
+    filter: blur(60px);
+  }
+  
+  .aurora-purple {
+    background: radial-gradient(circle at center, var(--color-accent) 0%, transparent 70%);
+    filter: blur(60px);
+  }
+</style>
+
 <MainLayout title="Nosotros | Celeris Code" schema={aboutSchema}>
  <!-- Hero Section -->
- <section class="relative overflow-hidden py-24 md:py-32">
+ <section class="relative overflow-hidden py-16 md:py-20">
  <div class="pointer-events-none absolute inset-0 -z-20">
  <div class="aurora-blue absolute -left-[10%] top-[-10%] h-96 w-96 opacity-40"></div>
  <div class="aurora-purple absolute right-[-10%] top-[10%] h-80 w-80 opacity-30"></div>
@@ -35,29 +56,57 @@ const aboutSchema = {
  className="mb-12"
  />
 
- <div
- class="mx-auto max-w-5xl mt-16 rounded-3xl overflow-hidden border border-border-subtle shadow-2xl relative group"
- >
- <img
- src="/assets/blog/minimalismo-conversion.webp"
- alt="Equipo colaborando"
- class="w-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
- loading="eager"
- />
- <div
- class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"
- >
- </div>
- </div>
+ <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-16 max-w-6xl mx-auto">
+      <!-- Image Hero Container (The Heart of the Bento) -->
+      <div class="lg:col-span-8 group relative overflow-hidden rounded-3xl border border-border-subtle bg-slate-900 shadow-2xl h-[450px]">
+        <!-- Placeholder / Loading State for your AI Image -->
+        <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 animate-pulse"></div>
+        
+        <img 
+          src="/assets/brand/hero-nosotros.webp" 
+          alt="Celeris Code Engineering Visual"
+          class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:scale-105 transition-all duration-1000"
+          onload="this.classList.remove('opacity-0'); this.classList.add('opacity-100')"
+          onerror="this.src='https://placehold.co/1200x675/102a43/3b82f6?text=Engineering+Dominance'"
+        />
+
+        <!-- Overlay for readability -->
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+
+        <div class="absolute bottom-8 left-8 text-left">
+          <Badge variant="accent vibrant" className="mb-3">Arquitectura Elite</Badge>
+          <p class="text-white font-bold text-3xl max-w-md leading-tight">Diseñamos el ADN técnico de las marcas líderes.</p>
+        </div>
+      </div>
+
+      <!-- Statistics & Info Cards -->
+      <div class="lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
+        <Card isPremium padding="lg" className="flex flex-col justify-center text-left border-primary/20 bg-primary/5">
+          <div class="text-primary-vibrant font-black text-5xl mb-2 tracking-tighter">99.9%</div>
+          <h4 class="text-text-primary font-bold text-lg">Disponibilidad</h4>
+          <p class="text-text-secondary text-sm">Sistemas resilientes diseñados para no detenerse nunca.</p>
+        </Card>
+        
+        <Card padding="lg" className="flex flex-col justify-center text-left group hover:border-accent/40 transition-colors">
+          <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent group-hover:scale-110 transition-transform">
+             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+             </svg>
+          </div>
+          <h4 class="text-text-primary font-bold text-lg">Velocidad Pura</h4>
+          <p class="text-text-secondary text-sm">Optimizamos cada milisegundo para maximizar tu conversión.</p>
+        </Card>
+      </div>
+    </div>
  </div>
  </section>
 
  <!-- Mission & Vision -->
- <section class="py-24 bg-bg-default">
+ <section class="py-20 bg-bg-default">
  <div class="container mx-auto px-6">
  <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
  <Card isPremium padding="lg">
- <Badge variant="accent" className="mb-6">Misión</Badge>
+ <Badge variant="accent-vibrant" className="mb-6">Misión</Badge>
  <h2 class="text-3xl font-bold text-text-primary mb-6">Transformar la presencia digital</h2>
  <p class="text-text-secondary leading-relaxed text-lg">
  Nuestra misión es ayudar a marcas ambiciosas a construir <strong class="text-text-primary"
@@ -67,7 +116,7 @@ const aboutSchema = {
  </Card>
 
  <Card isPremium padding="lg">
- <Badge variant="accent" className="mb-6">Visión</Badge>
+ <Badge variant="accent-vibrant" className="mb-6">Visión</Badge>
  <h2 class="text-3xl font-bold text-text-primary mb-6">El socio tecnológico del futuro</h2>
  <p class="text-text-secondary leading-relaxed text-lg">
  Aspiramos a ser el referente en ejecución técnica y estrategia UX, donde la velocidad y
@@ -81,7 +130,7 @@ const aboutSchema = {
  </section>
 
  <!-- Values -->
- <section class="py-24">
+ <section class="py-20">
  <div class="container mx-auto px-6">
  <SectionTitle
  badge="Nuestros Valores"
@@ -124,7 +173,7 @@ const aboutSchema = {
  </section>
 
  <!-- Process -->
- <section class="py-24 relative overflow-hidden">
+ <section class="py-20 relative overflow-hidden">
  <div class="container mx-auto px-6">
    <div class="max-w-6xl mx-auto">
      <SectionTitle

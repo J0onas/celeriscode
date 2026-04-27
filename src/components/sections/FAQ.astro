@@ -1,0 +1,72 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+import Card from '../ui/Card.astro';
+import { FAQ_ITEMS } from '../../lib/constants';
+
+interface Props {
+  className?: string;
+}
+
+const { className = "" } = Astro.props;
+---
+
+<section class={`py-20 relative overflow-hidden ${className}`} id="faq">
+  <div class="container mx-auto px-6">
+    <SectionTitle
+      badge="FAQ"
+      title="Preguntas <span class='gradient-text'>Frecuentes</span>"
+      subtitle="Resolvemos tus dudas sobre nuestro proceso y metodología de trabajo."
+      className="mb-16"
+    />
+
+    <div class="max-w-3xl mx-auto space-y-4">
+      {FAQ_ITEMS.map((item, index) => (
+        <Card 
+          padding="none" 
+          className="overflow-hidden group"
+          data-reveal 
+          style={`--reveal-delay: ${index * 100}ms`}
+        >
+          <details class="group">
+            <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+              <h3 class="text-lg font-bold text-text-primary group-hover:text-primary transition-colors pr-8">
+                {item.question}
+              </h3>
+              <div class="relative h-5 w-5 flex-shrink-0 mt-1">
+                <div class="absolute top-1/2 left-0 h-0.5 w-5 bg-primary/40 rounded-full -translate-y-1/2 group-open:rotate-180 transition-transform duration-300"></div>
+                <div class="absolute top-0 left-1/2 h-5 w-0.5 bg-primary/40 rounded-full -translate-x-1/2 group-open:rotate-90 transition-transform duration-300"></div>
+              </div>
+            </summary>
+            <div class="px-6 pb-6 text-text-secondary leading-relaxed border-t border-border-subtle pt-4 animate-fade-in">
+              {item.answer}
+            </div>
+          </details>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  details[open] summary div div:last-child {
+    transform: rotate(90deg);
+    opacity: 0;
+  }
+  
+  details[open] summary div div:first-child {
+    background-color: var(--color-primary);
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
